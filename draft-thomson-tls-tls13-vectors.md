@@ -21,7 +21,6 @@ author:
     email: martin.thomson@gmail.com
 
 normative:
-  I-D.ietf-tls-tls13:
 
 informative:
 
