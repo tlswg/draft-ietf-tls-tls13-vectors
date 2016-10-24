@@ -1,3 +1,5 @@
+MD_PREPROCESSOR := ./preprocess.sh
+
 include lib/main.mk
 
 lib/main.mk:
@@ -7,3 +9,5 @@ ifneq (,$(shell git submodule status lib 2>/dev/null))
 else
 	git clone -q --depth 10 -b master https://github.com/martinthomson/i-d-template.git lib
 endif
+
+$(addsuffix .mdtmp,$(drafts)): preprocess.sh parselog.py

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# This takes the output from NSS (SSLTRACE=10 is fine) and produces markdown.
+# That markdown should be roughly readable.
 
 import codecs
 import fileinput
@@ -15,21 +17,30 @@ class PeerRole:
     """ PeerRole tracks which peer is which based on the pointer value that is logged. """
     roles = {}
 
+    def __init__(self):
+        # Fall back on these if we haven't got good information
+        self.pending = ('client', 'server')
+
+    def report(self, role):
+        print('{%s}' % role)
+
     def lookup(self, ptr):
         if ptr not in self.roles:
-            return '<role>'
+            return self.pending[0]
         return self.roles[ptr]
-    
+
     def commit(self, ptr, role):
         if ptr in self.roles and self.roles[ptr] != role:
             warning('setting %s to %s, already %s' %
                     (ptr, role, self.roles[ptr]))
             return '<error>'
+        if len(self.pending) > 0 and self.pending[0] == role:
+            self.pending = self.pending[1:]
         self.roles[ptr] = role
         return role
 # |roles| tracks which fd pointer matches which role (client/server)
 roles = PeerRole()
-    
+
 class HandleHandshake:
     """ HandleHandshake tracks handshake messages.  It also assigns roles. """
     pattern = re.compile('\d+: SSL3\[(\d+)\]: append handshake header: type ([a-z_]+) ')
@@ -45,8 +56,12 @@ class HandleHandshake:
     def handle(self, line):
         return True
 
+    def snake_to_camel(self, s):
+        return ''.join([x[0].upper() + x[1:].lower() for x in s.split('_')])
+
     def report(self):
-        print('%s: send a %s handshake message' % (self.role, self.message))
+        roles.report(self.role)
+        print(': send a %s handshake message' % self.snake_to_camel(self.message))
 
 hex_codec = codecs.getencoder('hex')
 def hex(b):
@@ -88,10 +103,13 @@ class BinaryReader:
         return False
 
     def report(self, label, indent = 0):
-        print('%s%s [%d]' % (':   ' * indent, label, len(self.value)))
+        print()
+        print('%s%s (%d octets):' % (' ' * 2 * indent, label, len(self.value)))
+        if len(self.value) == 0:
+            print('%s: (empty)' % (' ' * 2 * indent))
         colon = ':'
         for i in list(range(0, len(self.value), 64)):
-            print('%s%s   %s' % (' ' * 4 * indent, colon, hex(self.value[i:i+32])))
+            print('%s%s %s' % (' ' * 2 * indent, colon, hex(self.value[i:i+32])))
             colon = ' '
 
 class HandleRecord:
@@ -107,18 +125,20 @@ class HandleRecord:
 
     def report(self):
         if self.cleartext:
-            print('%s: send record:' % self.role)
+            roles.report(self.role)
+            print(': send record:')
             label = 'cleartext'
         else:
             label = 'ciphertext'
         self.binary.report(label, 1)
 
 class HandlePrivateKey:
-    pattern = re.compile('Create ECDH ephemeral key (\d+)')
+    pattern = re.compile('\d+: SSL\[(\d+)\]: Create ECDH ephemeral key (\d+)')
     key_size = BinaryReader.pattern('(Public|Private) Key')
-    
+
     def __init__(self, m):
-        self.group = int(m.group(1), base=10)
+        self.role = roles.lookup(m.group(1))
+        self.group = int(m.group(2), base=10)
         self.reader = None
         self.public = None
         self.private = None
@@ -146,8 +166,9 @@ class HandlePrivateKey:
         return False
 
     def report(self):
-        print('<role>: creates an ephemeral %s key pair:' %
-              group_name[self.group])
+        roles.report(self.role)
+        print(': create an ephemeral %s key pair:' %
+              (self.role, group_name[self.group]))
         if self.private is not None:
             self.private.report('private key', 1)
         else:
@@ -189,7 +210,8 @@ class HandleExtractSecret:
         return False
 
     def report(self):
-        print('%s: extract %s secret:' % (self.role, self.type))
+        roles.report(self.role)
+        print(': extract %s secret:' % self.type)
         for (n, v) in self.values:
             v.report(n, 1)
 
@@ -237,7 +259,8 @@ class HandleDeriveSecret:
 
 
     def report(self):
-        print('%s: derive %s:' % (self.role, self.type))
+        roles.report(self.role)
+        print(': derive %s:' % self.type)
         for (n, v) in self.values:
             v.report(n, 1)
 
@@ -249,14 +272,18 @@ def pick_handler(line):
             return h(m)
     return None
 
-handler = None
-for line in fileinput.input():
-    if handler is not None:
-        done = handler.handle(line)
-        if not done:
-            continue
-        handler.report()
+def main():
+    handler = None
+    for line in fileinput.input():
+        if handler is not None:
+            done = handler.handle(line)
+            if not done:
+                continue
+            print()
+            handler.report()
 
-    handler = pick_handler(line)
+        handler = pick_handler(line)
 
-exit(warning.count)
+if __name__ == '__main__':
+    main()
+    exit(warning.count)

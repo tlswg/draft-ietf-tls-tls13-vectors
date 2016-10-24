@@ -17,6 +17,13 @@ $ make
 This requires that you have the necessary software installed.  See [the
 instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md).
 
+It also requires that you have a copy of NSS in a directory next to this one.  That
+copy of NSS should be built and you should then run the file
+`../nss/tests/ssl_gtests/ssl_gtests.sh`.  This will produce a directory called
+`../tests_results/security/<hostname>.<number>/ssl_gtests`.  Copy that directory
+to `../ssl_gtests`.  These locations can be overridden by setting environment
+variables, but that's work.
+
 
 ## Contributing
 
