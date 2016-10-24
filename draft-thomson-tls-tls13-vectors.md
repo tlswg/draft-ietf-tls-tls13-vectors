@@ -83,6 +83,12 @@ coefficient:
     0dd13cc038048a43 c59b2acc416889c0 37665fe5afa60596 9f8c01dfa5ca969d
 
 
+# Simple 1-RTT Handshake
+
+In this example, the simplest possible handshake is completed.  The server is
+authenticated, but the client remains anonymous.
+
+%%% GenericStream/TlsConnectGeneric.Connect/0
 
 
 # Security Considerations
