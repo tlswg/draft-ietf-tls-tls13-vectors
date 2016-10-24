@@ -102,15 +102,16 @@ class BinaryReader:
         self.value += bytes.fromhex(m.group(0).replace(' ', ''))
         return False
 
-    def report(self, label, indent = 0):
-        print()
-        print('%s%s (%d octets):' % (' ' * 2 * indent, label, len(self.value)))
+    def report(self, label, indent=1):
+        ws = ' ' * 2 * indent
+        print('%s%s (%d octets):' % (ws, label, len(self.value)))
         if len(self.value) == 0:
-            print('%s: (empty)' % (' ' * 2 * indent))
+            print('%s: (empty)' % ws)
         colon = ':'
-        for i in list(range(0, len(self.value), 64)):
-            print('%s%s %s' % (' ' * 2 * indent, colon, hex(self.value[i:i+32])))
+        for i in list(range(0, len(self.value), 32)):
+            print('%s%s %s' % (ws, colon, hex(self.value[i:i+32])))
             colon = ' '
+        print()
 
 class HandleRecord:
     pattern = BinaryReader.pattern('(Send record \(plain text\)|send \(encrypted\) record data:)', socket=True)
@@ -130,11 +131,12 @@ class HandleRecord:
             label = 'cleartext'
         else:
             label = 'ciphertext'
-        self.binary.report(label, 1)
+        print()
+        self.binary.report(label)
 
 class HandlePrivateKey:
     pattern = re.compile('\d+: SSL\[(\d+)\]: Create ECDH ephemeral key (\d+)')
-    key_size = BinaryReader.pattern('(Public|Private) Key')
+    key_size = BinaryReader.pattern('(Public|Private) Key', socket=True)
 
     def __init__(self, m):
         self.role = roles.lookup(m.group(1))
@@ -146,14 +148,14 @@ class HandlePrivateKey:
     def handle(self, line):
         m = self.key_size.match(line)
         if m is not None:
-            k = m.group(1).lower()
+            k = m.group(2).lower()
             self.reader = BinaryReader(m)
             if k == 'public':
                 self.public = self.reader
             elif k == 'private':
                 self.private = self.reader
             else:
-                print(': Unknown key type %s' % k)
+                warning('Unknown key type %s' % k)
                 return True
             return False
 
@@ -167,14 +169,14 @@ class HandlePrivateKey:
 
     def report(self):
         roles.report(self.role)
-        print(': create an ephemeral %s key pair:' %
-              (self.role, group_name[self.group]))
+        print(': create an ephemeral %s key pair:' % group_name[self.group])
+        print()
         if self.private is not None:
-            self.private.report('private key', 1)
+            self.private.report('private key')
         else:
             warning('no private key')
         if self.public is not None:
-            self.public.report('public key', 1)
+            self.public.report('public key')
         else:
             warning('no public key')
 
@@ -212,17 +214,20 @@ class HandleExtractSecret:
     def report(self):
         roles.report(self.role)
         print(': extract %s secret:' % self.type)
+        print()
         for (n, v) in self.values:
-            v.report(n, 1)
+            v.report(n)
+
+hkdf_patterns = [['ignore', re.compile('HKDF Expand: label=\[TLS 1\.3, \] \+ \'[\w, ]+\',requested length=\d+')],
+                 ['PRK', BinaryReader.pattern('PRK')],
+                 ['hash', BinaryReader.pattern('Hash')],
+                 ['info', BinaryReader.pattern('Info')],
+                 ['output', BinaryReader.pattern('Derived key')]]
 
 class HandleDeriveSecret:
     pattern = re.compile('\d+: TLS13\[(\d+)\]: deriving secret \'([\w ]+)\'')
-    derive_patterns = [['handshake hash', BinaryReader.pattern('Combined handshake hash computed ')],
-                       ['ignore', re.compile('HKDF Expand: label=\[TLS 1\.3, \] \+ \'[\w ]+\',requested length=\d+')],
-                       ['PRK', BinaryReader.pattern('PRK')],
-                       ['hash2', BinaryReader.pattern('Hash')],
-                       ['info', BinaryReader.pattern('Info')],
-                       ['key', BinaryReader.pattern('Derived key')]]
+    derive_patterns = [['handshake hash', BinaryReader.pattern('Combined handshake hash computed ')]] + \
+                      hkdf_patterns
 
     def __init__(self, m):
         self.role = roles.lookup(m.group(1))
@@ -240,7 +245,7 @@ class HandleDeriveSecret:
             if self.values[0][1].value != self.values[3][1].value:
                 # Compare handshake hash with hash2
                 warning('handshake hash changed')
-            del self.values[3] # hash2
+            del self.values[3] # hash (again)
             del self.values[1] # ignore
             return True
 
@@ -257,14 +262,69 @@ class HandleDeriveSecret:
         self.values.append([n, self.reader])
         return False
 
-
     def report(self):
         roles.report(self.role)
         print(': derive %s:' % self.type)
+        print()
         for (n, v) in self.values:
-            v.report(n, 1)
+            v.report(n)
 
-handlers = [HandleHandshake, HandleRecord, HandlePrivateKey, HandleExtractSecret, HandleDeriveSecret]
+class HandleTrafficKeys:
+    pattern = re.compile('\d+: TLS13\[(\d+)\]: deriving traffic keys phase=\'([\w ]+)\'')
+
+    def __init__(self, m):
+        self.role = roles.lookup(m.group(1))
+        self.type = m.group(2)
+        self.key_values = []
+        self.iv_values = []
+        self.values = self.key_values
+        self.reader = None
+
+    def handle(self, line):
+        if self.reader is not None:
+            done = self.reader.handle(line)
+            if not done:
+                return False
+
+        if len(self.values) == len(hkdf_patterns):
+            del self.values[2] # hash
+            del self.values[0] # ignore
+            if self.values is self.key_values:
+                self.values = self.iv_values
+            else:
+                return True
+
+        (n, p) = hkdf_patterns[len(self.values)]
+        m = p.match(line)
+        if m is None:
+            print(line)
+            warning('no %s for traffic key derivation' % n)
+            return True
+        if n == 'ignore':
+            self.values.append(True)
+            return False
+        self.reader = BinaryReader(m)
+        self.values.append([n, self.reader])
+        return False
+
+    def report(self):
+        roles.report(self.role)
+        print(': derive traffic keys %s:' % self.type)
+        print()
+        if self.key_values[0][1].value != self.iv_values[0][1].value:
+            warning('key and iv have different PRK')
+        self.key_values[0][1].report('PRK')
+        for (n, v) in self.key_values[1:]:
+            v.report('key ' + n)
+        for (n, v) in self.iv_values[1:]:
+            v.report('iv ' + n)
+
+handlers = [HandleHandshake,
+            HandleRecord,
+            HandlePrivateKey,
+            HandleExtractSecret,
+            HandleDeriveSecret,
+            HandleTrafficKeys]
 def pick_handler(line):
     for h in handlers:
         m = h.pattern.match(line)

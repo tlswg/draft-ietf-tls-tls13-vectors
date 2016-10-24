@@ -3,7 +3,7 @@
 cd $(dirname $0)
 DIST_DIR="../dist/$(make -s -C ../nss platform)"
 SSL_GTEST="${SSL_GTEST:-${DIST_DIR}/bin/ssl_gtest}"
-DB_DIR="${DB_DIR:-../ssl_gtests}"
+DB_DIR="${DB_DIR:-ssl_gtests}"
 
 text=()
 process() {
@@ -15,7 +15,10 @@ process() {
         DYLD_LIBRARY_PATH="${DIST_DIR}/lib" \
         SSLTRACE=50 \
         "$SSL_GTEST" -d "$DB_DIR" --gtest_filter="$(echo ${i##%%%})" 2>&1 | \
-        ./parselog.py
+        ./processlog.py
+      if [[ $? -ne 0 ]]; then
+        exit 1
+      fi
     fi
   done
   text=()
