@@ -10,5 +10,7 @@ venv/
 issues.json
 /lib
 draft-thomson-tls-tls13-vectors.xml
-lib
 draft-thomson-tls-tls13-vectors.mdtmp
+/nss
+/nspr
+/dist

@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cd $(dirname $0)
-DIST_DIR="../dist/$(make -s -C ../nss platform)"
+NSSDIR=${NSSDIR:-../nss}
+DIST_DIR="$NSSDIR/../dist/$(make -s -C ../nss platform)"
 SSL_GTEST="${SSL_GTEST:-${DIST_DIR}/bin/ssl_gtest}"
 DB_DIR="${DB_DIR:-ssl_gtests}"
 
@@ -15,7 +16,7 @@ process() {
         DYLD_LIBRARY_PATH="${DIST_DIR}/lib" \
         SSLTRACE=50 \
         "$SSL_GTEST" -d "$DB_DIR" --gtest_filter="$(echo ${i##%%%})" 2>&1 | \
-        ./processlog.py
+tee -a log|        ./processlog.py
       if [[ $? -ne 0 ]]; then
         exit 1
       fi

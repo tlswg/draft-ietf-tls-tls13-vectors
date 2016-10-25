@@ -10,12 +10,13 @@ checkout:
 
 dependencies:
   pre:
+    - sudo apt-get update; sudo apt-get install gyp ninja-build
     - pip install xml2rfc
     - gem install --no-doc kramdown-rfc2629
 
 test:
   override:
-    - make
+    - make NSSDIR=nss
 
 deployment:
   production:
