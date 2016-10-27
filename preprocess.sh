@@ -8,8 +8,7 @@ DB_DIR="${DB_DIR:-ssl_gtests}"
 
 declare -A tmpfiles
 rmtmp() {
-    # rm -f "${tmpfiles[@]}" 1>&2
-    echo
+    rm -f "${tmpfiles[@]}" 1>&2
 }
 trap rmtmp EXIT
 newtmp() {
