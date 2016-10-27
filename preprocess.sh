@@ -35,11 +35,14 @@ process() {
         else
             tmp4=/dev/null
         fi
+        log=$(newtmp "${args[0]}" log)
+        tmpfiles["${args[0]}"]="$log"
+
         LD_LIBRARY_PATH="${DIST_DIR}/lib" \
                        DYLD_LIBRARY_PATH="${DIST_DIR}/lib" \
                        SSLTRACE=50 \
                        "$SSL_GTEST" -d "$DB_DIR" --gtest_filter="${args[0]}" 2>&1 | \
-            tee -a $(newtmp "${args[0]}" log) | \
+            tee "$log" | \
             ./processlog.py 3>"$tmp3" 4>"$tmp4"
         if [[ $? -ne 0 ]]; then
             exit 1
