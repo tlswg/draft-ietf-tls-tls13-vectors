@@ -4,26 +4,35 @@
 
 import codecs
 import fileinput
+import os
 import re
+import sys
 
-group_name = {29: 'x25519'}
+handshake_number = 0
+report_handshake = 1
+
+def log(msg=''):
+    """Write log messages to file descriptor 3 for the first handshake and 4 for
+    the second."""
+    os.write(2 + handshake_number, msg + '\n')
 
 def warning(msg):
-    import sys
     warning.count += 1
     sys.stderr.write('>>>Warning<<< %s\n' % msg)
 warning.count = 0
 
 class PeerRole:
     """ PeerRole tracks which peer is which based on the pointer value that is logged. """
-    roles = {}
 
     def __init__(self):
-        # Fall back on these if we haven't got good information
+        self.reset()
+
+    def reset(self):
+        self.roles = {}
         self.pending = ('client', 'server')
 
     def report(self, role):
-        print('{%s}' % role)
+        log('{%s}' % role)
 
     def lookup(self, ptr):
         if ptr not in self.roles:
@@ -39,8 +48,24 @@ class PeerRole:
             self.pending = self.pending[1:]
         self.roles[ptr] = role
         return role
+
 # |roles| tracks which fd pointer matches which role (client/server)
 roles = PeerRole()
+
+class HandleConnecting:
+    # This only latches on the client resetting so that we count just once
+    pattern = re.compile('client: Changing state from INIT to CONNECTING')
+
+    def __init__(self, m):
+        global handshake_number
+        handshake_number += 1
+        roles.reset()
+
+    def handle(self, line):
+        return True
+
+    def report(self):
+        pass
 
 class HandleHandshake:
     """ HandleHandshake tracks handshake messages.  It also assigns roles. """
@@ -62,7 +87,7 @@ class HandleHandshake:
 
     def report(self):
         roles.report(self.role)
-        print(': send a %s handshake message' % self.snake_to_camel(self.message))
+        log(': send a %s handshake message' % self.snake_to_camel(self.message))
 
 hex_encoder = codecs.getencoder('hex')
 hex_decoder = codecs.getdecoder('hex')
@@ -107,14 +132,14 @@ class BinaryReader:
 
     def report(self, label, indent=1):
         ws = ' ' * 2 * indent
-        print('%s%s (%d octets):' % (ws, label, len(self.value)))
+        log('%s%s (%d octets):' % (ws, label, len(self.value)))
         if len(self.value) == 0:
-            print('%s: (empty)' % ws)
+            log('%s: (empty)' % ws)
         colon = ':'
         for i in list(range(0, len(self.value), 32)):
-            print('%s%s %s' % (ws, colon, self.hex(self.value[i:i+32])))
+            log('%s%s %s' % (ws, colon, self.hex(self.value[i:i+32])))
             colon = ' '
-        print('')
+        log()
 
 class HandleRecord:
     pattern = binary_pattern('(Send record \(plain text\)|send \(encrypted\) record data:)', socket=True)
@@ -130,16 +155,17 @@ class HandleRecord:
     def report(self):
         if self.cleartext:
             roles.report(self.role)
-            print(': send record:')
+            log(': send record:')
+            log()
             label = 'cleartext'
         else:
             label = 'ciphertext'
-        print('')
         self.binary.report(label)
 
 class HandlePrivateKey:
     pattern = re.compile('\d+: SSL\[(-?\d+)\]: Create ECDH ephemeral key (\d+)')
     key_pattern = binary_pattern('(Public|Private) Key', socket=True)
+    group_name = {29: 'x25519'}
 
     def __init__(self, m):
         self.role = roles.lookup(m.group(1))
@@ -167,11 +193,10 @@ class HandlePrivateKey:
         self.keys[k] = self.reader
         return False
 
-
     def report(self):
         roles.report(self.role)
-        print(': create an ephemeral %s key pair:' % group_name[self.group])
-        print('')
+        log(': create an ephemeral %s key pair:' % self.group_name[self.group])
+        log()
         if 'private' in self.keys:
             self.keys['private'].report('private key')
         else:
@@ -205,7 +230,7 @@ class HandleExtractSecret:
         (n, p) = self.extract_patterns[len(self.values)]
         m = p.match(line)
         if m is None:
-            print(line)
+            log(line)
             warning('no %s for extract secret' % n)
             return True
 
@@ -215,8 +240,8 @@ class HandleExtractSecret:
 
     def report(self):
         roles.report(self.role)
-        print(': extract %s secret:' % self.type)
-        print('')
+        log(': extract %s secret:' % self.type)
+        log()
         for (n, v) in self.values:
             v.report(n)
 
@@ -230,6 +255,7 @@ class HandleDeriveSecret:
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving secret \'([\w ]+)\'')
     derive_patterns = [['handshake hash', binary_pattern('Combined handshake hash computed ')]] + \
                       hkdf_patterns
+    message_pattern = binary_pattern('Handshake hash computed over saved messages')
 
     def __init__(self, m):
         self.role = roles.lookup(m.group(1))
@@ -254,7 +280,13 @@ class HandleDeriveSecret:
         (n, p) = self.derive_patterns[len(self.values)]
         m = p.match(line)
         if m is None:
-            print(line)
+            # Sometimes we get an extra blob inserted, we need to read that, but
+            # not save it or anything like that.
+            m = self.message_pattern.match(line)
+            if m is not None:
+                self.reader = BinaryReader(m)
+                return False
+            warning(line)
             warning('no %s for derive secret' % n)
             return True
         if n == 'ignore':
@@ -266,8 +298,8 @@ class HandleDeriveSecret:
 
     def report(self):
         roles.report(self.role)
-        print(': derive %s:' % self.type)
-        print('')
+        log(': derive %s:' % self.type)
+        log()
         for (n, v) in self.values:
             v.report(n)
 
@@ -299,7 +331,7 @@ class HandleTrafficKeys:
         (n, p) = hkdf_patterns[len(self.values)]
         m = p.match(line)
         if m is None:
-            print(line)
+            log(line)
             warning('no %s for traffic key derivation' % n)
             return True
         if n == 'ignore':
@@ -311,8 +343,8 @@ class HandleTrafficKeys:
 
     def report(self):
         roles.report(self.role)
-        print(': derive traffic keys using label "%s":' % self.type)
-        print('')
+        log(': derive traffic keys using label "%s":' % self.type)
+        log()
         if self.key_values[0][1].value != self.iv_values[0][1].value:
             warning('key and iv have different PRK')
         self.key_values[0][1].report('PRK')
@@ -321,7 +353,8 @@ class HandleTrafficKeys:
         for (n, v) in self.iv_values[1:]:
             v.report('iv ' + n)
 
-handlers = [HandleHandshake,
+handlers = [HandleConnecting,
+            HandleHandshake,
             HandleRecord,
             HandlePrivateKey,
             HandleExtractSecret,
@@ -341,7 +374,7 @@ def main():
             done = handler.handle(line)
             if not done:
                 continue
-            print('')
+            log()
             handler.report()
 
         handler = pick_handler(line)

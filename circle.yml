@@ -3,10 +3,13 @@ machine:
     version: 2.7.11
   ruby:
     version: 2.3.1
+  environment:
+    PATH: ${PATH}:gyp
 
 checkout:
   post:
     - git fetch origin gh-pages --depth 10
+    - git clone https://chromium.googlesource.com/external/gyp gyp
 
 dependencies:
   pre:

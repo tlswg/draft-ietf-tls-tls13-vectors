@@ -89,12 +89,24 @@ coefficient:
     0dd13cc038048a43 c59b2acc416889c0 37665fe5afa60596 9f8c01dfa5ca969d
 
 
-# Simple 1-RTT Handshake
+# Simple 1-RTT Handshake {#onertt}
 
 In this example, the simplest possible handshake is completed.  The server is
-authenticated, but the client remains anonymous.
+authenticated, but the client remains anonymous.  After connecting, a few
+application data octets are exchanged.  The server sends a session ticket that
+permits the use of 0-RTT in any resumed session.
 
-%%% GenericStream/TlsConnectGeneric.Connect/0
+>>> Version13Only/TlsConnectTls13.ZeroRtt/0 initial resumed
+<<< Version13Only/TlsConnectTls13.ZeroRtt/0 initial
+
+
+# Resumed 0-RTT Handshake {#zerortt}
+
+This handshake resumes from the handshake in {{onertt}}.  Since the server
+provided a session ticket that permitted 0-RTT, and the client is configured for
+0-RTT, the client is able to send 0-RTT data.
+
+<<< Version13Only/TlsConnectTls13.ZeroRtt/0 resumed
 
 
 # Security Considerations
