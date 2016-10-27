@@ -7,17 +7,23 @@ machine:
 checkout:
   post:
     - git fetch origin gh-pages --depth 10
-    - git clone https://chromium.googlesource.com/external/gyp gyp
 
 dependencies:
+  cache_directories:
+    - gyp
+    - nspr
+    - nss
   pre:
     - sudo apt-get update; sudo apt-get install ninja-build
     - pip install xml2rfc
     - gem install --no-doc kramdown-rfc2629
+    - if [ -d gyp ]; then git -C ./gyp pull; else git clone https://chromium.googlesource.com/external/gyp ./gyp; fi
+    - if [ -d nspr ]; then hg -R ./nspr pull -u; else hg clone https://hg.mozilla.org/projects/nspr ./nspr; fi
+    - if [ -d nss ]; then hg -R ./nss pull -u; else hg clone https://hg.mozilla.org/projects/nss ./nss; fi
 
 test:
   override:
-    - PATH=gyp:${PATH} make NSSDIR=nss
+    - PATH=${PWD}/gyp:${PATH} make NSSDIR=nss
 
 deployment:
   production:
