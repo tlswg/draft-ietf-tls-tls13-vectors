@@ -4,7 +4,7 @@ machine:
   ruby:
     version: 2.3.1
   environment:
-    PATH: ${PATH}:gyp
+    PATH: ${PWD}/gyp:${PATH}
 
 checkout:
   post:
@@ -13,7 +13,7 @@ checkout:
 
 dependencies:
   pre:
-    - sudo apt-get update; sudo apt-get install gyp ninja-build
+    - sudo apt-get update; sudo apt-get install ninja-build
     - pip install xml2rfc
     - gem install --no-doc kramdown-rfc2629
 
