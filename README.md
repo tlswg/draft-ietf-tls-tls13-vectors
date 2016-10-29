@@ -1,9 +1,14 @@
 # Example Handshake Traces for TLS 1.3
 
-This is the working area for the Individual internet-draft, "Example Handshake Traces for TLS 1.3".
+This is the working area for the Individual internet-draft, "Example Handshake
+Traces for TLS 1.3".
 
 * [Editor's copy](https://martinthomson.github.io/tls13-vectors/)
 * [Individual Draft] (https://tools.ietf.org/html/draft-thomson-tls-tls13-vectors)
+
+Note that each time the draft is built, a different set of vectors will be
+produced.  Thus, the published and editor's copies are not going to be exactly
+the same.  They should look pretty similar though.
 
 
 ## Building the Draft
@@ -17,12 +22,12 @@ $ make
 This requires that you have the necessary software installed.  See [the
 instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md).
 
-It also requires that you have a copy of NSS in a directory next to this one.  That
-copy of NSS should be built and you should then run the file
-`../nss/tests/ssl_gtests/ssl_gtests.sh`.  This will produce a directory called
-`../tests_results/security/<hostname>.<number>/ssl_gtests`.  Copy that directory
-to `../ssl_gtests`.  These locations can be overridden by setting environment
-variables, but that's work.
+It also requires that you have a copy of NSS in a directory next to this one.  If
+you don't have a copy, the build will checkout a copy for you and build it.  You
+need [gyp](https://gyp.gsrc.io/) and [ninja](https://ninja-build.org/) and probably
+a bunch of other things to do that successfully, see the
+[NSS guide](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Building)
+for details.
 
 
 ## Contributing

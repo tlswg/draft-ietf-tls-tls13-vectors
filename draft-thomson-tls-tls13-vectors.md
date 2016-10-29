@@ -46,7 +46,7 @@ Private keys are included with the traces so that implementations can be
 checked by importing these values and verifying that the same outputs are
 produced.
 
-NOTE:
+Note:
 : This version of the document shows vectors from version -16 of the draft.
   It will be updated when NSS is updated to -18 (real soon now).
 
@@ -99,6 +99,10 @@ In this example, the simplest possible handshake is completed.  The server is
 authenticated, but the client remains anonymous.  After connecting, a few
 application data octets are exchanged.  The server sends a session ticket that
 permits the use of 0-RTT in any resumed session.
+
+Note:
+: This example doesn't include the calculation of the exporter secret.  Support
+  for that will be added to NSS soon.
 
 >>> Version13Only/TlsConnectTls13.ZeroRtt/0 initial resumed
 <<< Version13Only/TlsConnectTls13.ZeroRtt/0 initial
