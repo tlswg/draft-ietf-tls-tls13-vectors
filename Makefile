@@ -21,7 +21,7 @@ GTESTS := $(NSSDIR)/../dist/$(shell make -s -C $(NSSDIR) platform)/bin/ssl_gtest
 $(addsuffix .mdtmp,$(drafts)): $(GTESTS)
 
 $(GTESTS): $(NSSDIR) $(NSPRDIR)
-	BUILD_OPT= USE_64=1 $(NSSDIR)/build.sh
+	BUILD_OPT= USE_64=1 $(NSSDIR)/build.sh $(NSS_OPTIONS)
 
 $(NSSDIR):
 	hg clone https://hg.mozilla.org/projects/nss $(realpath $(NSSDIR))

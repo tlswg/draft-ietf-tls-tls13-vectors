@@ -23,7 +23,7 @@ dependencies:
 
 test:
   override:
-    - PATH=${PWD}/gyp:${PATH} make NSSDIR=nss
+    - PATH=${PWD}/gyp:${PATH} make NSSDIR=nss NSS_OPTIONS="-j 3"
 
 deployment:
   production:
