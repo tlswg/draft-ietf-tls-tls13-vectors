@@ -9,6 +9,7 @@ DB_DIR="${DB_DIR:-ssl_gtests}"
 declare -A tmpfiles
 rmtmp() {
     rm -f "${tmpfiles[@]}" 1>&2
+    #echo "Saving temporary files: ${tmpfiles[@]}"
 }
 trap rmtmp EXIT
 newtmp() {

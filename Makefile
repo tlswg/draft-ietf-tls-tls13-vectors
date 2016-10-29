@@ -24,7 +24,7 @@ $(GTESTS): $(NSSDIR) $(NSPRDIR)
 	BUILD_OPT= USE_64=1 $(NSSDIR)/build.sh $(NSS_OPTIONS)
 
 $(NSSDIR):
-	hg clone https://hg.mozilla.org/projects/nss $(realpath $(NSSDIR))
+	hg clone https://hg.mozilla.org/projects/nss $(realpath $@)
 
 $(NSPRDIR):
 	hg clone https://hg.mozilla.org/projects/nspr $(realpath $@)

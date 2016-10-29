@@ -206,15 +206,31 @@ class HandlePrivateKey:
         else:
             warning('no public key')
 
+class DeduplicateValues:
+    def __init__(self):
+        self.secrets = {}
+
+    def strip(self, x):
+        return [[i[0], i[1].value] for i in x]
+
+    def match(self, role, values):
+        """Save a set of values and report which role generated them, if any."""
+        for k in self.secrets.keys():
+            if self.strip(self.secrets[k]) == self.strip(values):
+                return k
+        self.secrets[role] = values
+        return None
+
 class HandleExtractSecret:
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: compute (early|handshake|master) secrets? \((server|client)\)')
     extract_patterns = [['salt', binary_pattern('HKDF Extract: IKM1/Salt')],
                         ['ikm', binary_pattern('HKDF Extract: IKM2')],
                         ['secret', binary_pattern('HKDF Extract')]]
+    dedupe = DeduplicateValues()
 
     def __init__(self, m):
         self.role = roles.commit(m.group(1), m.group(3))
-        self.type = m.group(2)
+        self.label = m.group(2)
         self.values = []
         self.reader = None
 
@@ -240,7 +256,12 @@ class HandleExtractSecret:
 
     def report(self):
         roles.report(self.role)
-        log(': extract %s secret:' % self.type)
+        msg = 'extract secret "%s"' % self.label
+        dupe = self.dedupe.match(self.role, self.values)
+        if dupe is not None:
+            log(': %s (same as %s)' % (msg, dupe))
+            return
+        log(': %s:' % msg)
         log()
         for (n, v) in self.values:
             v.report(n)
@@ -256,10 +277,11 @@ class HandleDeriveSecret:
     derive_patterns = [['handshake hash', binary_pattern('Combined handshake hash computed ')]] + \
                       hkdf_patterns
     message_pattern = binary_pattern('Handshake hash computed over saved messages')
+    dedupe = DeduplicateValues()
 
     def __init__(self, m):
         self.role = roles.lookup(m.group(1))
-        self.type = m.group(2)
+        self.label = m.group(2)
         self.values = []
         self.reader = None
 
@@ -298,17 +320,24 @@ class HandleDeriveSecret:
 
     def report(self):
         roles.report(self.role)
-        log(': derive %s:' % self.type)
+        msg = 'derive secret "%s"' % self.label
+        dupe = self.dedupe.match(self.role, self.values)
+        if dupe is not None:
+            log(': %s (same as %s)' % (msg, dupe))
+            return
+        log(': %s:' % msg)
         log()
         for (n, v) in self.values:
             v.report(n)
 
 class HandleTrafficKeys:
-    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving traffic keys phase=\'([\w ]+)\'')
+    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving (read|write) traffic keys phase=\'([\w ]+)\'')
+    dedupe = DeduplicateValues()
 
     def __init__(self, m):
         self.role = roles.lookup(m.group(1))
-        self.type = m.group(2)
+        self.direction = m.group(2)
+        self.label = m.group(3)
         self.key_values = []
         self.iv_values = []
         self.values = self.key_values
@@ -343,7 +372,12 @@ class HandleTrafficKeys:
 
     def report(self):
         roles.report(self.role)
-        log(': derive traffic keys using label "%s":' % self.type)
+        msg = 'derive %s traffic keys using label "%s"' % (self.direction, self.label)
+        dupe = self.dedupe.match('%s %s traffic keys' % (self.role, self.direction), self.values)
+        if dupe is not None:
+            log(': %s (same as %s)' % (msg, dupe))
+            return
+        log(': %s:' % msg)
         log()
         if self.key_values[0][1].value != self.iv_values[0][1].value:
             warning('key and iv have different PRK')
