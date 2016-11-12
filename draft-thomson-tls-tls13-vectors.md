@@ -46,10 +46,6 @@ Private keys are included with the traces so that implementations can be
 checked by importing these values and verifying that the same outputs are
 produced.
 
-Note:
-: This version of the document shows vectors from version -16 of the draft.
-  It will be updated when NSS is updated to -18 (real soon now).
-
 
 # Private Keys
 
