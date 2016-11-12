@@ -266,22 +266,16 @@ class HandleExtractSecret:
         for (n, v) in self.values:
             v.report(n)
 
-hkdf_patterns = [['ignore', re.compile('HKDF Expand: label=\[TLS 1\.3, \] \+ \'[\w, ]+\',requested length=\d+')],
-                 ['PRK', binary_pattern('PRK')],
-                 ['hash', binary_pattern('Hash')],
-                 ['info', binary_pattern('Info')],
-                 ['output', binary_pattern('Derived key')]]
-
-class HandleDeriveSecret:
-    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving secret \'([\w ]+)\'')
-    derive_patterns = [['handshake hash', binary_pattern('Combined handshake hash computed ')]] + \
-                      hkdf_patterns
+class HandleHkdf:
+    hkdf_patterns = [['ignore', re.compile('HKDF Expand: label=\[TLS 1\.3, \] \+ \'[\w, ]+\',requested length=\d+')],
+                     ['PRK', binary_pattern('PRK')],
+                     ['handshake hash', binary_pattern('Hash')],
+                     ['info', binary_pattern('Info')],
+                     ['output', binary_pattern('Derived key')]]
     message_pattern = binary_pattern('Handshake hash computed over saved messages')
     dedupe = DeduplicateValues()
 
-    def __init__(self, m):
-        self.role = roles.lookup(m.group(1))
-        self.label = m.group(2)
+    def __init__(self):
         self.values = []
         self.reader = None
 
@@ -291,15 +285,11 @@ class HandleDeriveSecret:
             if not done:
                 return False
 
-        if len(self.values) == len(self.derive_patterns):
-            if self.values[0][1].value != self.values[3][1].value:
-                # Compare handshake hash with hash2
-                warning('handshake hash changed')
-            del self.values[3] # hash (again)
-            del self.values[1] # ignore
+        if len(self.values) == len(self.hkdf_patterns):
+            del self.values[0] # ignore
             return True
 
-        (n, p) = self.derive_patterns[len(self.values)]
+        (n, p) = self.hkdf_patterns[len(self.values)]
         m = p.match(line)
         if m is None:
             # Sometimes we get an extra blob inserted, we need to read that, but
@@ -309,7 +299,7 @@ class HandleDeriveSecret:
                 self.reader = BinaryReader(m)
                 return False
             warning(line)
-            warning('no %s for derive secret' % n)
+            warning('no %s for %s' % (n, self.name))
             return True
         if n == 'ignore':
             self.values.append(True)
@@ -320,7 +310,10 @@ class HandleDeriveSecret:
 
     def report(self):
         roles.report(self.role)
-        msg = 'derive secret "%s"' % self.label
+        if self.label is not None:
+            msg = '%s "%s"' % (self.name, self.label)
+        else:
+            msg = self.name
         dupe = self.dedupe.match(self.role, self.values)
         if dupe is not None:
             log(': %s (same as %s)' % (msg, dupe))
@@ -329,6 +322,38 @@ class HandleDeriveSecret:
         log()
         for (n, v) in self.values:
             v.report(n)
+
+class HandleDeriveSecret(HandleHkdf):
+    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving secret \'([\w ]+)\'')
+    name = 'derive secret'
+
+    def __init__(self, m):
+        HandleHkdf.__init__(self)
+        self.role = roles.lookup(m.group(1))
+        self.label = m.group(2)
+
+class HandleFinished(HandleHkdf):
+    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: (client|server) calculate finished')
+    name = 'calculate finished'
+    label = None
+    handshake_hash_pattern = binary_pattern('Handshake hash', socket=True)
+
+    def __init__(self, m):
+        HandleHkdf.__init__(self)
+        self.role = roles.lookup(m.group(1))
+        self.handshake_hash = None
+
+    def handle(self, line):
+        if self.handshake_hash is None:
+            m = self.handshake_hash_pattern.match(line)
+            if m is None:
+                warning(line)
+                warning('no handshake hash for finished calculation')
+                return True
+            self.handshake_hash = BinaryReader(m)
+            self.reader = self.handshake_hash
+            return False
+        return HandleHkdf.handle(self, line)
 
 class HandleTrafficKeys:
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving (read|write) traffic keys phase=\'([\w ]+)\'')
@@ -349,7 +374,7 @@ class HandleTrafficKeys:
             if not done:
                 return False
 
-        if len(self.values) == len(hkdf_patterns):
+        if len(self.values) == len(HandleHkdf.hkdf_patterns):
             del self.values[2] # hash
             del self.values[0] # ignore
             if self.values is self.key_values:
@@ -357,7 +382,7 @@ class HandleTrafficKeys:
             else:
                 return True
 
-        (n, p) = hkdf_patterns[len(self.values)]
+        (n, p) = HandleHkdf.hkdf_patterns[len(self.values)]
         m = p.match(line)
         if m is None:
             log(line)
@@ -387,12 +412,14 @@ class HandleTrafficKeys:
         for (n, v) in self.iv_values[1:]:
             v.report('iv ' + n)
 
+
 handlers = [HandleConnecting,
             HandleHandshake,
             HandleRecord,
             HandlePrivateKey,
             HandleExtractSecret,
             HandleDeriveSecret,
+            HandleFinished,
             HandleTrafficKeys]
 def pick_handler(line):
     for h in handlers:
