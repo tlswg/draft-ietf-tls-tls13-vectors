@@ -1,4 +1,4 @@
-MD_PREPROCESSOR := NSSDIR=$(NSSDIR) ./preprocess.sh
+MD_PREPROCESSOR = NSS_DIR=$(NSS_DIR) ./preprocess.sh
 
 include lib/main.mk
 
@@ -12,19 +12,19 @@ endif
 
 $(addsuffix .mdtmp,$(drafts)): preprocess.sh processlog.py
 
-NSSDIR ?= $(wildcard ../nss)
-ifeq (,$(NSSDIR))
-  NSSDIR := nss
+NSS_DIR ?= $(wildcard ../nss)
+ifeq (,$(NSS_DIR))
+  NSS_DIR := nss
 endif
-NSPRDIR := $(NSSDIR)/../nspr
-GTESTS := $(NSSDIR)/../dist/$(shell make -s -C $(NSSDIR) platform)/bin/ssl_gtests
+NSPR_DIR := $(NSS_DIR)/../nspr
+GTESTS := $(NSS_DIR)/../dist/$(shell cat $(NSS_DIR)/../dist/latest)/bin/ssl_gtests
 $(addsuffix .mdtmp,$(drafts)): $(GTESTS)
 
-$(GTESTS): $(NSSDIR) $(NSPRDIR)
-	BUILD_OPT= USE_64=1 $(NSSDIR)/build.sh $(NSS_OPTIONS)
+$(GTESTS): $(NSS_DIR) $(NSPR_DIR)
+	$(NSS_DIR)/build.sh $(NSS_OPTIONS)
 
-$(NSSDIR):
+$(NSS_DIR):
 	hg clone https://hg.mozilla.org/projects/nss $(realpath $@)
 
-$(NSPRDIR):
+$(NSPR_DIR):
 	hg clone https://hg.mozilla.org/projects/nspr $(realpath $@)

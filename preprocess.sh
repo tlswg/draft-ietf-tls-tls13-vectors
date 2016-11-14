@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 cd $(dirname $0)
-NSSDIR=${NSSDIR:-../nss}
-DIST_DIR="$NSSDIR/../dist/$(make -s -C ../nss platform)"
+NSS_DIR=${NSS_DIR:-../nss}
+DIST_DIR="$NSS_DIR/../dist/$(cat $NSS_DIR/../dist/latest)"
 SSL_GTEST="${SSL_GTEST:-${DIST_DIR}/bin/ssl_gtest}"
 DB_DIR="${DB_DIR:-ssl_gtests}"
 
 declare -A tmpfiles
 rmtmp() {
     rm -f "${tmpfiles[@]}" 1>&2
-    #echo "Saving temporary files: ${tmpfiles[@]}"
+    #echo "Saving temporary files: ${tmpfiles[@]}" 1>&2
 }
 trap rmtmp EXIT
 newtmp() {
