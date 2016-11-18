@@ -23,6 +23,13 @@ author:
 normative:
 
 informative:
+  FIPS186:
+    title: "Digital Signature Standard (DSS)"
+    author:
+      - org: National Institute of Standards and Technology (NIST)
+    date: July 2013
+    seriesinfo: NIST PUB 186-4
+
 
 --- abstract
 
@@ -111,6 +118,17 @@ provided a session ticket that permitted 0-RTT, and the client is configured for
 0-RTT, the client is able to send 0-RTT data.
 
 <<< Version13Only/TlsConnectTls13.ZeroRtt/0 resumed
+
+
+# HelloRetryRequest
+
+In this example, the client initiates a handshake with an X25519 {{?RFC7748}}
+share.  The server however prefers P-256 {{FIPS186}} and sends a
+HelloRetryRequest that requires the client to generate a key share on the P-256
+curve.
+
+>>> KeyExchangeTest/TlsKeyExchangeTest13.EqualPriorityTestRetryECServer13/0 hrr
+<<< KeyExchangeTest/TlsKeyExchangeTest13.EqualPriorityTestRetryECServer13/0 hrr
 
 
 # Security Considerations
