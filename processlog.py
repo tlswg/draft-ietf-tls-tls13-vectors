@@ -132,9 +132,13 @@ class BinaryReader:
 
     def report(self, label, indent=1):
         ws = ' ' * 2 * indent
-        log('%s%s (%d octets):' % (ws, label, len(self.value)))
-        if len(self.value) == 0:
-            log('%s: (empty)' % ws)
+        if len(self.value) == 0 and label == 'salt':
+            log('%s%s:' % (ws, label))
+            log('%s: (absent)' % ws)
+        else:
+            log('%s%s (%d octets):' % (ws, label, len(self.value)))
+            if len(self.value) == 0:
+                log('%s: (empty)' % ws)
         colon = ':'
         for i in list(range(0, len(self.value), 32)):
             log('%s%s %s' % (ws, colon, self.hex(self.value[i:i+32])))
