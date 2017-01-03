@@ -103,10 +103,6 @@ authenticated, but the client remains anonymous.  After connecting, a few
 application data octets are exchanged.  The server sends a session ticket that
 permits the use of 0-RTT in any resumed session.
 
-Note:
-: This example doesn't include the calculation of the exporter secret.  Support
-  for that will be added to NSS soon.
-
 >>> Version13Only/TlsConnectTls13.ZeroRtt/0 initial resumed
 <<< Version13Only/TlsConnectTls13.ZeroRtt/0 initial
 
