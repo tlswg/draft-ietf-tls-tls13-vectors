@@ -1,10 +1,10 @@
 # Example Handshake Traces for TLS 1.3
 
-This is the working area for the Individual internet-draft, "Example Handshake
+This is the working area for the Working Group  internet-draft, "Example Handshake
 Traces for TLS 1.3".
 
-* [Editor's copy](https://martinthomson.github.io/tls13-vectors/)
-* [Individual Draft] (https://tools.ietf.org/html/draft-thomson-tls-tls13-vectors)
+* [Editor's copy](https://tlswg.github.io/draft-ietf-tls-tls13-vectors/)
+* [Working Group  Draft] (https://tools.ietf.org/html/draft-ietf-tls-tls13-vectors)
 
 Note that each time the draft is built, a different set of vectors will be
 produced.  Thus, the published and editor's copies are not going to be exactly
