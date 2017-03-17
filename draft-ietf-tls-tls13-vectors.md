@@ -6,8 +6,8 @@ date: 2017
 category: std
 
 ipr: trust200902
-area: Applications and Real-Time
-workgroup: HTTP
+area: Security
+workgroup: TLS
 keyword: Internet-Draft
 
 stand_alone: yes
