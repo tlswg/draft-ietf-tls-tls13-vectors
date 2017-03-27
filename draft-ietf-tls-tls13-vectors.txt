@@ -4,8 +4,8 @@
 
 TLS                                                           M. Thomson
 Internet-Draft                                                   Mozilla
-Intended status: Standards Track                          March 17, 2017
-Expires: September 18, 2017
+Intended status: Standards Track                          March 27, 2017
+Expires: September 28, 2017
 
 
                   Example Handshake Traces for TLS 1.3
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 18, 2017.
+   This Internet-Draft will expire on September 28, 2017.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Thomson                Expires September 18, 2017               [Page 1]
+Thomson                Expires September 28, 2017               [Page 1]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Thomson                Expires September 18, 2017               [Page 2]
+Thomson                Expires September 28, 2017               [Page 2]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
@@ -144,52 +144,35 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {client}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  0b07b86c8d31c698 8aa73e8488404b9e
-         43402bd85b595edc 2a73999f2387c949
+      private key (32 octets):  4f136e83c30d1018 909b6489132d3511
+         a0bc241fc780a424 7f940675aeff6456
 
-      public key (32 octets):  a04151798d4aead8 0c0260ff09e695dd
-         00d9d9a820ec299f 06e8bafd55a40001
+      public key (32 octets):  b7d51135bae9a0d6 125b4e6ac76cb287
+         851eade8b0bd02ea a014a41ca2cc717a
 
    {client}  send a ClientHello handshake message
 
    {client}  send record:
 
-      cleartext (512 octets):  010001fc03035b9d 6ac88fb2e85118c5
-         19b42306765c0102 51f44de96e867792 a0e66dc5c9b30000
+      cleartext (512 octets):  010001fc0303dbcd 22fb2f0c7d951a37
+         f087ebb7a60cf75b f656a31eca99aad8 73efd678e5750000
          3e130113031302c0 2bc02fcca9cca8c0 0ac009c013c023c0
          27c014009eccaa00 3300320067003900 38006b0016001300
-         9c002f003c003500 3d000a0005000401 000195001500fc00
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
+         9c002f003c003500 3d000a0005000401 0001950000000b00
+         0900000673657276 6572ff0100010000 0a00140012001d00
+         1700180019010001 0101020103010400 0b00020100002300
+         0000280026002400 1d0020b7d51135ba e9a0d6125b4e6ac7
 
 
 
-Thomson                Expires September 18, 2017               [Page 3]
+Thomson                Expires September 28, 2017               [Page 3]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000b00 0900000673657276
-         6572ff0100010000 0a00140012001d00 1700180019010001
-         0101020103010400 0b00020100002300 0000280026002400
-         1d0020a04151798d 4aead80c0260ff09 e695dd00d9d9a820
-         ec299f06e8bafd55 a40001002b000706 7f1203030302000d
-         0020001e04030503 0603020308040805 0806040105010601
-         0201040205020602 0202002d00020101
-
-      ciphertext (517 octets):  1603010200010001 fc03035b9d6ac88f
-         b2e85118c519b423 06765c010251f44d e96e867792a0e66d
-         c5c9b300003e1301 13031302c02bc02f cca9cca8c00ac009
-         c013c023c027c014 009eccaa00330032 006700390038006b
-         00160013009c002f 003c0035003d000a 0005000401000195
+         6cb287851eade8b0 bd02eaa014a41ca2 cc717a002b000706
+         7f1203030302000d 0020001e04030503 0603020308040805
+         0806040105010601 0201040205020602 0202002d00020101
          001500fc00000000 0000000000000000 0000000000000000
          0000000000000000 0000000000000000 0000000000000000
          0000000000000000 0000000000000000 0000000000000000
@@ -200,13 +183,30 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          0000000000000000 0000000000000000 0000000000000000
          0000000000000000 0000000000000000 0000000000000000
          0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000b00090000
-         06736572766572ff 01000100000a0014 0012001d00170018
-         0019010001010102 01030104000b0002 0100002300000028
-         00260024001d0020 a04151798d4aead8 0c0260ff09e695dd
-         00d9d9a820ec299f 06e8bafd55a40001 002b0007067f1203
-         030302000d002000 1e04030503060302 0308040805080604
-         0105010601020104 0205020602020200 2d00020101
+         0000000000000000 0000000000000000
+
+      ciphertext (517 octets):  1603010200010001 fc0303dbcd22fb2f
+         0c7d951a37f087eb b7a60cf75bf656a3 1eca99aad873efd6
+         78e57500003e1301 13031302c02bc02f cca9cca8c00ac009
+         c013c023c027c014 009eccaa00330032 006700390038006b
+         00160013009c002f 003c0035003d000a 0005000401000195
+         0000000b00090000 06736572766572ff 01000100000a0014
+         0012001d00170018 0019010001010102 01030104000b0002
+         0100002300000028 00260024001d0020 b7d51135bae9a0d6
+         125b4e6ac76cb287 851eade8b0bd02ea a014a41ca2cc717a
+         002b0007067f1203 030302000d002000 1e04030503060302
+         0308040805080604 0105010601020104 0205020602020200
+         2d00020101001500 fc00000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000000000
+         0000000000000000 0000000000000000 0000000000
 
    {server}  extract secret "early":
 
@@ -221,18 +221,18 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017               [Page 4]
+Thomson                Expires September 28, 2017               [Page 4]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
    {server}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  01cda938e5f24876 5921fa50ab8037ba
-         9239dd0faefc8151 0062809907fd32d0
+      private key (32 octets):  c2d0dcb0ebf3f2b4 e852f923aaf26606
+         838e2bdce1677b5f 8d3416490f2df6d6
 
-      public key (32 octets):  98cbeca47ab2ae44 76365979fb25f4b2
-         0bc24277d31fe51e 4ea8e0663bd57d4a
+      public key (32 octets):  ee3e8f1f8079ecc7 29e22375000b8ce8
+         5b82f19758439b06 f1450a66f07cd378
 
    {server}  send a ServerHello handshake message
 
@@ -241,35 +241,35 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
       salt (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
          10adf300aa1f2660 e1b22e10f170f92a
 
-      ikm (32 octets):  5c60d561addc904d 2fd4f60f2b470258
-         45656c06534830a6 dc52c5eafbcb553d
+      ikm (32 octets):  fbc62c1cc642c537 d257eca065605400
+         9a2f85e8a710549c 14fe2407abff5339
 
-      secret (32 octets):  be37f255fb1c7362 11ef8b35735af83d
-         c8d4d82c43af3176 98256f9c39ef402b
+      secret (32 octets):  59e1ead9979fd3d9 4230b86d24d4a827
+         40da760bfcf3b853 e3efdcf8c84d9c2a
 
    {server}  derive secret "client handshake traffic secret":
 
-      PRK (32 octets):  be37f255fb1c7362 11ef8b35735af83d
-         c8d4d82c43af3176 98256f9c39ef402b
+      PRK (32 octets):  59e1ead9979fd3d9 4230b86d24d4a827
+         40da760bfcf3b853 e3efdcf8c84d9c2a
 
-      handshake hash (32 octets):  104b0e057e21d039 c67659d8acc0d654
-         55e68fb2c40b0c56 d303df286e88f5cb
+      handshake hash (32 octets):  63463ac94d8c093e 6ff85fd20ab0cc11
+         44757d704f39cbac aaad5b0f3c73ef75
 
       info (76 octets):  002028544c532031 2e332c20636c6965
          6e742068616e6473 68616b6520747261 6666696320736563
-         72657420104b0e05 7e21d039c67659d8 acc0d65455e68fb2
-         c40b0c56d303df28 6e88f5cb
+         7265742063463ac9 4d8c093e6ff85fd2 0ab0cc1144757d70
+         4f39cbacaaad5b0f 3c73ef75
 
-      output (32 octets):  06f6525cc5fd30bc 8ce32a2d7134c788
-         069f96497476e525 b7ee391684fec883
+      output (32 octets):  8088cbd83e1b881c c6d34506165c5a79
+         ff396482ddc8a968 6e8ae73897d13790
 
    {server}  derive secret "server handshake traffic secret":
 
-      PRK (32 octets):  be37f255fb1c7362 11ef8b35735af83d
-         c8d4d82c43af3176 98256f9c39ef402b
+      PRK (32 octets):  59e1ead9979fd3d9 4230b86d24d4a827
+         40da760bfcf3b853 e3efdcf8c84d9c2a
 
-      handshake hash (32 octets):  104b0e057e21d039 c67659d8acc0d654
-         55e68fb2c40b0c56 d303df286e88f5cb
+      handshake hash (32 octets):  63463ac94d8c093e 6ff85fd20ab0cc11
+         44757d704f39cbac aaad5b0f3c73ef75
 
       info (76 octets):  002028544c532031 2e332c2073657276
          65722068616e6473 68616b6520747261 6666696320736563
@@ -277,52 +277,52 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017               [Page 5]
+Thomson                Expires September 28, 2017               [Page 5]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-         72657420104b0e05 7e21d039c67659d8 acc0d65455e68fb2
-         c40b0c56d303df28 6e88f5cb
+         7265742063463ac9 4d8c093e6ff85fd2 0ab0cc1144757d70
+         4f39cbacaaad5b0f 3c73ef75
 
-      output (32 octets):  e9e66ad64d8820b4 743995d001d64e94
-         633e76a499dd37b2 eeb74a72ae812b70
+      output (32 octets):  e589907d20ce7ee8 2b22caab9e124516
+         3db878488c3eef1a 401d62b76f4ac0f9
 
    {server}  extract secret "master":
 
-      salt (32 octets):  be37f255fb1c7362 11ef8b35735af83d
-         c8d4d82c43af3176 98256f9c39ef402b
+      salt (32 octets):  59e1ead9979fd3d9 4230b86d24d4a827
+         40da760bfcf3b853 e3efdcf8c84d9c2a
 
       ikm (32 octets):  0000000000000000 0000000000000000
          0000000000000000 0000000000000000
 
-      secret (32 octets):  f5c48210df242841 2bcaaa2cee706baa
-         381a580886a10ceb bf286da8b7ed18ba
+      secret (32 octets):  d4bffea428aaac78 eba6636ffe765abe
+         689ebf3a99b575a1 c8b1082c70ade74d
 
    {server}  send record:
 
-      cleartext (82 octets):  0200004e7f1283e1 57d07d5632ccb432
-         530525d0cd3a39ea 55e025f5c7276885 a22a18b240af1301
-         002800280024001d 002098cbeca47ab2 ae4476365979fb25
-         f4b20bc24277d31f e51e4ea8e0663bd5 7d4a
+      cleartext (82 octets):  0200004e7f125092 cb37a9cee955bccb
+         ab6db0d695cfde5c da48658a26d1a652 ba4186c32d241301
+         002800280024001d 0020ee3e8f1f8079 ecc729e22375000b
+         8ce85b82f1975843 9b06f1450a66f07c d378
 
-      ciphertext (87 octets):  1603010052020000 4e7f1283e157d07d
-         5632ccb432530525 d0cd3a39ea55e025 f5c7276885a22a18
-         b240af1301002800 280024001d002098 cbeca47ab2ae4476
-         365979fb25f4b20b c24277d31fe51e4e a8e0663bd57d4a
+      ciphertext (87 octets):  1603010052020000 4e7f125092cb37a9
+         cee955bccbab6db0 d695cfde5cda4865 8a26d1a652ba4186
+         c32d241301002800 280024001d0020ee 3e8f1f8079ecc729
+         e22375000b8ce85b 82f19758439b06f1 450a66f07cd378
 
    {server}  derive write traffic keys using label "handshake data":
 
-      PRK (32 octets):  e9e66ad64d8820b4 743995d001d64e94
-         633e76a499dd37b2 eeb74a72ae812b70
+      PRK (32 octets):  e589907d20ce7ee8 2b22caab9e124516
+         3db878488c3eef1a 401d62b76f4ac0f9
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  674fd768d6108d8a 3ee68a740a6f0a97
+      key output (16 octets):  84b99a53dfe9a8f2 0f419c0f9d9ac6cf
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  0e427b122b5a446e 9c7639ae
+      iv output (12 octets):  34b8cfdee32e6b46 e76b430d
 
    {server}  send a EncryptedExtensions handshake message
 
@@ -333,22 +333,22 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017               [Page 6]
+Thomson                Expires September 28, 2017               [Page 6]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
    {server}  calculate finished:
 
-      PRK (32 octets):  e9e66ad64d8820b4 743995d001d64e94
-         633e76a499dd37b2 eeb74a72ae812b70
+      PRK (32 octets):  e589907d20ce7ee8 2b22caab9e124516
+         3db878488c3eef1a 401d62b76f4ac0f9
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  98156fc327c7263a bd54f5dccee19d39
-         a17b977b245091a3 84cde2a6ce42d18b
+      output (32 octets):  77f3047e88afcca9 928d28415d9e1c4a
+         8ad601bbdc1114b5 3523ef8916ae5a15
 
    {server}  send a Finished handshake message
 
@@ -374,141 +374,141 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          f21a030151567260 96fd335e5e67f2db f102702e608ccae6
          bec1fc63a42a99be 5c3eb7107c3c54e9 b9eb2bd5203b1c3b
          84e0a8b2f759409b a3eac9d91d402dcc 0cc8f8961229ac91
-         87b42b4de100000f 000084080400809c 5790c70ac07b78df
-         2023b62d28e0c260 81f401e22d0f98ed 014abaa7724ddcfa
-         3aa834f3fe4984ed 403ae97e8feec6a1 47e823a4a090069d
-         10149972631b9fd0 2366e3cdae2a3d44 5bf5f51cc3bccbeb
-         3bf348f4062bf480 1febc64e4e1d9ffb 49b2ecf4cf5ce172
-         8fe78466669cc086 44dcf3e4b33ef541 7af24ae7adb45014
-         0000200ea5e397be 97256a5924470380 fb8d82243c292a39
-         ad364cfd2f4b5d6a fe6522
+         87b42b4de100000f 0000840804008008 c9865a02cd335538
+         811af72747259cb0 7e911b65436cd5cb 4ca37517df6724be
+         87ddcd7418a7e3d7 dd2748afecd50ccc 384579d2fffe1dff
+         bd87cdb357fe137a 7a429e4c57b84478 728f605f41902f06
+         507549b4f7c5ac81 ca825de6cee8dfc7 dd63107f50b9f678
+         765f5a8f52e2d4fd 7824119e78ac1adb 81a34c8786e9bd14
+         000020d7a010250a d8e374ea8ecd68fe 08b619322497af68
+         cb984c3509c6b322 98b1ae
 
-      ciphertext (673 octets):  170301029c40086e 86a328ae57077be5
-         08ea4c208a3209a6 6f0f9b1e78a14872 97acd7570a81955c
-         f2d87a141abf8688 d57e302d65f59827 730b44b0bcdaf0dc
+      ciphertext (673 octets):  170301029c96a922 99d5452c95c2416e
+         dbd879eac5b0992f b4ec80cef27e61cf 02a881bdc9f6a63f
+         f691ec463877fa96 58d988aafa4b6cfc c0b7ef4d7cf347a1
 
 
 
-Thomson                Expires September 18, 2017               [Page 7]
+Thomson                Expires September 28, 2017               [Page 7]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-         d46bb420ecb541b9 f6bcdf83fa01198b f0b2dae9b8d90799
-         c45a9232cf53bd11 b461cc524dfb0f07 60188e4c2864b5c2
-         e8ee2cc08ceec11c 5e11192c3a38f288 aeefeb0fb240573b
-         1f0cc5b2bcbb18a5 1ccf538cee6d32fe 64c69c368c47f0c0
-         343ff7cc071ad22a 53b52a9e83cbe091 e70a4853b1827381
-         e6965009e6e77f8a 021f9a88a7f3fa4a b1420178f73e5304
-         e8c6d2bca7f793f8 787b6e1ef46602ef 3ad722007bfe90f4
-         31d5cec9aac79558 fd51441077fcd626 b33281bb35568e15
-         ac47b05acbb73120 fa51d1d2f2a92cd0 8f9a561f7a89f5d8
-         87027196db7a85d8 d4bb4f6ff2f41455 bf801d86001c955a
-         343447904fce6af0 dbf2e2fdf0b22206 2227e50c9c9b7826
-         e4f40ca684e4cc8a 259900e253e8f03e 55640f7434feffaf
-         edb9daac07680c67 40c060e2a6b6a097 dec778633ec47721
-         20714b8a31af4d8a 182d5a73af121baf 1f65222199612a9e
-         7d2eb65c99463014 0dd8fd5b2b517835 d06186c5fd9e603f
-         e69adabb9f73bf13 5dc920ac7508bc18 dc26732e57e623fd
-         7577c24d35b114c9 5f9ee45a68ea9bec d4bec49138c8955d
-         5f81f7cea00981bf 35e3ef29bf41c1e7 9bf792a2b579a6dc
-         55934f4b33c84ac6 78dcb7dc5bbb2535 330fe2a37174a8f1
-         ece0e58a38546eaa 32bebef4744092b3 8dbbb5a3b5fce538
-         04a268e173e2dc8e 8012f62fa4c37812 b2af3ece58352c0b
-         08814f555a3ce84c e5462b1fd707d6ba f1dc22461c6ba19e
-         5e7c9f7212b5def7 b2d47b38586eeb7b 7922b404ca23bbe7
-         f7f3b888c7d87e53 a1b649e2bc95cfc7 60b8c416b8be96a1
-         1957efaceec5b022 7b84ff2c24a94c51 11c8176d2923b78f
-         c672fb7f5533c24b 95
+         d152d12737484bdf 0df9d962d4ae5875 ba7d8791663fc4c5
+         c27ce4f4e01241ee 55d5592dde6e0d80 802f2290e42c0d3d
+         b4c0d63576ff640a 883656a20ba832d8 9c269b8eb1c4f476
+         8e0efeb95df6eba1 b509cb62b078de8a b32a7e22fe14b645
+         fd4925f9be485871 fbc71f4c23e1234e 2553c95544b12943
+         78e7e674917ca52e ca620092e21295ec c52ea97e2ec00cad
+         ac2d6e8edd2f9247 7cc60dada12e7816 2d767bd4835db5da
+         87ab895b4152f41d a7e84776f1fe1665 054277e65e6d1831
+         90c0fd582e42eb1e a36352fece53c3d7 de447f1d7f94df07
+         f191da8391a0ec36 41948e7a551bdd33 42f2c6d8273cc636
+         21f4cc40ebe516dd aa3a83f683972de9 f30f1863dd6f6f94
+         965f6a15494f9452 9bcf9570b4f8fab3 19b7fa0671c56e00
+         ee9ec5c0ab958f40 83fb83562256340c 97c11d620fdfdf51
+         f9af3351d4147780 b47831604f933027 5b658db08d7d972b
+         a9d2d75569ee1cef 9e9c0c74e5ee4421 2f8ff48b7a890bac
+         c28106f52e6ecbc9 454a17f1a636cf07 b75969e267eddfce
+         8e705f6f4fa328e6 1109846f0c1cc3ce b6d6dad5b5c64bc6
+         bf5b5e2841537f0a 482a862bb049a284 858083ecfea54036
+         a10cb902f52be4d5 f8710345e7573fa3 02bf521bd1420900
+         6f3a51e7beea9ea0 b83e7abb603eb811 9e4489ad0b0b5911
+         c3fd7190e4ee36cf 081e9e4d6ffa6fb1 5fddcdae5045ba00
+         d495668f79473053 f4dc813e52b907f4 0f68f749d2609086
+         7509b83374eaaac9 56da4dfd238f4abe 6c526d25291d9c11
+         be8ae28c842ecd20 3fb05b1835fd0541 1f84413570d85d7f
+         9d5c34fe359b23c6 ac1a5c81c0e1df6e 045bbb8412c297f2
+         2123d4d23e7e7e3d 1e
 
    {server}  derive secret "client application traffic secret":
 
-      PRK (32 octets):  f5c48210df242841 2bcaaa2cee706baa
-         381a580886a10ceb bf286da8b7ed18ba
+      PRK (32 octets):  d4bffea428aaac78 eba6636ffe765abe
+         689ebf3a99b575a1 c8b1082c70ade74d
 
-      handshake hash (32 octets):  5bbbc0103bc3e0d3 07dd512fc6f52cf9
-         7cf70535e1df403a e26b813b89cffc2f
+      handshake hash (32 octets):  3e234ace34c72105 dfd8aaeda2d31619
+         51b5f7cf8bb2b7cb fb522c111b6e38eb
 
       info (78 octets):  00202a544c532031 2e332c20636c6965
          6e74206170706c69 636174696f6e2074 7261666669632073
-         6563726574205bbb c0103bc3e0d307dd 512fc6f52cf97cf7
-         0535e1df403ae26b 813b89cffc2f
+         6563726574203e23 4ace34c72105dfd8 aaeda2d3161951b5
+         f7cf8bb2b7cbfb52 2c111b6e38eb
 
-      output (32 octets):  40cb82a501a30f6a 88a8b897cbef51c0
-         c79a9f38bb568d0a bbd3e53bba725943
+      output (32 octets):  e026509a1bf659b1 cd03f9b3ee6c6c83
+         92c19460ddf919f9 b92eaf60eede430a
 
    {server}  derive secret "server application traffic secret":
 
-      PRK (32 octets):  f5c48210df242841 2bcaaa2cee706baa
-         381a580886a10ceb bf286da8b7ed18ba
+      PRK (32 octets):  d4bffea428aaac78 eba6636ffe765abe
+         689ebf3a99b575a1 c8b1082c70ade74d
 
 
 
 
-Thomson                Expires September 18, 2017               [Page 8]
+Thomson                Expires September 28, 2017               [Page 8]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      handshake hash (32 octets):  5bbbc0103bc3e0d3 07dd512fc6f52cf9
-         7cf70535e1df403a e26b813b89cffc2f
+      handshake hash (32 octets):  3e234ace34c72105 dfd8aaeda2d31619
+         51b5f7cf8bb2b7cb fb522c111b6e38eb
 
       info (78 octets):  00202a544c532031 2e332c2073657276
          6572206170706c69 636174696f6e2074 7261666669632073
-         6563726574205bbb c0103bc3e0d307dd 512fc6f52cf97cf7
-         0535e1df403ae26b 813b89cffc2f
+         6563726574203e23 4ace34c72105dfd8 aaeda2d3161951b5
+         f7cf8bb2b7cbfb52 2c111b6e38eb
 
-      output (32 octets):  04dca7327ffef05c 07f993f130252575
-         6aaf645a0cd1e138 eca7a23f0065ab0c
+      output (32 octets):  cd5fb31062b810a8 e2c97221b20a0d21
+         c32d01cb180c8131 e54126acbc624908
 
    {server}  derive secret "exporter master secret":
 
-      PRK (32 octets):  f5c48210df242841 2bcaaa2cee706baa
-         381a580886a10ceb bf286da8b7ed18ba
+      PRK (32 octets):  d4bffea428aaac78 eba6636ffe765abe
+         689ebf3a99b575a1 c8b1082c70ade74d
 
-      handshake hash (32 octets):  5bbbc0103bc3e0d3 07dd512fc6f52cf9
-         7cf70535e1df403a e26b813b89cffc2f
+      handshake hash (32 octets):  3e234ace34c72105 dfd8aaeda2d31619
+         51b5f7cf8bb2b7cb fb522c111b6e38eb
 
       info (67 octets):  00201f544c532031 2e332c206578706f
-         72746572206d6173 7465722073656372 6574205bbbc0103b
-         c3e0d307dd512fc6 f52cf97cf70535e1 df403ae26b813b89 cffc2f
+         72746572206d6173 7465722073656372 6574203e234ace34
+         c72105dfd8aaeda2 d3161951b5f7cf8b b2b7cbfb522c111b 6e38eb
 
-      output (32 octets):  6b4e985d6990196c 39d602b330333b16
-         ff0bd43a23bcaef9 a3b549ffc087d6ee
+      output (32 octets):  54b023f7ea44bcf2 f0e13cb982e9a042
+         405866972e522fa3 251c90c0e9ff00a2
 
    {server}  derive write traffic keys using label "application data":
 
-      PRK (32 octets):  04dca7327ffef05c 07f993f130252575
-         6aaf645a0cd1e138 eca7a23f0065ab0c
+      PRK (32 octets):  cd5fb31062b810a8 e2c97221b20a0d21
+         c32d01cb180c8131 e54126acbc624908
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  f933888512e7e592 42337ff775736d55
+      key output (16 octets):  19a35b04a832a512 60a001f8a328adf3
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  663c8d395a16108b b496dacf
+      iv output (12 octets):  c04ea6f919767943 612f0a1e
 
    {server}  derive read traffic keys using label "handshake data":
 
-      PRK (32 octets):  06f6525cc5fd30bc 8ce32a2d7134c788
-         069f96497476e525 b7ee391684fec883
+      PRK (32 octets):  8088cbd83e1b881c c6d34506165c5a79
+         ff396482ddc8a968 6e8ae73897d13790
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  4dcc7dd300c089d7 92c5f63989bc9965
+      key output (16 octets):  64cdcd7e26dbd3ba b5ee8e41d7c84a82
 
 
 
 
-Thomson                Expires September 18, 2017               [Page 9]
+Thomson                Expires September 28, 2017               [Page 9]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  bbb1db32d5abbb98 deefad9c
+      iv output (12 octets):  116d8a95a80cca2d fe3e1b77
 
    {client}  extract secret "early":
 
@@ -525,120 +525,120 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
       salt (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
          10adf300aa1f2660 e1b22e10f170f92a
 
-      ikm (32 octets):  5c60d561addc904d 2fd4f60f2b470258
-         45656c06534830a6 dc52c5eafbcb553d
+      ikm (32 octets):  fbc62c1cc642c537 d257eca065605400
+         9a2f85e8a710549c 14fe2407abff5339
 
-      secret (32 octets):  be37f255fb1c7362 11ef8b35735af83d
-         c8d4d82c43af3176 98256f9c39ef402b
+      secret (32 octets):  59e1ead9979fd3d9 4230b86d24d4a827
+         40da760bfcf3b853 e3efdcf8c84d9c2a
 
    {client}  derive secret "client handshake traffic secret":
 
-      PRK (32 octets):  be37f255fb1c7362 11ef8b35735af83d
-         c8d4d82c43af3176 98256f9c39ef402b
+      PRK (32 octets):  59e1ead9979fd3d9 4230b86d24d4a827
+         40da760bfcf3b853 e3efdcf8c84d9c2a
 
-      handshake hash (32 octets):  104b0e057e21d039 c67659d8acc0d654
-         55e68fb2c40b0c56 d303df286e88f5cb
+      handshake hash (32 octets):  63463ac94d8c093e 6ff85fd20ab0cc11
+         44757d704f39cbac aaad5b0f3c73ef75
 
       info (76 octets):  002028544c532031 2e332c20636c6965
          6e742068616e6473 68616b6520747261 6666696320736563
-         72657420104b0e05 7e21d039c67659d8 acc0d65455e68fb2
-         c40b0c56d303df28 6e88f5cb
+         7265742063463ac9 4d8c093e6ff85fd2 0ab0cc1144757d70
+         4f39cbacaaad5b0f 3c73ef75
 
-      output (32 octets):  06f6525cc5fd30bc 8ce32a2d7134c788
-         069f96497476e525 b7ee391684fec883
+      output (32 octets):  8088cbd83e1b881c c6d34506165c5a79
+         ff396482ddc8a968 6e8ae73897d13790
 
    {client}  derive secret "server handshake traffic secret":
 
-      PRK (32 octets):  be37f255fb1c7362 11ef8b35735af83d
-         c8d4d82c43af3176 98256f9c39ef402b
+      PRK (32 octets):  59e1ead9979fd3d9 4230b86d24d4a827
+         40da760bfcf3b853 e3efdcf8c84d9c2a
 
-      handshake hash (32 octets):  104b0e057e21d039 c67659d8acc0d654
-         55e68fb2c40b0c56 d303df286e88f5cb
+      handshake hash (32 octets):  63463ac94d8c093e 6ff85fd20ab0cc11
+         44757d704f39cbac aaad5b0f3c73ef75
 
 
 
-Thomson                Expires September 18, 2017              [Page 10]
+Thomson                Expires September 28, 2017              [Page 10]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
       info (76 octets):  002028544c532031 2e332c2073657276
          65722068616e6473 68616b6520747261 6666696320736563
-         72657420104b0e05 7e21d039c67659d8 acc0d65455e68fb2
-         c40b0c56d303df28 6e88f5cb
+         7265742063463ac9 4d8c093e6ff85fd2 0ab0cc1144757d70
+         4f39cbacaaad5b0f 3c73ef75
 
-      output (32 octets):  e9e66ad64d8820b4 743995d001d64e94
-         633e76a499dd37b2 eeb74a72ae812b70
+      output (32 octets):  e589907d20ce7ee8 2b22caab9e124516
+         3db878488c3eef1a 401d62b76f4ac0f9
 
    {client}  extract secret "master" (same as server)
 
    {client}  derive read traffic keys using label "handshake data":
 
-      PRK (32 octets):  e9e66ad64d8820b4 743995d001d64e94
-         633e76a499dd37b2 eeb74a72ae812b70
+      PRK (32 octets):  e589907d20ce7ee8 2b22caab9e124516
+         3db878488c3eef1a 401d62b76f4ac0f9
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  674fd768d6108d8a 3ee68a740a6f0a97
+      key output (16 octets):  84b99a53dfe9a8f2 0f419c0f9d9ac6cf
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  0e427b122b5a446e 9c7639ae
+      iv output (12 octets):  34b8cfdee32e6b46 e76b430d
 
    {client}  calculate finished:
 
-      PRK (32 octets):  e9e66ad64d8820b4 743995d001d64e94
-         633e76a499dd37b2 eeb74a72ae812b70
+      PRK (32 octets):  e589907d20ce7ee8 2b22caab9e124516
+         3db878488c3eef1a 401d62b76f4ac0f9
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  98156fc327c7263a bd54f5dccee19d39
-         a17b977b245091a3 84cde2a6ce42d18b
+      output (32 octets):  77f3047e88afcca9 928d28415d9e1c4a
+         8ad601bbdc1114b5 3523ef8916ae5a15
 
    {client}  derive write traffic keys using label "handshake data"
       (same as server read traffic keys)
 
    {client}  derive secret "client application traffic secret":
 
-      PRK (32 octets):  f5c48210df242841 2bcaaa2cee706baa
-         381a580886a10ceb bf286da8b7ed18ba
+      PRK (32 octets):  d4bffea428aaac78 eba6636ffe765abe
+         689ebf3a99b575a1 c8b1082c70ade74d
 
-      handshake hash (32 octets):  5bbbc0103bc3e0d3 07dd512fc6f52cf9
-         7cf70535e1df403a e26b813b89cffc2f
+      handshake hash (32 octets):  3e234ace34c72105 dfd8aaeda2d31619
+         51b5f7cf8bb2b7cb fb522c111b6e38eb
 
       info (78 octets):  00202a544c532031 2e332c20636c6965
          6e74206170706c69 636174696f6e2074 7261666669632073
 
 
 
-Thomson                Expires September 18, 2017              [Page 11]
+Thomson                Expires September 28, 2017              [Page 11]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-         6563726574205bbb c0103bc3e0d307dd 512fc6f52cf97cf7
-         0535e1df403ae26b 813b89cffc2f
+         6563726574203e23 4ace34c72105dfd8 aaeda2d3161951b5
+         f7cf8bb2b7cbfb52 2c111b6e38eb
 
-      output (32 octets):  40cb82a501a30f6a 88a8b897cbef51c0
-         c79a9f38bb568d0a bbd3e53bba725943
+      output (32 octets):  e026509a1bf659b1 cd03f9b3ee6c6c83
+         92c19460ddf919f9 b92eaf60eede430a
 
    {client}  derive secret "server application traffic secret":
 
-      PRK (32 octets):  f5c48210df242841 2bcaaa2cee706baa
-         381a580886a10ceb bf286da8b7ed18ba
+      PRK (32 octets):  d4bffea428aaac78 eba6636ffe765abe
+         689ebf3a99b575a1 c8b1082c70ade74d
 
-      handshake hash (32 octets):  5bbbc0103bc3e0d3 07dd512fc6f52cf9
-         7cf70535e1df403a e26b813b89cffc2f
+      handshake hash (32 octets):  3e234ace34c72105 dfd8aaeda2d31619
+         51b5f7cf8bb2b7cb fb522c111b6e38eb
 
       info (78 octets):  00202a544c532031 2e332c2073657276
          6572206170706c69 636174696f6e2074 7261666669632073
-         6563726574205bbb c0103bc3e0d307dd 512fc6f52cf97cf7
-         0535e1df403ae26b 813b89cffc2f
+         6563726574203e23 4ace34c72105dfd8 aaeda2d3161951b5
+         f7cf8bb2b7cbfb52 2c111b6e38eb
 
-      output (32 octets):  04dca7327ffef05c 07f993f130252575
-         6aaf645a0cd1e138 eca7a23f0065ab0c
+      output (32 octets):  cd5fb31062b810a8 e2c97221b20a0d21
+         c32d01cb180c8131 e54126acbc624908
 
    {client}  derive secret "exporter master secret" (same as server)
 
@@ -647,76 +647,76 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {client}  calculate finished:
 
-      PRK (32 octets):  06f6525cc5fd30bc 8ce32a2d7134c788
-         069f96497476e525 b7ee391684fec883
+      PRK (32 octets):  8088cbd83e1b881c c6d34506165c5a79
+         ff396482ddc8a968 6e8ae73897d13790
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  b01e00ee0051b2cf e00f2e251d95c859
-         952e3551c52a64c8 2a73a652995f4bfc
+      output (32 octets):  c2d285d564113822 b6e59905fe449f23
+         55e706c3eb820012 43731ecb73cfd9bf
 
    {client}  send a Finished handshake message
 
    {client}  send record:
 
-      cleartext (36 octets):  14000020706d0105 7333fe3a478b6b08
-         cc18d80a8247398b 904d7377324eb280 8e1e753a
+      cleartext (36 octets):  14000020f5f32a52 48772739c3416b76
+         ae105842a9ef1598 0839b1148a44f9d4 76cf329c
 
 
 
 
 
 
-Thomson                Expires September 18, 2017              [Page 12]
+Thomson                Expires September 28, 2017              [Page 12]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      ciphertext (58 octets):  1703010035918d00 264ef2b669939dab
-         3f9003109ba427dc 9a4c02e0aa4ff064 2afe279f11e0dc47
-         067d7c0238f3fd62 d0dfccb195fc39e5 25b0
+      ciphertext (58 octets):  1703010035dced6c 80c2f4c7ec616f36
+         6e5c38c5958ee5eb 784f068d605c9521 53d6af10af15c6a2
+         1ab92196ad14beb2 4a09eb6f118453b8 43dc
 
    {client}  derive write traffic keys using label "application data":
 
-      PRK (32 octets):  40cb82a501a30f6a 88a8b897cbef51c0
-         c79a9f38bb568d0a bbd3e53bba725943
+      PRK (32 octets):  e026509a1bf659b1 cd03f9b3ee6c6c83
+         92c19460ddf919f9 b92eaf60eede430a
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  d99fc1cb8da06f3c ec3ba0f01e2ea8fa
+      key output (16 octets):  e3192a6d037b590a 0545ab519d4f958c
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  a2970c103eeb6d7b 4a342282
+      iv output (12 octets):  43dc5368141b8b18 29462c15
 
    {client}  derive secret "resumption master secret":
 
-      PRK (32 octets):  f5c48210df242841 2bcaaa2cee706baa
-         381a580886a10ceb bf286da8b7ed18ba
+      PRK (32 octets):  d4bffea428aaac78 eba6636ffe765abe
+         689ebf3a99b575a1 c8b1082c70ade74d
 
-      handshake hash (32 octets):  0c0885f8b04d7566 c41cd4c80ee80370
-         c37fce1d5a710779 6f439e34d17844cd
+      handshake hash (32 octets):  8c52b51faa157984 49bab251d179b365
+         79fa032c9cd085ef c335a696e7507b58
 
       info (69 octets):  002021544c532031 2e332c2072657375
-         6d7074696f6e206d 6173746572207365 63726574200c0885
-         f8b04d7566c41cd4 c80ee80370c37fce 1d5a7107796f439e 34d17844cd
+         6d7074696f6e206d 6173746572207365 63726574208c52b5
+         1faa15798449bab2 51d179b36579fa03 2c9cd085efc335a6 96e7507b58
 
-      output (32 octets):  11e6dcca0e22b6ba ee9acba2a205dfac
-         1c705cbf3ad39d83 4eae1f5b63a606a6
+      output (32 octets):  29fc138e172c54f3 49b8bca88eeb2dbe
+         9d25336a3ace80f3 c18f1078dd88117a
 
    {server}  calculate finished:
 
-      PRK (32 octets):  06f6525cc5fd30bc 8ce32a2d7134c788
-         069f96497476e525 b7ee391684fec883
+      PRK (32 octets):  8088cbd83e1b881c c6d34506165c5a79
+         ff396482ddc8a968 6e8ae73897d13790
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  b01e00ee0051b2cf e00f2e251d95c859
-         952e3551c52a64c8 2a73a652995f4bfc
+      output (32 octets):  c2d285d564113822 b6e59905fe449f23
+         55e706c3eb820012 43731ecb73cfd9bf
 
    {server}  derive read traffic keys using label "application data"
       (same as client write traffic keys)
@@ -725,7 +725,7 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 13]
+Thomson                Expires September 28, 2017              [Page 13]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
@@ -734,24 +734,24 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {server}  send record:
 
-      cleartext (170 octets):  040000a60000001e e4490eaa00922e25
-         041281cb2f6b8d66 e7c100000000bda1 1ffd2c67aa856942
-         8ad51e4a21d90050 5388a63abb0345a0 a0d6b463cc7b9da8
-         d07c1fb8285edf35 d1e1a37632fbb2b6 727e9cf1ff79b412
-         de147073c10a12f8 d2a8ae53e87362c5 ce0d9451370206d5
-         204086d8cb0ed843 6cf44ff4eb4ef696 6dfd68b52772c7ce
-         18d2ef3db204c706 854ed6b04f68ed54 1f6a8cf736c98cdb
-         0008002e00040002 0000
+      cleartext (186 octets):  040000b60000001e 0ec6351800a2dd54
+         33320aa9eddb8f2e 88e700000000c36c ab315c0fb013a082
+         35b74d47e0190060 684acf8cf80d901b a0004ba65c3e83a1
+         1f73b8aa73314520 d783e2015d9c9d04 29ebcbec9feb7ed8
+         7fb94ab8ac885b34 f2e273a99a69ca12 42633adb586670e6
+         4550e4064e31a7c9 ebcc660ee686b3aa 4fef933f62e3f141
+         f4f4246c9303d021 b829bfffaf4cce8e cb95571fd215d22b
+         28fcc93b40c1c466 8feb393f9bd0b928 0008002e00040000 0400
 
-      ciphertext (192 octets):  17030100bb486938 61c0539c7cee8e74
-         e1a6c2ec20dfbfcb 8335bff659ffa61a 8aa6ec21f16d41fe
-         4bedea340a152152 465345eb387b1210 c3f5fa9ba8043fbd
-         7246f64ac4efb9e4 77e23acafac742d2 e14c5aa3812d8abd
-         822998169285af82 2b2b2be763ac5fe2 8df65b21cd1ae945
-         efa94ff2473c397c 16c16947eb7d0c92 212d0d916afb270d
-         a4f4ff86b7751adc 450655f313829cb6 eb5ed9a305ec71ad
-         172d96b129a0b65d a3e92c250b5e1081 9eb2e4ced7744ea5
-         889d358a0a6857df
+      ciphertext (208 octets):  17030100cb0a8cdd fc0f7e733391a0ce
+         855ce11c962aebca 69581eb2445e6248 e1a4bbd6f73e424a
+         e423fb7380c55e84 ffd5ae410de013aa a6e5493646b33d73
+         f3479e76e7e5f298 79fd34a37f217130 da0d7a3d4d991a16
+         bcc268377bb38c40 f6672030eee7e0c2 dd592326abbb50db
+         a84d069625b40fb5 7d72a4ee60a126d5 37cf9e6d6d99d48e
+         cd856ee8d4e47bbf c2e417269e3b8a59 d2272188cb977ddd
+         882405e8872384b0 01f1c6a1c0d7162a 83858bd13ba27cca
+         9b1726e35d772f27 64915a5ea9e43138 8f522d53f2c55afc
 
    {client}  send record:
 
@@ -759,10 +759,10 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          1011121314151617 18191a1b1c1d1e1f 2021222324252627
          28292a2b2c2d2e2f 3031
 
-      ciphertext (72 octets):  17030100430391e9 be32cd00440ac6a5
-         324ffc75051b1ac2 844fd40f952d4a8a 9e94adb972e5d4e9
-         e372ceb217136a09 9bcc3473ba58afd6 4635bab453a2d520
-         3083a5bd9481e173
+      ciphertext (72 octets):  17030100436a4e1f 04bda0dfa8eca6e6
+         e89286e8e9e2bdfb 470b6ec56d1f9b29 f44e53f78e6088f8
+         6021c686e3156001 77ea589ccd434176 a4890b1f5fb02668
+         cab0be4aab8cbe4d
 
    {server}  send record:
 
@@ -770,10 +770,10 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          1011121314151617 18191a1b1c1d1e1f 2021222324252627
          28292a2b2c2d2e2f 3031
 
-      ciphertext (72 octets):  1703010043f06068 990d28558ac56fe0
-         eada2647ee4a43b8 68a1afe413245f94 ac470d4d67fb3083
-         77a80bc157b80e2f a609861312ab1dae ab69f9c9e085bdc6
-         5373cee77a09211d
+      ciphertext (72 octets):  1703010043ad8819 ead51d6dd912f673
+         ea75c6082e351d85 d8f6df4922eab662 c4079155d42c9a06
+         80a9b9705a801f63 fbe8af13ba73a4ec 76bf0383757ff676
+         fb57bef9ab186ced
 
    {client}  send record:
 
@@ -781,20 +781,20 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 14]
+Thomson                Expires September 28, 2017              [Page 14]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      ciphertext (24 octets):  1703010013b30350 0d087a9d13031085
-         d3c699f628cbfe4b
+      ciphertext (24 octets):  17030100131a42d4 a845deeedf70db06
+         31092ad4eb2e147a
 
    {server}  send record:
 
       cleartext (2 octets):  0100
 
-      ciphertext (24 octets):  17030100133392c5 49686e5ceca2c902
-         419e36a0e31ab014
+      ciphertext (24 octets):  1703010013de2668 2caf6a9d294103ec
+         5e11b6bd5e3ffa6a
 
 4.  Resumed 0-RTT Handshake
 
@@ -804,26 +804,26 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {client}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  014715d96dddc61f 907436cdd1a87798
-         ba828f6d8915a869 707a10d115afae40
+      private key (32 octets):  65d92e238fa351d0 8502126ea3036097
+         992a88aa9d3b7a22 bd0bd12d5d0ec6c6
 
-      public key (32 octets):  d17ca1b9d6168135 b93ba90d515ec09a
-         2d90697e65d89dd2 4bc0e3d331371c5c
+      public key (32 octets):  cc2acd8c80b9ab35 9802f89908623c3c
+         40e4d422a6c59bf1 13fd3a909670f47e
 
    {client}  extract secret "early":
 
       salt:  (absent)
 
-      ikm (32 octets):  11e6dcca0e22b6ba ee9acba2a205dfac
-         1c705cbf3ad39d83 4eae1f5b63a606a6
+      ikm (32 octets):  29fc138e172c54f3 49b8bca88eeb2dbe
+         9d25336a3ace80f3 c18f1078dd88117a
 
-      secret (32 octets):  bdb8f589605cf77f b6a67a56ec03a93a
-         fbccbbb8d938f05b 6b66206cca47fe07
+      secret (32 octets):  2ae482093b689a24 bbea0c6eec979a1e
+         06bb555ab6b0fc81 694e096a6842128c
 
    {client}  derive secret "resumption psk binder key":
 
-      PRK (32 octets):  bdb8f589605cf77f b6a67a56ec03a93a
-         fbccbbb8d938f05b 6b66206cca47fe07
+      PRK (32 octets):  2ae482093b689a24 bbea0c6eec979a1e
+         06bb555ab6b0fc81 694e096a6842128c
 
       handshake hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
          27ae41e4649b934c a495991b7852b855
@@ -832,20 +832,20 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          6d7074696f6e2070 736b2062696e6465 72206b657920e3b0
          c44298fc1c149afb f4c8996fb92427ae 41e4649b934ca495 991b7852b855
 
-      output (32 octets):  ba2ca6385656af4d 9e6b3ee7171464cd
-         219597bedba00d59 54ef91fd9d79d95d
+      output (32 octets):  8f0ed4e2490fc8cc e62bf8454412ffb8
+         d7732528e3ab9635 8942083ae7d628dd
 
 
 
-Thomson                Expires September 18, 2017              [Page 15]
+Thomson                Expires September 28, 2017              [Page 15]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
    {client}  derive secret "early exporter master secret":
 
-      PRK (32 octets):  bdb8f589605cf77f b6a67a56ec03a93a
-         fbccbbb8d938f05b 6b66206cca47fe07
+      PRK (32 octets):  2ae482093b689a24 bbea0c6eec979a1e
+         06bb555ab6b0fc81 694e096a6842128c
 
       handshake hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
          27ae41e4649b934c a495991b7852b855
@@ -855,129 +855,129 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
          4ca495991b7852b8 55
 
-      output (32 octets):  b55d2f3a4b69112d fecb8820d4c89a19
-         816a6d67cf66b3da d4b022e764e5cfbd
+      output (32 octets):  fa82a7ff79945f02 d4e25db83ddbd686
+         df87e504890e65c3 529d359819d4f93e
 
    {client}  send a ClientHello handshake message
 
    {client}  calculate finished:
 
-      PRK (32 octets):  ba2ca6385656af4d 9e6b3ee7171464cd
-         219597bedba00d59 54ef91fd9d79d95d
+      PRK (32 octets):  8f0ed4e2490fc8cc e62bf8454412ffb8
+         d7732528e3ab9635 8942083ae7d628dd
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  649bec39d885e923 7d5d0cb0982618b7
-         97fdc3257a3bfe8d 2a125ac92ffea787
+      output (32 octets):  de10414c7abf30c9 ba9963303e515099
+         2c353fbcb31e2204 bb450716bd5f757c
 
    {client}  send record:
 
-      cleartext (512 octets):  010001fc030348a0 bd750eacbb7380b1
-         816218ea5cd780b6 2804641f81700f69 70079d745e560000
+      cleartext (512 octets):  010001fc0303ce50 8722f96f1216f140
+         2b7345026e71a511 3fd8432ba2f33ef1 2f242db24fab0000
          3e130113031302c0 2bc02fcca9cca8c0 0ac009c013c023c0
          27c014009eccaa00 3300320067003900 38006b0016001300
-         9c002f003c003500 3d000a0005000401 0001950015003b00
+         9c002f003c003500 3d000a0005000401 0001950000000b00
+         0900000673657276 6572ff0100010000 0a00140012001d00
+         1700180019010001 0101020103010400 0b00020100002800
+         260024001d0020cc 2acd8c80b9ab3598 02f89908623c3c40
+         e4d422a6c59bf113 fd3a909670f47e00 2a0000002b000706
+         7f1203030302000d 0020001e04030503 0603020308040805
+         0806040105010601 0201040205020602 0202002d00020101
+         0015002b00000000 0000000000000000 0000000000000000
          0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 00000000000b0009 0000067365727665
-         72ff01000100000a 00140012001d0017 0018001901000101
-         010201030104000b 0002010000280026 0024001d0020d17c
-         a1b9d6168135b93b a90d515ec09a2d90 697e65d89dd24bc0
-         e3d331371c5c002a 0000002b0007067f 1203030302000d00
-         20001e0403050306 0302030804080508 0604010501060102
-         0104020502060202 02002d0002010100 2900bd009800922e
-         25041281cb2f6b8d 66e7c100000000bd a11ffd2c67aa8569
-         428ad51e4a21d900 505388a63abb0345 a0a0d6b463cc7b9d
+         2900cd00a800a2dd 5433320aa9eddb8f 2e88e700000000c3
+         6cab315c0fb013a0 8235b74d47e01900 60684acf8cf80d90
+         1ba0004ba65c3e83 a11f73b8aa733145 20d783e2015d9c9d
 
 
 
-Thomson                Expires September 18, 2017              [Page 16]
+Thomson                Expires September 28, 2017              [Page 16]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-         a8d07c1fb8285edf 35d1e1a37632fbb2 b6727e9cf1ff79b4
-         12de147073c10a12 f8d2a8ae53e87362 c5ce0d9451370206
-         d5204086d8cb0ed8 436cf44ff4eb4ef6 966dfd68b52772c7
-         ce18d2ef3db204c7 06854ed6b04f68ed 541f6a8cf736c98c
-         dbe4490eb2002120 2ab9a84e5a03d3c0 774d5c5ecf2c1d47
-         c9a346fd847db056 8b12f9c1f9cd9c05
+         0429ebcbec9feb7e d87fb94ab8ac885b 34f2e273a99a69ca
+         1242633adb586670 e64550e4064e31a7 c9ebcc660ee686b3
+         aa4fef933f62e3f1 41f4f4246c9303d0 21b829bfffaf4cce
+         8ecb95571fd215d2 2b28fcc93b40c1c4 668feb393f9bd0b9
+         280ec63520002120 66af0a1c694599c8 7070cd5cdbfc1a51
+         7b0ad8e5a9bed509 8933e7c98a0fac8c
 
-      ciphertext (517 octets):  1603010200010001 fc030348a0bd750e
-         acbb7380b1816218 ea5cd780b6280464 1f81700f6970079d
-         745e5600003e1301 13031302c02bc02f cca9cca8c00ac009
+      ciphertext (517 octets):  1603010200010001 fc0303ce508722f9
+         6f1216f1402b7345 026e71a5113fd843 2ba2f33ef12f242d
+         b24fab00003e1301 13031302c02bc02f cca9cca8c00ac009
          c013c023c027c014 009eccaa00330032 006700390038006b
          00160013009c002f 003c0035003d000a 0005000401000195
-         0015003b00000000 0000000000000000 0000000000000000
+         0000000b00090000 06736572766572ff 01000100000a0014
+         0012001d00170018 0019010001010102 01030104000b0002
+         0100002800260024 001d0020cc2acd8c 80b9ab359802f899
+         08623c3c40e4d422 a6c59bf113fd3a90 9670f47e002a0000
+         002b0007067f1203 030302000d002000 1e04030503060302
+         0308040805080604 0105010601020104 0205020602020200
+         2d00020101001500 2b00000000000000 0000000000000000
          0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 00000b0009000006
-         736572766572ff01 000100000a001400 12001d0017001800
-         1901000101010201 030104000b000201 0000280026002400
-         1d0020d17ca1b9d6 168135b93ba90d51 5ec09a2d90697e65
-         d89dd24bc0e3d331 371c5c002a000000 2b0007067f120303
-         0302000d0020001e 0403050306030203 0804080508060401
-         0501060102010402 050206020202002d 00020101002900bd
-         009800922e250412 81cb2f6b8d66e7c1 00000000bda11ffd
-         2c67aa8569428ad5 1e4a21d900505388 a63abb0345a0a0d6
-         b463cc7b9da8d07c 1fb8285edf35d1e1 a37632fbb2b6727e
-         9cf1ff79b412de14 7073c10a12f8d2a8 ae53e87362c5ce0d
-         9451370206d52040 86d8cb0ed8436cf4 4ff4eb4ef6966dfd
-         68b52772c7ce18d2 ef3db204c706854e d6b04f68ed541f6a
-         8cf736c98cdbe449 0eb20021202ab9a8 4e5a03d3c0774d5c
-         5ecf2c1d47c9a346 fd847db0568b12f9 c1f9cd9c05
+         00000000002900cd 00a800a2dd543332 0aa9eddb8f2e88e7
+         00000000c36cab31 5c0fb013a08235b7 4d47e0190060684a
+         cf8cf80d901ba000 4ba65c3e83a11f73 b8aa73314520d783
+         e2015d9c9d0429eb cbec9feb7ed87fb9 4ab8ac885b34f2e2
+         73a99a69ca124263 3adb586670e64550 e4064e31a7c9ebcc
+         660ee686b3aa4fef 933f62e3f141f4f4 246c9303d021b829
+         bfffaf4cce8ecb95 571fd215d22b28fc c93b40c1c4668feb
+         393f9bd0b9280ec6 352000212066af0a 1c694599c87070cd
+         5cdbfc1a517b0ad8 e5a9bed5098933e7 c98a0fac8c
 
    {client}  derive secret "client early traffic secret":
 
-      PRK (32 octets):  bdb8f589605cf77f b6a67a56ec03a93a
-         fbccbbb8d938f05b 6b66206cca47fe07
+      PRK (32 octets):  2ae482093b689a24 bbea0c6eec979a1e
+         06bb555ab6b0fc81 694e096a6842128c
 
-      handshake hash (32 octets):  7b1c5897d719704b 5ddd3d98ba77f260
-         3c7aa039864a475e 8646db762d6e8339
+      handshake hash (32 octets):  98b524099dacc468 4c310250f66a496b
+         4decd8084e169481 33ca0afd90d6e43e
 
       info (72 octets):  002024544c532031 2e332c20636c6965
          6e74206561726c79 2074726166666963 2073656372657420
-         7b1c5897d719704b 5ddd3d98ba77f260 3c7aa039864a475e
-         8646db762d6e8339
+         98b524099dacc468 4c310250f66a496b 4decd8084e169481
+         33ca0afd90d6e43e
 
-      output (32 octets):  05eb1eb0a3227097 65a6eb127a1d0d45
-         4a01a37c5d579fec 88c0c561df105df2
+      output (32 octets):  eb84b8419e7c7d0f f3ea0301c7100c87
+         5757261b400d9b46 85cdc27aedbf032f
 
    {client}  derive write traffic keys using label "early application
       data":
 
 
 
-Thomson                Expires September 18, 2017              [Page 17]
+Thomson                Expires September 28, 2017              [Page 17]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      PRK (32 octets):  05eb1eb0a3227097 65a6eb127a1d0d45
-         4a01a37c5d579fec 88c0c561df105df2
+      PRK (32 octets):  eb84b8419e7c7d0f f3ea0301c7100c87
+         5757261b400d9b46 85cdc27aedbf032f
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  0b5a4f794c40f9d8 3b2af5f8b2bbef35
+      key output (16 octets):  a701ee232a75a490 3ec7f6688686de6d
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  6af15b72f309a132 856502ed
+      iv output (12 octets):  dc91c31ca3980774 746489d7
 
    {client}  send record:
 
       cleartext (6 octets):  414243444546
 
-      ciphertext (28 octets):  170301001786df83 d8ad57ef05591998
-         907eabcf29cdd137 3e6c050e
+      ciphertext (28 octets):  17030100175070fc 5cf2fb9f3177554f
+         5c830169f9d0e5ee 75df0673
 
    {server}  extract secret "early" (same as client)
 
    {server}  derive secret "resumption psk binder key":
 
-      PRK (32 octets):  bdb8f589605cf77f b6a67a56ec03a93a
-         fbccbbb8d938f05b 6b66206cca47fe07
+      PRK (32 octets):  2ae482093b689a24 bbea0c6eec979a1e
+         06bb555ab6b0fc81 694e096a6842128c
 
       handshake hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
          27ae41e4649b934c a495991b7852b855
@@ -986,13 +986,13 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          6d7074696f6e2070 736b2062696e6465 72206b657920e3b0
          c44298fc1c149afb f4c8996fb92427ae 41e4649b934ca495 991b7852b855
 
-      output (32 octets):  ba2ca6385656af4d 9e6b3ee7171464cd
-         219597bedba00d59 54ef91fd9d79d95d
+      output (32 octets):  8f0ed4e2490fc8cc e62bf8454412ffb8
+         d7732528e3ab9635 8942083ae7d628dd
 
    {server}  derive secret "early exporter master secret":
 
-      PRK (32 octets):  bdb8f589605cf77f b6a67a56ec03a93a
-         fbccbbb8d938f05b 6b66206cca47fe07
+      PRK (32 octets):  2ae482093b689a24 bbea0c6eec979a1e
+         06bb555ab6b0fc81 694e096a6842128c
 
       handshake hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
          27ae41e4649b934c a495991b7852b855
@@ -1005,33 +1005,33 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 18]
+Thomson                Expires September 28, 2017              [Page 18]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      output (32 octets):  b55d2f3a4b69112d fecb8820d4c89a19
-         816a6d67cf66b3da d4b022e764e5cfbd
+      output (32 octets):  fa82a7ff79945f02 d4e25db83ddbd686
+         df87e504890e65c3 529d359819d4f93e
 
    {server}  calculate finished:
 
-      PRK (32 octets):  ba2ca6385656af4d 9e6b3ee7171464cd
-         219597bedba00d59 54ef91fd9d79d95d
+      PRK (32 octets):  8f0ed4e2490fc8cc e62bf8454412ffb8
+         d7732528e3ab9635 8942083ae7d628dd
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  649bec39d885e923 7d5d0cb0982618b7
-         97fdc3257a3bfe8d 2a125ac92ffea787
+      output (32 octets):  de10414c7abf30c9 ba9963303e515099
+         2c353fbcb31e2204 bb450716bd5f757c
 
    {server}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  026ce1c165e7940d 9b57e6645010841b
-         bc2e43b622111cc5 de871a849fcc098d
+      private key (32 octets):  e885a807e651164f 0809eca8edfaeb86
+         13049476cdc9f0c7 850594ead87abc4b
 
-      public key (32 octets):  884d7b30c8c8e665 6415faa558fb1c79
-         077e59f09ca06a53 0342b9d0812ec557
+      public key (32 octets):  5160225ef191075b 883a7bfdcc304a53
+         8c756b014d7efd46 83297d98dfa77459
 
    {server}  derive secret "client early traffic secret" (same as
       client)
@@ -1040,112 +1040,112 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {server}  extract secret "handshake":
 
-      salt (32 octets):  bdb8f589605cf77f b6a67a56ec03a93a
-         fbccbbb8d938f05b 6b66206cca47fe07
+      salt (32 octets):  2ae482093b689a24 bbea0c6eec979a1e
+         06bb555ab6b0fc81 694e096a6842128c
 
-      ikm (32 octets):  e9859590f6819e4e a5b5bb179f22f541
-         1ce51929f9517de0 a99726fb82459c22
+      ikm (32 octets):  803350c1a11b9b5d 46a024c4a617bebb
+         3e4f3c2963c9e352 f2f0e7db370eeb7e
 
-      secret (32 octets):  7b92cb618235cf69 88eaa3aa1f796c0e
-         8c882331b9feeb59 d1a8f229e1ba41f6
+      secret (32 octets):  906b862e1b748dc4 6f9a52a69cd6697d
+         58d4750cba6c5a83 6fece37115bfe66b
 
    {server}  derive secret "client handshake traffic secret":
 
-      PRK (32 octets):  7b92cb618235cf69 88eaa3aa1f796c0e
-         8c882331b9feeb59 d1a8f229e1ba41f6
+      PRK (32 octets):  906b862e1b748dc4 6f9a52a69cd6697d
+         58d4750cba6c5a83 6fece37115bfe66b
 
-      handshake hash (32 octets):  764506ab31616151 a25ba6599d1c3b74
-         b06c1dd6960b50c7 697223619dbe8e53
-
-
+      handshake hash (32 octets):  8da1e197cad149b7 0651e323973db24d
+         e852e81a6041ac2d fc2228f14d68f42d
 
 
 
-Thomson                Expires September 18, 2017              [Page 19]
+
+
+Thomson                Expires September 28, 2017              [Page 19]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
       info (76 octets):  002028544c532031 2e332c20636c6965
          6e742068616e6473 68616b6520747261 6666696320736563
-         72657420764506ab 31616151a25ba659 9d1c3b74b06c1dd6
-         960b50c769722361 9dbe8e53
+         726574208da1e197 cad149b70651e323 973db24de852e81a
+         6041ac2dfc2228f1 4d68f42d
 
-      output (32 octets):  eff6231aa4f58d08 6e639f1cc84640f6
-         728ac26e404c9b9a 64b05a93af1e411f
+      output (32 octets):  6a83f7fe42c94b4b a1e7453c637d4a79
+         80368db544f45700 da6d5e6f5a5db984
 
    {server}  derive secret "server handshake traffic secret":
 
-      PRK (32 octets):  7b92cb618235cf69 88eaa3aa1f796c0e
-         8c882331b9feeb59 d1a8f229e1ba41f6
+      PRK (32 octets):  906b862e1b748dc4 6f9a52a69cd6697d
+         58d4750cba6c5a83 6fece37115bfe66b
 
-      handshake hash (32 octets):  764506ab31616151 a25ba6599d1c3b74
-         b06c1dd6960b50c7 697223619dbe8e53
+      handshake hash (32 octets):  8da1e197cad149b7 0651e323973db24d
+         e852e81a6041ac2d fc2228f14d68f42d
 
       info (76 octets):  002028544c532031 2e332c2073657276
          65722068616e6473 68616b6520747261 6666696320736563
-         72657420764506ab 31616151a25ba659 9d1c3b74b06c1dd6
-         960b50c769722361 9dbe8e53
+         726574208da1e197 cad149b70651e323 973db24de852e81a
+         6041ac2dfc2228f1 4d68f42d
 
-      output (32 octets):  a74c4f587a14e468 e954351735ca1fce
-         315caed72c6fba64 dbfa1c940902a809
+      output (32 octets):  0de4020e254fb0d8 0924cbe3c06be511
+         53c6f3790222ba1b e1539648d6910151
 
    {server}  extract secret "master":
 
-      salt (32 octets):  7b92cb618235cf69 88eaa3aa1f796c0e
-         8c882331b9feeb59 d1a8f229e1ba41f6
+      salt (32 octets):  906b862e1b748dc4 6f9a52a69cd6697d
+         58d4750cba6c5a83 6fece37115bfe66b
 
       ikm (32 octets):  0000000000000000 0000000000000000
          0000000000000000 0000000000000000
 
-      secret (32 octets):  3b577c36385f4240 2d98eecb6296fbce
-         b85e07985d55f486 be47dc170d02a204
+      secret (32 octets):  e112d9035040ae5a 1eceac7be11e9fd0
+         d35549a6b20237be 3b45b040a80aab4a
 
    {server}  send record:
 
-      cleartext (88 octets):  020000547f12be64 a2f367c514e2a55f
-         7db913bfe36cd049 5619d18f222c0717 1b406f104ed31301
-         002e002900020000 00280024001d0020 884d7b30c8c8e665
-         6415faa558fb1c79 077e59f09ca06a53 0342b9d0812ec557
+      cleartext (88 octets):  020000547f12cbc4 84c13436aefad3e1
+         b12fa54e013aa920 11fc77acf114f990 19a3529d82521301
+         002e002900020000 00280024001d0020 5160225ef191075b
+         883a7bfdcc304a53 8c756b014d7efd46 83297d98dfa77459
 
-      ciphertext (93 octets):  1603010058020000 547f12be64a2f367
-         c514e2a55f7db913 bfe36cd0495619d1 8f222c07171b406f
-         104ed31301002e00 2900020000002800 24001d0020884d7b
-         30c8c8e6656415fa a558fb1c79077e59 f09ca06a530342b9 d0812ec557
+      ciphertext (93 octets):  1603010058020000 547f12cbc484c134
+         36aefad3e1b12fa5 4e013aa92011fc77 acf114f99019a352
+         9d82521301002e00 2900020000002800 24001d0020516022
+         5ef191075b883a7b fdcc304a538c756b 014d7efd4683297d 98dfa77459
 
    {server}  derive write traffic keys using label "handshake data":
 
 
 
-Thomson                Expires September 18, 2017              [Page 20]
+Thomson                Expires September 28, 2017              [Page 20]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      PRK (32 octets):  a74c4f587a14e468 e954351735ca1fce
-         315caed72c6fba64 dbfa1c940902a809
+      PRK (32 octets):  0de4020e254fb0d8 0924cbe3c06be511
+         53c6f3790222ba1b e1539648d6910151
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  5d89dfa8d7cb4ffd 3f5eed15f82a4ae2
+      key output (16 octets):  37d78696341a20bc 283f1048648e1fed
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  f23ebb8400f3b5b6 c2ed2a1c
+      iv output (12 octets):  f583463a4c4bd7ec fd38a42f
 
    {server}  send a EncryptedExtensions handshake message
 
    {server}  calculate finished:
 
-      PRK (32 octets):  a74c4f587a14e468 e954351735ca1fce
-         315caed72c6fba64 dbfa1c940902a809
+      PRK (32 octets):  0de4020e254fb0d8 0924cbe3c06be511
+         53c6f3790222ba1b e1539648d6910151
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  36d5209c16797529 504a65795d9081cd
-         ae96c83b6af772d3 50647cbe983c75f3
+      output (32 octets):  54c83f1da0fcfed7 530831c36e558c7f
+         aee459c289db1e3d 86ece0b897a07f46
 
    {server}  send a Finished handshake message
 
@@ -1153,232 +1153,232 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
       cleartext (74 octets):  080000220020000a 00140012001d0017
          0018001901000101 0102010301040000 0000002a00001400
-         0020f7adca472bff 95ad9e951eb02158 15052c4584997a47
-         8d75b9d42dbd1f6d 1f13
+         00207396212c7326 83eb5c12c3b4b56b 014c038fcb1b03cc
+         8f45f74892a98867 74a6
 
-      ciphertext (96 octets):  170301005bc2e48e b6d1702535dd0fb0
-         1e4867fba058b4c7 c4c6d1cf2a8cedd6 ea5467ff6a84c035
-         cb10361897217780 b05ed8014cee7d39 591e3b3d295ec467
-         1eeea3f603f35ffe 07af46a2b81f1fc9 8f7951290b8f4f09
-         f0e799bd9fc14f55
+      ciphertext (96 octets):  170301005b8c05ed 91b127bb6e44d056
+         70369261d33772a8 9049bff87d183070 78a6dffa476a2c02
+         b5765ba275973dc7 a5c8ce469348562f 013a53a0956730f4
+         fe3a4e74a4d703d1 6af539ee0d890622 28e4a925f940e6f6
+         4864f979195652f9
 
    {server}  derive secret "client application traffic secret":
 
-      PRK (32 octets):  3b577c36385f4240 2d98eecb6296fbce
-         b85e07985d55f486 be47dc170d02a204
+      PRK (32 octets):  e112d9035040ae5a 1eceac7be11e9fd0
+         d35549a6b20237be 3b45b040a80aab4a
 
-      handshake hash (32 octets):  52317a0ad511ce84 ec064a6b6e93685e
-         1d1df9713c31851d fd0ec0b09ff71b83
-
-
+      handshake hash (32 octets):  195e64aa90c2a404 2e25c63b49820857
+         f458b2f12d762d05 27a9004a7002f308
 
 
-Thomson                Expires September 18, 2017              [Page 21]
+
+
+Thomson                Expires September 28, 2017              [Page 21]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
       info (78 octets):  00202a544c532031 2e332c20636c6965
          6e74206170706c69 636174696f6e2074 7261666669632073
-         6563726574205231 7a0ad511ce84ec06 4a6b6e93685e1d1d
-         f9713c31851dfd0e c0b09ff71b83
+         656372657420195e 64aa90c2a4042e25 c63b49820857f458
+         b2f12d762d0527a9 004a7002f308
 
-      output (32 octets):  255d13799cd17e19 6669e8931d453db5
-         3079fd68dad367ab 1c5cd7594438512a
+      output (32 octets):  19b50e153e52fa81 b7f9c5e98b01b5a2
+         590caec8aa28c2f9 041f0bee814f9293
 
    {server}  derive secret "server application traffic secret":
 
-      PRK (32 octets):  3b577c36385f4240 2d98eecb6296fbce
-         b85e07985d55f486 be47dc170d02a204
+      PRK (32 octets):  e112d9035040ae5a 1eceac7be11e9fd0
+         d35549a6b20237be 3b45b040a80aab4a
 
-      handshake hash (32 octets):  52317a0ad511ce84 ec064a6b6e93685e
-         1d1df9713c31851d fd0ec0b09ff71b83
+      handshake hash (32 octets):  195e64aa90c2a404 2e25c63b49820857
+         f458b2f12d762d05 27a9004a7002f308
 
       info (78 octets):  00202a544c532031 2e332c2073657276
          6572206170706c69 636174696f6e2074 7261666669632073
-         6563726574205231 7a0ad511ce84ec06 4a6b6e93685e1d1d
-         f9713c31851dfd0e c0b09ff71b83
+         656372657420195e 64aa90c2a4042e25 c63b49820857f458
+         b2f12d762d0527a9 004a7002f308
 
-      output (32 octets):  bfc1b7baffa998af 88e4d85ce33bee82
-         3b0399fde1e3260f 5f8a36f802ab078b
+      output (32 octets):  3f95bc6a4210c21a 753c1f7a198a0320
+         8b3bd48ba2bda863 a47203460e977703
 
    {server}  derive secret "exporter master secret":
 
-      PRK (32 octets):  3b577c36385f4240 2d98eecb6296fbce
-         b85e07985d55f486 be47dc170d02a204
+      PRK (32 octets):  e112d9035040ae5a 1eceac7be11e9fd0
+         d35549a6b20237be 3b45b040a80aab4a
 
-      handshake hash (32 octets):  52317a0ad511ce84 ec064a6b6e93685e
-         1d1df9713c31851d fd0ec0b09ff71b83
+      handshake hash (32 octets):  195e64aa90c2a404 2e25c63b49820857
+         f458b2f12d762d05 27a9004a7002f308
 
       info (67 octets):  00201f544c532031 2e332c206578706f
-         72746572206d6173 7465722073656372 65742052317a0ad5
-         11ce84ec064a6b6e 93685e1d1df9713c 31851dfd0ec0b09f f71b83
+         72746572206d6173 7465722073656372 657420195e64aa90
+         c2a4042e25c63b49 820857f458b2f12d 762d0527a9004a70 02f308
 
-      output (32 octets):  f50a47657df34f43 a185eae83ee56a03
-         086e5b2a56aee8d6 b3dcb58b6e6608b0
+      output (32 octets):  84b65bc7462c9210 76ed90e3eaada77f
+         ea87e475a05080cb bd147f039b39dfb1
 
    {server}  derive write traffic keys using label "application data":
 
-      PRK (32 octets):  bfc1b7baffa998af 88e4d85ce33bee82
-         3b0399fde1e3260f 5f8a36f802ab078b
+      PRK (32 octets):  3f95bc6a4210c21a 753c1f7a198a0320
+         8b3bd48ba2bda863 a47203460e977703
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  3cd3c27fd8c7998b c24e4dd79b4c1ea1
+      key output (16 octets):  c353bba692ca41c3 f12f6b4f5954e0e3
 
 
 
 
-Thomson                Expires September 18, 2017              [Page 22]
+Thomson                Expires September 28, 2017              [Page 22]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  bea6ca37623ade97 96e28e9a
+      iv output (12 octets):  5871910024a213ec e0eea2f4
 
    {server}  derive read traffic keys using label "early application
       data" (same as client write traffic keys)
 
    {client}  extract secret "handshake":
 
-      salt (32 octets):  bdb8f589605cf77f b6a67a56ec03a93a
-         fbccbbb8d938f05b 6b66206cca47fe07
+      salt (32 octets):  2ae482093b689a24 bbea0c6eec979a1e
+         06bb555ab6b0fc81 694e096a6842128c
 
-      ikm (32 octets):  e9859590f6819e4e a5b5bb179f22f541
-         1ce51929f9517de0 a99726fb82459c22
+      ikm (32 octets):  803350c1a11b9b5d 46a024c4a617bebb
+         3e4f3c2963c9e352 f2f0e7db370eeb7e
 
-      secret (32 octets):  7b92cb618235cf69 88eaa3aa1f796c0e
-         8c882331b9feeb59 d1a8f229e1ba41f6
+      secret (32 octets):  906b862e1b748dc4 6f9a52a69cd6697d
+         58d4750cba6c5a83 6fece37115bfe66b
 
    {client}  derive secret "client handshake traffic secret":
 
-      PRK (32 octets):  7b92cb618235cf69 88eaa3aa1f796c0e
-         8c882331b9feeb59 d1a8f229e1ba41f6
+      PRK (32 octets):  906b862e1b748dc4 6f9a52a69cd6697d
+         58d4750cba6c5a83 6fece37115bfe66b
 
-      handshake hash (32 octets):  764506ab31616151 a25ba6599d1c3b74
-         b06c1dd6960b50c7 697223619dbe8e53
+      handshake hash (32 octets):  8da1e197cad149b7 0651e323973db24d
+         e852e81a6041ac2d fc2228f14d68f42d
 
       info (76 octets):  002028544c532031 2e332c20636c6965
          6e742068616e6473 68616b6520747261 6666696320736563
-         72657420764506ab 31616151a25ba659 9d1c3b74b06c1dd6
-         960b50c769722361 9dbe8e53
+         726574208da1e197 cad149b70651e323 973db24de852e81a
+         6041ac2dfc2228f1 4d68f42d
 
-      output (32 octets):  eff6231aa4f58d08 6e639f1cc84640f6
-         728ac26e404c9b9a 64b05a93af1e411f
+      output (32 octets):  6a83f7fe42c94b4b a1e7453c637d4a79
+         80368db544f45700 da6d5e6f5a5db984
 
    {client}  derive secret "server handshake traffic secret":
 
-      PRK (32 octets):  7b92cb618235cf69 88eaa3aa1f796c0e
-         8c882331b9feeb59 d1a8f229e1ba41f6
+      PRK (32 octets):  906b862e1b748dc4 6f9a52a69cd6697d
+         58d4750cba6c5a83 6fece37115bfe66b
 
-      handshake hash (32 octets):  764506ab31616151 a25ba6599d1c3b74
-         b06c1dd6960b50c7 697223619dbe8e53
+      handshake hash (32 octets):  8da1e197cad149b7 0651e323973db24d
+         e852e81a6041ac2d fc2228f14d68f42d
 
       info (76 octets):  002028544c532031 2e332c2073657276
          65722068616e6473 68616b6520747261 6666696320736563
-         72657420764506ab 31616151a25ba659 9d1c3b74b06c1dd6
-         960b50c769722361 9dbe8e53
+         726574208da1e197 cad149b70651e323 973db24de852e81a
+         6041ac2dfc2228f1 4d68f42d
 
 
 
 
 
-Thomson                Expires September 18, 2017              [Page 23]
+Thomson                Expires September 28, 2017              [Page 23]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      output (32 octets):  a74c4f587a14e468 e954351735ca1fce
-         315caed72c6fba64 dbfa1c940902a809
+      output (32 octets):  0de4020e254fb0d8 0924cbe3c06be511
+         53c6f3790222ba1b e1539648d6910151
 
    {client}  extract secret "master" (same as server)
 
    {client}  derive read traffic keys using label "handshake data":
 
-      PRK (32 octets):  a74c4f587a14e468 e954351735ca1fce
-         315caed72c6fba64 dbfa1c940902a809
+      PRK (32 octets):  0de4020e254fb0d8 0924cbe3c06be511
+         53c6f3790222ba1b e1539648d6910151
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  5d89dfa8d7cb4ffd 3f5eed15f82a4ae2
+      key output (16 octets):  37d78696341a20bc 283f1048648e1fed
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  f23ebb8400f3b5b6 c2ed2a1c
+      iv output (12 octets):  f583463a4c4bd7ec fd38a42f
 
    {client}  calculate finished:
 
-      PRK (32 octets):  a74c4f587a14e468 e954351735ca1fce
-         315caed72c6fba64 dbfa1c940902a809
+      PRK (32 octets):  0de4020e254fb0d8 0924cbe3c06be511
+         53c6f3790222ba1b e1539648d6910151
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  36d5209c16797529 504a65795d9081cd
-         ae96c83b6af772d3 50647cbe983c75f3
+      output (32 octets):  54c83f1da0fcfed7 530831c36e558c7f
+         aee459c289db1e3d 86ece0b897a07f46
 
    {client}  send record:
 
       cleartext (2 octets):  0101
 
-      ciphertext (24 octets):  170301001327eeaf 5169fccf6207ee7c
-         a7302973f88378ec
+      ciphertext (24 octets):  17030100132fc7f0 b58088408d29e872
+         4607baa04ba2758d
 
    {client}  derive write traffic keys using label "handshake data":
 
-      PRK (32 octets):  eff6231aa4f58d08 6e639f1cc84640f6
-         728ac26e404c9b9a 64b05a93af1e411f
+      PRK (32 octets):  6a83f7fe42c94b4b a1e7453c637d4a79
+         80368db544f45700 da6d5e6f5a5db984
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  89d8e3febd23a6de fbe0d2dadeef1ee7
+      key output (16 octets):  2f3f019ade28f1b6 a6519635dc220ea2
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
 
 
 
-Thomson                Expires September 18, 2017              [Page 24]
+Thomson                Expires September 28, 2017              [Page 24]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      iv output (12 octets):  b262748bfa6586db 45e9633d
+      iv output (12 octets):  6c1f3f411b4a5017 1169e200
 
    {client}  derive secret "client application traffic secret":
 
-      PRK (32 octets):  3b577c36385f4240 2d98eecb6296fbce
-         b85e07985d55f486 be47dc170d02a204
+      PRK (32 octets):  e112d9035040ae5a 1eceac7be11e9fd0
+         d35549a6b20237be 3b45b040a80aab4a
 
-      handshake hash (32 octets):  52317a0ad511ce84 ec064a6b6e93685e
-         1d1df9713c31851d fd0ec0b09ff71b83
+      handshake hash (32 octets):  195e64aa90c2a404 2e25c63b49820857
+         f458b2f12d762d05 27a9004a7002f308
 
       info (78 octets):  00202a544c532031 2e332c20636c6965
          6e74206170706c69 636174696f6e2074 7261666669632073
-         6563726574205231 7a0ad511ce84ec06 4a6b6e93685e1d1d
-         f9713c31851dfd0e c0b09ff71b83
+         656372657420195e 64aa90c2a4042e25 c63b49820857f458
+         b2f12d762d0527a9 004a7002f308
 
-      output (32 octets):  255d13799cd17e19 6669e8931d453db5
-         3079fd68dad367ab 1c5cd7594438512a
+      output (32 octets):  19b50e153e52fa81 b7f9c5e98b01b5a2
+         590caec8aa28c2f9 041f0bee814f9293
 
    {client}  derive secret "server application traffic secret":
 
-      PRK (32 octets):  3b577c36385f4240 2d98eecb6296fbce
-         b85e07985d55f486 be47dc170d02a204
+      PRK (32 octets):  e112d9035040ae5a 1eceac7be11e9fd0
+         d35549a6b20237be 3b45b040a80aab4a
 
-      handshake hash (32 octets):  52317a0ad511ce84 ec064a6b6e93685e
-         1d1df9713c31851d fd0ec0b09ff71b83
+      handshake hash (32 octets):  195e64aa90c2a404 2e25c63b49820857
+         f458b2f12d762d05 27a9004a7002f308
 
       info (78 octets):  00202a544c532031 2e332c2073657276
          6572206170706c69 636174696f6e2074 7261666669632073
-         6563726574205231 7a0ad511ce84ec06 4a6b6e93685e1d1d
-         f9713c31851dfd0e c0b09ff71b83
+         656372657420195e 64aa90c2a4042e25 c63b49820857f458
+         b2f12d762d0527a9 004a7002f308
 
-      output (32 octets):  bfc1b7baffa998af 88e4d85ce33bee82
-         3b0399fde1e3260f 5f8a36f802ab078b
+      output (32 octets):  3f95bc6a4210c21a 753c1f7a198a0320
+         8b3bd48ba2bda863 a47203460e977703
 
    {client}  derive secret "exporter master secret" (same as server)
 
@@ -1387,8 +1387,8 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {client}  calculate finished:
 
-      PRK (32 octets):  eff6231aa4f58d08 6e639f1cc84640f6
-         728ac26e404c9b9a 64b05a93af1e411f
+      PRK (32 octets):  6a83f7fe42c94b4b a1e7453c637d4a79
+         80368db544f45700 da6d5e6f5a5db984
 
       handshake hash (0 octets):  (empty)
 
@@ -1397,84 +1397,84 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 25]
+Thomson                Expires September 28, 2017              [Page 25]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      output (32 octets):  7c0480708ba503ac 7395216264a748d6
-         9fb17fecbeab447f a8252562c1278417
+      output (32 octets):  3e0448dc54fa0034 ee05ac70de103204
+         1a7c0ff132e98c6a 1fff3a598ac5f5e9
 
    {client}  send a Finished handshake message
 
    {client}  send record:
 
-      cleartext (36 octets):  140000202ab8ec3c d7108e8b81d4969f
-         4abd6e19703724e6 27631dd440c326ff 6a911852
+      cleartext (36 octets):  1400002029710ec7 ff8e040c5995fda6
+         b500ebb987bd23e4 7ca1f63cf39af60b b209af7b
 
-      ciphertext (58 octets):  1703010035d1241c 09c1c2216cf41680
-         34dd1a38972ad5d9 f614846729237582 683c33b9400f59e0
-         b68993ff05c10cff b2ebe4f02f5a37d7 3dbc
+      ciphertext (58 octets):  1703010035dbc3fa ffdc2fefa132d05f
+         9630d09c4e13599a c4490a05daf3d84f f2162b1b6088a46c
+         7be98e8c6fa0114e 48fc39f8d14d680f c9a1
 
    {client}  derive write traffic keys using label "application data":
 
-      PRK (32 octets):  255d13799cd17e19 6669e8931d453db5
-         3079fd68dad367ab 1c5cd7594438512a
+      PRK (32 octets):  19b50e153e52fa81 b7f9c5e98b01b5a2
+         590caec8aa28c2f9 041f0bee814f9293
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  6390d2c2cbefe4e8 f34d10f7ff404eed
+      key output (16 octets):  e9bcaa63484eee7d ccc1c08b2c0cbd91
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  8e15744773b2ae4e 368fab3b
+      iv output (12 octets):  5981f862fe50a48e 8fc0de27
 
    {client}  derive secret "resumption master secret":
 
-      PRK (32 octets):  3b577c36385f4240 2d98eecb6296fbce
-         b85e07985d55f486 be47dc170d02a204
+      PRK (32 octets):  e112d9035040ae5a 1eceac7be11e9fd0
+         d35549a6b20237be 3b45b040a80aab4a
 
-      handshake hash (32 octets):  e2f1f99dd7004816 bfb84a43fd9221b4
-         c631db089997f4d8 5b6738dafa8ec5ea
+      handshake hash (32 octets):  9117d943c5aadcdf b8dc45f361966c3e
+         0323add1103ba5cd a6e4b7e6a2b14391
 
       info (69 octets):  002021544c532031 2e332c2072657375
-         6d7074696f6e206d 6173746572207365 6372657420e2f1f9
-         9dd7004816bfb84a 43fd9221b4c631db 089997f4d85b6738 dafa8ec5ea
+         6d7074696f6e206d 6173746572207365 63726574209117d9
+         43c5aadcdfb8dc45 f361966c3e0323ad d1103ba5cda6e4b7 e6a2b14391
 
-      output (32 octets):  1d23acb5e3be4d0b 2c2bdc939f33551b
-         b5c61305a756ee48 dd4e07e92e3dabb2
+      output (32 octets):  19568898222d1659 539fafdd9693ca3d
+         6bf062b0ff5ccf50 caa44d1cef8b3e99
 
    {server}  derive read traffic keys using label "handshake data":
 
-      PRK (32 octets):  eff6231aa4f58d08 6e639f1cc84640f6
-         728ac26e404c9b9a 64b05a93af1e411f
+      PRK (32 octets):  6a83f7fe42c94b4b a1e7453c637d4a79
+         80368db544f45700 da6d5e6f5a5db984
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
 
 
-Thomson                Expires September 18, 2017              [Page 26]
+Thomson                Expires September 28, 2017              [Page 26]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      key output (16 octets):  89d8e3febd23a6de fbe0d2dadeef1ee7
+      key output (16 octets):  2f3f019ade28f1b6 a6519635dc220ea2
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  b262748bfa6586db 45e9633d
+      iv output (12 octets):  6c1f3f411b4a5017 1169e200
 
    {server}  calculate finished:
 
-      PRK (32 octets):  eff6231aa4f58d08 6e639f1cc84640f6
-         728ac26e404c9b9a 64b05a93af1e411f
+      PRK (32 octets):  6a83f7fe42c94b4b a1e7453c637d4a79
+         80368db544f45700 da6d5e6f5a5db984
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  7c0480708ba503ac 7395216264a748d6
-         9fb17fecbeab447f a8252562c1278417
+      output (32 octets):  3e0448dc54fa0034 ee05ac70de103204
+         1a7c0ff132e98c6a 1fff3a598ac5f5e9
 
    {server}  derive read traffic keys using label "application data"
       (same as client write traffic keys)
@@ -1487,10 +1487,10 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          1011121314151617 18191a1b1c1d1e1f 2021222324252627
          28292a2b2c2d2e2f 3031
 
-      ciphertext (72 octets):  1703010043bdc997 65b96d6763c9b5f2
-         fc48585263d7db09 e523d105b07c01e3 944e8df18869cfb1
-         d718c380a8c13be7 cf4624100b14e5d7 0c2ef18b8692bc9c
-         a684bcbff565023d
+      ciphertext (72 octets):  1703010043750a50 ec9824bd042a9c4f
+         8017f669e65b1420 e9aeb3e7a26a3eb1 012c449310413ece
+         b9c3abbf6d2e92a3 3e80d348dbe521ea 0dfd258417ef5731
+         bd1ac6594468c1d6
 
    {server}  send record:
 
@@ -1498,10 +1498,10 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          1011121314151617 18191a1b1c1d1e1f 2021222324252627
          28292a2b2c2d2e2f 3031
 
-      ciphertext (72 octets):  17030100435cc648 1d2ef8ce49f1c0b1
-         f0e32b02a9615462 b1f2c046720d0016 123bcc4cbb545aee
-         68822772b5f8f462 fd5923fc57bc5c41 6b93008f1b695738
-         1d4a8a7f1524191b
+      ciphertext (72 octets):  1703010043501253 a0f1459839a3fa52
+         e4325dd467283b64 0eb0d46cd2bcf766 e105ac464e7376c4
+         29ffd99c69d54d97 042b86979031213e 7b1f5bdf41996dc5
+         1d797873a113fe8b
 
    {client}  send record:
 
@@ -1509,20 +1509,20 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 27]
+Thomson                Expires September 28, 2017              [Page 27]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      ciphertext (24 octets):  17030100136d63fa 314967912cd4106f
-         7130be04729f09f7
+      ciphertext (24 octets):  1703010013711ad0 aae76cb42bd61243
+         01b8bd2583a0b3aa
 
    {server}  send record:
 
       cleartext (2 octets):  0100
 
-      ciphertext (24 octets):  1703010013fab2d6 8006d7282006ec9a
-         f8bae18745a2fcae
+      ciphertext (24 octets):  170301001304e890 1e56d5724c23a693
+         3174662c68945fe3
 
 5.  HelloRetryRequest
 
@@ -1533,31 +1533,31 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {client}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  03a674088c23dd86 c45f42a600f75fc3
-         bf739045733a70a6 49f406066698fcab
+      private key (32 octets):  e3372ef91e2eb39c 45f18dcab1e46260
+         7df66fae3fadc8f1 71e12b2b68530b1e
 
-      public key (32 octets):  62c4e07e75fc8d37 d1576dc1115f50a7
-         ba15287a38a694fa 5d745256f7d57765
+      public key (32 octets):  4fa5de1963291674 c92ff4fe67e2b730
+         3259e327dc9ab8b1 cbbd4308ba07da7d
 
    {client}  send a ClientHello handshake message
 
    {client}  send record:
 
-      cleartext (174 octets):  010000aa03034ac3 1e1ecade8701e244
-         2907365accd5154d ff2a49da179296bc 7d529cdd5db10000
+      cleartext (174 octets):  010000aa03038707 e3f4c727d5b1f3f0
+         629b8c52a10c0158 92a542f4e14fe85b 5e97cf873e8b0000
          0613011303130201 00007b0000000b00 0900000673657276
          6572ff0100010000 0a00080006001d00 1700180028002600
-         24001d002062c4e0 7e75fc8d37d1576d c1115f50a7ba1528
-         7a38a694fa5d7452 56f7d57765002b00 03027f12000d0020
+         24001d00204fa5de 1963291674c92ff4 fe67e2b7303259e3
+         27dc9ab8b1cbbd43 08ba07da7d002b00 03027f12000d0020
          001e040305030603 0203080408050806 0401050106010201
          0402050206020202 002d00020101
 
-      ciphertext (179 octets):  16030100ae010000 aa03034ac31e1eca
-         de8701e244290736 5accd5154dff2a49 da179296bc7d529c
-         dd5db10000061301 130313020100007b 0000000b00090000
+      ciphertext (179 octets):  16030100ae010000 aa03038707e3f4c7
+         27d5b1f3f0629b8c 52a10c015892a542 f4e14fe85b5e97cf
+         873e8b0000061301 130313020100007b 0000000b00090000
          06736572766572ff 01000100000a0008 0006001d00170018
-         002800260024001d 002062c4e07e75fc 8d37d1576dc1115f
-         50a7ba15287a38a6 94fa5d745256f7d5 7765002b0003027f
+         002800260024001d 00204fa5de196329 1674c92ff4fe67e2
+         b7303259e327dc9a b8b1cbbd4308ba07 da7d002b0003027f
          12000d0020001e04 0305030603020308 0408050806040105
          0106010201040205 0206020202002d00 020101
 
@@ -1565,7 +1565,7 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 28]
+Thomson                Expires September 28, 2017              [Page 28]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
@@ -1578,35 +1578,35 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {client}  create an ephemeral P-256 key pair:
 
-      private key (32 octets):  13afb93deaef66fb 93a117061353d780
-         a8d93a05e2558415 10b567b9ffc3107b
+      private key (32 octets):  17fce4582a69d71f 8bee54d35faaf1fa
+         317a7db783228500 85afa35159bf6d2e
 
-      public key (65 octets):  0462bc8e682dd018 4d0ed6e403c5919d
-         03f5c2d8ab31821c c4ee7044f5caf675 9fbfb89d0da2cd8e
-         3059827555b5ae5d 531f1c85a16830ce 06c26f0e690819b1 f0
+      public key (65 octets):  044674f13176526e 31844e153cb67e98
+         4432d97de4f78b95 1b53362e7b31ad2b 372fd6ac25778c16
+         f622c0f62487ad0f 8fd4815b894ae19b ea627bec5b1452c2 eb
 
    {client}  send a ClientHello handshake message
 
    {client}  send record:
 
-      cleartext (207 octets):  010000cb03034ac3 1e1ecade8701e244
-         2907365accd5154d ff2a49da179296bc 7d529cdd5db10000
+      cleartext (207 octets):  010000cb03038707 e3f4c727d5b1f3f0
+         629b8c52a10c0158 92a542f4e14fe85b 5e97cf873e8b0000
          0613011303130201 00009c0000000b00 0900000673657276
          6572ff0100010000 0a00080006001d00 1700180028004700
-         45001700410462bc 8e682dd0184d0ed6 e403c5919d03f5c2
-         d8ab31821cc4ee70 44f5caf6759fbfb8 9d0da2cd8e305982
-         7555b5ae5d531f1c 85a16830ce06c26f 0e690819b1f0002b
+         4500170041044674 f13176526e31844e 153cb67e984432d9
+         7de4f78b951b5336 2e7b31ad2b372fd6 ac25778c16f622c0
+         f62487ad0f8fd481 5b894ae19bea627b ec5b1452c2eb002b
          0003027f12000d00 20001e0403050306 0302030804080508
          0604010501060102 0104020502060202 02002d00020101
 
-      ciphertext (212 octets):  16030100cf010000 cb03034ac31e1eca
-         de8701e244290736 5accd5154dff2a49 da179296bc7d529c
-         dd5db10000061301 130313020100009c 0000000b00090000
+      ciphertext (212 octets):  16030100cf010000 cb03038707e3f4c7
+         27d5b1f3f0629b8c 52a10c015892a542 f4e14fe85b5e97cf
+         873e8b0000061301 130313020100009c 0000000b00090000
          06736572766572ff 01000100000a0008 0006001d00170018
-         0028004700450017 00410462bc8e682d d0184d0ed6e403c5
-         919d03f5c2d8ab31 821cc4ee7044f5ca f6759fbfb89d0da2
-         cd8e3059827555b5 ae5d531f1c85a168 30ce06c26f0e6908
-         19b1f0002b000302 7f12000d0020001e 0403050306030203
+         0028004700450017 0041044674f13176 526e31844e153cb6
+         7e984432d97de4f7 8b951b53362e7b31 ad2b372fd6ac2577
+         8c16f622c0f62487 ad0f8fd4815b894a e19bea627bec5b14
+         52c2eb002b000302 7f12000d0020001e 0403050306030203
          0804080508060401 0501060102010402 050206020202002d 00020101
 
    {server}  extract secret "early":
@@ -1621,19 +1621,19 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 29]
+Thomson                Expires September 28, 2017              [Page 29]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
    {server}  create an ephemeral P-256 key pair:
 
-      private key (32 octets):  3a4af529e9d6841d ae6a790a133a6ce9
-         2991d6db3cf8172a 22ee05ff350a1dff
+      private key (32 octets):  9896b1d505e86a27 8930911f90800b6c
+         22a761f75871f892 5861ce12f3a78102
 
-      public key (65 octets):  04dafe2c8b10c1ce 6e5ec7775a948fe5
-         7b6ed0d2ea2869c6 fcae7ca2c6320a16 3a234c03bad746dd
-         045eb20b47247132 b1bbf9ac1ab9148c 327f5077d0fc5178 b5
+      public key (65 octets):  04f03f220cfd64e9 808debc5d41b2f13
+         20604dcdde387435 be4f914c2cb2e19a cddb59b74d9e3239
+         24211880d3e6dada 1bed9614ad19dd91 d4ff28a87ee9b87e 34
 
    {server}  send a ServerHello handshake message
 
@@ -1642,90 +1642,90 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
       salt (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
          10adf300aa1f2660 e1b22e10f170f92a
 
-      ikm (32 octets):  4c6e329601c6abbf 41165b2ebab9c8fe
-         c38df6b70151fb26 6ff8f6e2833cc7be
+      ikm (32 octets):  0f0fe76f1a7e1487 53cd0cbeccea747a
+         0f33f8c0a7708e2b 6367bd5bf78d0000
 
-      secret (32 octets):  48d6f32dd7e5fab6 f2cdeef9be698f53
-         cc5e4b3ebebd52ea 4bef24489e23b485
+      secret (32 octets):  f0c1b516163803ed 08ecaec40bea76d0
+         8f680febefa18444 1665ca1574073ada
 
    {server}  derive secret "client handshake traffic secret":
 
-      PRK (32 octets):  48d6f32dd7e5fab6 f2cdeef9be698f53
-         cc5e4b3ebebd52ea 4bef24489e23b485
+      PRK (32 octets):  f0c1b516163803ed 08ecaec40bea76d0
+         8f680febefa18444 1665ca1574073ada
 
-      handshake hash (32 octets):  d4a67b497be7bb76 966ced2f319a2b41
-         cbfeb19a072ae962 2056debc2189c06a
+      handshake hash (32 octets):  16c363bba51d416e 23e96f11873a6760
+         7e90b6a4b8ae236d 4a96d1e659f1992c
 
       info (76 octets):  002028544c532031 2e332c20636c6965
          6e742068616e6473 68616b6520747261 6666696320736563
-         72657420d4a67b49 7be7bb76966ced2f 319a2b41cbfeb19a
-         072ae9622056debc 2189c06a
+         7265742016c363bb a51d416e23e96f11 873a67607e90b6a4
+         b8ae236d4a96d1e6 59f1992c
 
-      output (32 octets):  5ca2df2f54c3a136 8e22edc58046be49
-         fabe12e59216be09 c6588948ba9ed277
+      output (32 octets):  cbcc6acd71090fd1 b8f61ae481754be8
+         a3320a45ce840910 a59b6ba4a8912751
 
    {server}  derive secret "server handshake traffic secret":
 
-      PRK (32 octets):  48d6f32dd7e5fab6 f2cdeef9be698f53
-         cc5e4b3ebebd52ea 4bef24489e23b485
+      PRK (32 octets):  f0c1b516163803ed 08ecaec40bea76d0
+         8f680febefa18444 1665ca1574073ada
 
-      handshake hash (32 octets):  d4a67b497be7bb76 966ced2f319a2b41
-         cbfeb19a072ae962 2056debc2189c06a
+      handshake hash (32 octets):  16c363bba51d416e 23e96f11873a6760
+         7e90b6a4b8ae236d 4a96d1e659f1992c
 
       info (76 octets):  002028544c532031 2e332c2073657276
          65722068616e6473 68616b6520747261 6666696320736563
 
 
 
-Thomson                Expires September 18, 2017              [Page 30]
+Thomson                Expires September 28, 2017              [Page 30]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-         72657420d4a67b49 7be7bb76966ced2f 319a2b41cbfeb19a
-         072ae9622056debc 2189c06a
+         7265742016c363bb a51d416e23e96f11 873a67607e90b6a4
+         b8ae236d4a96d1e6 59f1992c
 
-      output (32 octets):  7f062b1f09ea662a 88ccee56375f4fea
-         2207c60945bff9b9 cadd93e7e67f536b
+      output (32 octets):  2bc6b9fd97ca4550 825e18dd3089961a
+         962ea20dbdf39f33 836aff83023b70b9
 
    {server}  extract secret "master":
 
-      salt (32 octets):  48d6f32dd7e5fab6 f2cdeef9be698f53
-         cc5e4b3ebebd52ea 4bef24489e23b485
+      salt (32 octets):  f0c1b516163803ed 08ecaec40bea76d0
+         8f680febefa18444 1665ca1574073ada
 
       ikm (32 octets):  0000000000000000 0000000000000000
          0000000000000000 0000000000000000
 
-      secret (32 octets):  8cc52d84c1e9b9a6 134c9b95b31c5bba
-         6d719dfb3de38892 21d730e4fe0b3cd7
+      secret (32 octets):  c80d172481ed7ff8 1c58c7f951759788
+         f7ffccf639147d8d 82be9416be7bdde1
 
    {server}  send record:
 
-      cleartext (115 octets):  0200006f7f12c770 aeea08a25ea7319a
-         4c6d6e410b0947f1 fa888a9ed9507d48 514d388a50d61301
-         0049002800450017 004104dafe2c8b10 c1ce6e5ec7775a94
-         8fe57b6ed0d2ea28 69c6fcae7ca2c632 0a163a234c03bad7
-         46dd045eb20b4724 7132b1bbf9ac1ab9 148c327f5077d0fc 5178b5
+      cleartext (115 octets):  0200006f7f12d49d f9760d49136ce9d9
+         6e15cfb6e7137a56 58580265eff7eef4 13c2f5f1e6c61301
+         0049002800450017 004104f03f220cfd 64e9808debc5d41b
+         2f1320604dcdde38 7435be4f914c2cb2 e19acddb59b74d9e
+         323924211880d3e6 dada1bed9614ad19 dd91d4ff28a87ee9 b87e34
 
-      ciphertext (120 octets):  1603010073020000 6f7f12c770aeea08
-         a25ea7319a4c6d6e 410b0947f1fa888a 9ed9507d48514d38
-         8a50d61301004900 2800450017004104 dafe2c8b10c1ce6e
-         5ec7775a948fe57b 6ed0d2ea2869c6fc ae7ca2c6320a163a
-         234c03bad746dd04 5eb20b47247132b1 bbf9ac1ab9148c32
-         7f5077d0fc5178b5
+      ciphertext (120 octets):  1603010073020000 6f7f12d49df9760d
+         49136ce9d96e15cf b6e7137a56585802 65eff7eef413c2f5
+         f1e6c61301004900 2800450017004104 f03f220cfd64e980
+         8debc5d41b2f1320 604dcdde387435be 4f914c2cb2e19acd
+         db59b74d9e323924 211880d3e6dada1b ed9614ad19dd91d4
+         ff28a87ee9b87e34
 
    {server}  derive write traffic keys using label "handshake data":
 
-      PRK (32 octets):  7f062b1f09ea662a 88ccee56375f4fea
-         2207c60945bff9b9 cadd93e7e67f536b
+      PRK (32 octets):  2bc6b9fd97ca4550 825e18dd3089961a
+         962ea20dbdf39f33 836aff83023b70b9
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  a1f991e70cb39813 bdf22eafa5616de5
+      key output (16 octets):  b62335fe422c22fa 298b06fe9b91ee61
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  05eb7b0c89acbb67 54e2b02b
+      iv output (12 octets):  f149cac90d829d8b 4ba8b979
 
    {server}  send a EncryptedExtensions handshake message
 
@@ -1733,7 +1733,7 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 31]
+Thomson                Expires September 28, 2017              [Page 31]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
@@ -1742,15 +1742,15 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {server}  calculate finished:
 
-      PRK (32 octets):  7f062b1f09ea662a 88ccee56375f4fea
-         2207c60945bff9b9 cadd93e7e67f536b
+      PRK (32 octets):  2bc6b9fd97ca4550 825e18dd3089961a
+         962ea20dbdf39f33 836aff83023b70b9
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  98f795bc50a701bf 4ac37fddf0fc30c5
-         c3f8cb22344b1637 01f6b57efc329278
+      output (32 octets):  1877a6a06d53d91c 81b0b74341518b21
+         53ac719785d37d3f 34e20e7028bad14c
 
    {server}  send a Finished handshake message
 
@@ -1776,139 +1776,139 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
          5e67f2dbf102702e 608ccae6bec1fc63 a42a99be5c3eb710
          7c3c54e9b9eb2bd5 203b1c3b84e0a8b2 f759409ba3eac9d9
          1d402dcc0cc8f896 1229ac9187b42b4d e100000f00008408
-         0400800cc87e6add 8d3f1a2763c41808 8c5e4fd45636aaa1
-         c5f3ec2b1481f751 e728cef2b639b71e 760afcb3ec39c601
-         c30d37805b69f7e7 5eceac00a60835f1 69a93a10e8d62446
-         5c9bcb08fe0dc83e cf54a00f63a7a289 c0e1ba407c79af16
-         1f4eaf9c6521187c 67f4271f086ba1e0 6442a6b641a53511
-         fd8e2d4fa5317a06 7b6530140000208e 04b4527bd16e32c7
-         250c32e77985095f 097bc514ea1d9055 4eac36eab8ad0c
+         0400803279a70ac9 c8ed3a828aeda6e4 a71a3c4605944c89
+         b10ce8134236dd3f b25939cc1175fe49 2f78fec0b179ebc3
+         655a0da96c647eb4 f2fc1125aa228ab0 a734893726b6b994
+         ca097b817daa4cae 6b56b4c6f2728ad5 702f8e9d7ed48533
+         7d63d4251ab30ee0 3afa1650507975fc f76d21ba90a2819a
+         2d5ae621c383f286 07518a14000020c7 52c43e47e4409b3a
+         787c80562a655768 d212b1d658440472 c5e26240142bc5
 
-      ciphertext (661 octets):  1703010290f5ce04 8b69038129896671
-         8157f24c85bce977 57f615d1f124d65c 2625c4600b6a4c96
+      ciphertext (661 octets):  1703010290ac2a76 21d9d9d4741b1acc
+         3a793940cc86dd02 4eba1dbfc43bbcf4 0ef36dbba97b4db3
 
 
 
-Thomson                Expires September 18, 2017              [Page 32]
+Thomson                Expires September 28, 2017              [Page 32]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-         6746f035426bedaf c04ce7c006f258bc c9f30cae9e8facf7
-         1faef71cee0ee74c c25dbbe45ab8ebe6 169ca159a1281d55
-         43e542a03d6d5101 fa7b99b5128357bc 9f728aee9fd343b7
-         74b6c98c879660e1 75f52fa1c8279bea c2194265d972f4bb
-         9e922a3576f82cb5 cf09246a0079cc60 b0a674697aade6d4
-         792b3bc0454c6dda b2ed421ef1ebb1ef bc63752483f923e0
-         31450b3a51a4715b 685729e9c2b88ab1 537aa927aa5d777f
-         06b1dd81425be8fc aa547934d50de63b fb80a0354d52bfd5
-         5f095dd9236c791f 2d2ec745e00bff66 acf40eb5cecb6c44
-         0ff7ac3af15b5480 7d154ccddd00c4af a3be62bab280378f
-         ff969e094edcffe1 f0c34a74a4a75a9f 5bb89627c3e03d55
-         335cf75f56a1472d 253fbb84591fb89a 3a826e3019bf9a8d
-         30ae0aebc602e387 ef45feae6a485aa9 9fd936f807bab19a
-         8684ddc486f7ea4a ab77086df065f3f9 493f15f7e4aa6741
-         9f844646b4e1304b 5c75c4f1a457766b 0ea1bfba94ca4d8c
-         507887032ee2c72c 23c60897a79b14b9 7a417ac66f88f9c9
-         0794a858333d77bb 1acda64b8d24578b 6d42ab5f4481e867
-         8d3c211d9bdc9e55 2859f3571b06fb1c c2fc2d15801d6156
-         ea5270ea52cec8d9 6a8b968eeb8753f4 a1f17682bd92b594
-         d3dd93fd3d864619 d1cba4eb9f383f69 24f6609f67a52155
-         2d19936403baa772 7c80513b88536c33 9f4dcd6af4cc6ed6
-         904f114745af299e 25ad1fd934d63c29 29c620a4cc894e23
-         16366dfc1fee7776 3ca3e1d71eecdd1a 205bb29048a359b2
-         aaee62317b7e4879 35796ba461e4e26f 246169683b44e7ad
-         4a34658e0a55feb6 d20ae9a22f44b205 849694ed235e3f75
-         4d34eba09ac6c408 ba15728bc9acff36 1561becc22
+         4d7165f6f872d8c4 6b8114c346145329 e950ad2fc13b9b06
+         72b3eb38fc5aaa2e 2ea59b8eff251a9e 2102d24016121c8b
+         d6017073d642217a aff4c589950510bd 4dac1661fc29c366
+         b726f6e0ffbc30ca 5d686abacb53c5e7 9ff7a238f6a0d1fb
+         308a0fd2a60a05b3 425feb047b11d5f0 6d4718be26412082
+         d613fc1de9d156da d8e73eeca8810e32 eff8d6055f5f0bba
+         8783a191270a6833 5b02bb5ab01a3075 5f0e326ced084714
+         6c3fe4ae0a0cfcc1 6c934e79e26f0787 a81e9569a071ddb7
+         1c0071bf4a7349bd 14e64809ff2e3777 10bdad3ae562475e
+         a0bdc71ee0fe7fd4 a732ea94ece7893e feb6eaedc367f3c4
+         055905b61a830b4c e3146ae4a2e84b29 6b15c32d4a692674
+         2fa4f30680f121e2 f84960260b41585f 7ffcdd50e1998ecc
+         d0f173fb77650fb4 3c3df42f897fea6b ed586c1a71de1f6d
+         240f713e3770baf2 00effb01614ba7dd 4d9948a3cb2a682a
+         8faf38eede9b7fd8 347bb0929d256636 43cd681ee24871a7
+         fa0c902c4686273d 9325bb82469cdb3b ed7d20e5d320140c
+         59e772f6388bc4d1 baac38c2d4ec424d 8412b44cdf8f4345
+         307f798d7ce3a23a c0c5554f42796c2b 9785472dd3f6275b
+         541c2aa7704303a8 ade2964b66b1f958 24b02979068c8aa1
+         2b997f6279c19d7c c9de2b252dab2502 86d7a052ce28ae1a
+         41cc5b1403663243 ddcbd957eb8ced7a 6553f4050797a8c1
+         bf565a266938e3fc 2fe6b39246bba78e 95b77261330cda00
+         79fa5a1b6fb442dd bd014fdf9c2db8cb 2f8a16ac35eebd04
+         1cca920844f80d0a 39ea2c9bc496d99f 3d9830c46d32c70f
+         9714fbb0bff8bee1 f6920a8225c86480 0676f478b8f941e4
+         ac6c39ad4c09310f a1ae7ff21a8b6529 14de338a3f
 
    {server}  derive secret "client application traffic secret":
 
-      PRK (32 octets):  8cc52d84c1e9b9a6 134c9b95b31c5bba
-         6d719dfb3de38892 21d730e4fe0b3cd7
+      PRK (32 octets):  c80d172481ed7ff8 1c58c7f951759788
+         f7ffccf639147d8d 82be9416be7bdde1
 
-      handshake hash (32 octets):  208e8f337c2e8ec0 bdbe0f7cda35d9ea
-         ce2943e067717b59 85b8083de0f0017c
+      handshake hash (32 octets):  f32ef21c2a168853 48461038db0676c8
+         2193bf71e1023a97 9f20e323ddf31679
 
       info (78 octets):  00202a544c532031 2e332c20636c6965
          6e74206170706c69 636174696f6e2074 7261666669632073
-         656372657420208e 8f337c2e8ec0bdbe 0f7cda35d9eace29
-         43e067717b5985b8 083de0f0017c
+         656372657420f32e f21c2a1688534846 1038db0676c82193
+         bf71e1023a979f20 e323ddf31679
 
-      output (32 octets):  c029463e53747621 ed0fab1e20ca4265
-         ba6ced371ab84e06 f5f6c45a28ff30ec
+      output (32 octets):  a56324e960410d46 ad05b4d40e224261
+         e772901a6a6fb2dd 295bcf63b17eafdd
 
    {server}  derive secret "server application traffic secret":
 
-      PRK (32 octets):  8cc52d84c1e9b9a6 134c9b95b31c5bba
-         6d719dfb3de38892 21d730e4fe0b3cd7
+      PRK (32 octets):  c80d172481ed7ff8 1c58c7f951759788
+         f7ffccf639147d8d 82be9416be7bdde1
 
 
 
 
-Thomson                Expires September 18, 2017              [Page 33]
+Thomson                Expires September 28, 2017              [Page 33]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      handshake hash (32 octets):  208e8f337c2e8ec0 bdbe0f7cda35d9ea
-         ce2943e067717b59 85b8083de0f0017c
+      handshake hash (32 octets):  f32ef21c2a168853 48461038db0676c8
+         2193bf71e1023a97 9f20e323ddf31679
 
       info (78 octets):  00202a544c532031 2e332c2073657276
          6572206170706c69 636174696f6e2074 7261666669632073
-         656372657420208e 8f337c2e8ec0bdbe 0f7cda35d9eace29
-         43e067717b5985b8 083de0f0017c
+         656372657420f32e f21c2a1688534846 1038db0676c82193
+         bf71e1023a979f20 e323ddf31679
 
-      output (32 octets):  4c39d6653e46fb12 695c73d8fac3b17d
-         bbd5d21784bbc34c 173a1d9fda2e51db
+      output (32 octets):  940703ca25e0b80d 0896ae46b059d5bb
+         3dfce77948204e40 880d4ce222b2d138
 
    {server}  derive secret "exporter master secret":
 
-      PRK (32 octets):  8cc52d84c1e9b9a6 134c9b95b31c5bba
-         6d719dfb3de38892 21d730e4fe0b3cd7
+      PRK (32 octets):  c80d172481ed7ff8 1c58c7f951759788
+         f7ffccf639147d8d 82be9416be7bdde1
 
-      handshake hash (32 octets):  208e8f337c2e8ec0 bdbe0f7cda35d9ea
-         ce2943e067717b59 85b8083de0f0017c
+      handshake hash (32 octets):  f32ef21c2a168853 48461038db0676c8
+         2193bf71e1023a97 9f20e323ddf31679
 
       info (67 octets):  00201f544c532031 2e332c206578706f
-         72746572206d6173 7465722073656372 657420208e8f337c
-         2e8ec0bdbe0f7cda 35d9eace2943e067 717b5985b8083de0 f0017c
+         72746572206d6173 7465722073656372 657420f32ef21c2a
+         16885348461038db 0676c82193bf71e1 023a979f20e323dd f31679
 
-      output (32 octets):  49b81c42826946b5 96ab03d3e227b388
-         520b045dd6b9f4f8 ba4d4166032de1e9
+      output (32 octets):  c3863769425a3ba3 05aa04fa96cc5aac
+         29038d6628872be7 2aadc970ce51b312
 
    {server}  derive write traffic keys using label "application data":
 
-      PRK (32 octets):  4c39d6653e46fb12 695c73d8fac3b17d
-         bbd5d21784bbc34c 173a1d9fda2e51db
+      PRK (32 octets):  940703ca25e0b80d 0896ae46b059d5bb
+         3dfce77948204e40 880d4ce222b2d138
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  122289dbe5ad6b86 a9cbc22ad076cda2
+      key output (16 octets):  a2d663cdb595d434 2a4ea7ed38aefd76
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  56e29d719cc07836 85df59e1
+      iv output (12 octets):  56902e840c6deb4f d4366d68
 
    {server}  derive read traffic keys using label "handshake data":
 
-      PRK (32 octets):  5ca2df2f54c3a136 8e22edc58046be49
-         fabe12e59216be09 c6588948ba9ed277
+      PRK (32 octets):  cbcc6acd71090fd1 b8f61ae481754be8
+         a3320a45ce840910 a59b6ba4a8912751
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  c174cc9e74bb64e5 5b8d12a80ee2c28b
+      key output (16 octets):  3db36b9c58e2b831 4bdead658afeae5c
 
 
 
 
-Thomson                Expires September 18, 2017              [Page 34]
+Thomson                Expires September 28, 2017              [Page 34]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  01c981572599b8e7 ca0f9482
+      iv output (12 octets):  3cb3f390ad7e12d7 7c2a3a85
 
    {client}  extract secret "early":
 
@@ -1925,120 +1925,120 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
       salt (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
          10adf300aa1f2660 e1b22e10f170f92a
 
-      ikm (32 octets):  4c6e329601c6abbf 41165b2ebab9c8fe
-         c38df6b70151fb26 6ff8f6e2833cc7be
+      ikm (32 octets):  0f0fe76f1a7e1487 53cd0cbeccea747a
+         0f33f8c0a7708e2b 6367bd5bf78d0000
 
-      secret (32 octets):  48d6f32dd7e5fab6 f2cdeef9be698f53
-         cc5e4b3ebebd52ea 4bef24489e23b485
+      secret (32 octets):  f0c1b516163803ed 08ecaec40bea76d0
+         8f680febefa18444 1665ca1574073ada
 
    {client}  derive secret "client handshake traffic secret":
 
-      PRK (32 octets):  48d6f32dd7e5fab6 f2cdeef9be698f53
-         cc5e4b3ebebd52ea 4bef24489e23b485
+      PRK (32 octets):  f0c1b516163803ed 08ecaec40bea76d0
+         8f680febefa18444 1665ca1574073ada
 
-      handshake hash (32 octets):  d4a67b497be7bb76 966ced2f319a2b41
-         cbfeb19a072ae962 2056debc2189c06a
+      handshake hash (32 octets):  16c363bba51d416e 23e96f11873a6760
+         7e90b6a4b8ae236d 4a96d1e659f1992c
 
       info (76 octets):  002028544c532031 2e332c20636c6965
          6e742068616e6473 68616b6520747261 6666696320736563
-         72657420d4a67b49 7be7bb76966ced2f 319a2b41cbfeb19a
-         072ae9622056debc 2189c06a
+         7265742016c363bb a51d416e23e96f11 873a67607e90b6a4
+         b8ae236d4a96d1e6 59f1992c
 
-      output (32 octets):  5ca2df2f54c3a136 8e22edc58046be49
-         fabe12e59216be09 c6588948ba9ed277
+      output (32 octets):  cbcc6acd71090fd1 b8f61ae481754be8
+         a3320a45ce840910 a59b6ba4a8912751
 
    {client}  derive secret "server handshake traffic secret":
 
-      PRK (32 octets):  48d6f32dd7e5fab6 f2cdeef9be698f53
-         cc5e4b3ebebd52ea 4bef24489e23b485
+      PRK (32 octets):  f0c1b516163803ed 08ecaec40bea76d0
+         8f680febefa18444 1665ca1574073ada
 
-      handshake hash (32 octets):  d4a67b497be7bb76 966ced2f319a2b41
-         cbfeb19a072ae962 2056debc2189c06a
+      handshake hash (32 octets):  16c363bba51d416e 23e96f11873a6760
+         7e90b6a4b8ae236d 4a96d1e659f1992c
 
 
 
-Thomson                Expires September 18, 2017              [Page 35]
+Thomson                Expires September 28, 2017              [Page 35]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
       info (76 octets):  002028544c532031 2e332c2073657276
          65722068616e6473 68616b6520747261 6666696320736563
-         72657420d4a67b49 7be7bb76966ced2f 319a2b41cbfeb19a
-         072ae9622056debc 2189c06a
+         7265742016c363bb a51d416e23e96f11 873a67607e90b6a4
+         b8ae236d4a96d1e6 59f1992c
 
-      output (32 octets):  7f062b1f09ea662a 88ccee56375f4fea
-         2207c60945bff9b9 cadd93e7e67f536b
+      output (32 octets):  2bc6b9fd97ca4550 825e18dd3089961a
+         962ea20dbdf39f33 836aff83023b70b9
 
    {client}  extract secret "master" (same as server)
 
    {client}  derive read traffic keys using label "handshake data":
 
-      PRK (32 octets):  7f062b1f09ea662a 88ccee56375f4fea
-         2207c60945bff9b9 cadd93e7e67f536b
+      PRK (32 octets):  2bc6b9fd97ca4550 825e18dd3089961a
+         962ea20dbdf39f33 836aff83023b70b9
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  a1f991e70cb39813 bdf22eafa5616de5
+      key output (16 octets):  b62335fe422c22fa 298b06fe9b91ee61
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  05eb7b0c89acbb67 54e2b02b
+      iv output (12 octets):  f149cac90d829d8b 4ba8b979
 
    {client}  calculate finished:
 
-      PRK (32 octets):  7f062b1f09ea662a 88ccee56375f4fea
-         2207c60945bff9b9 cadd93e7e67f536b
+      PRK (32 octets):  2bc6b9fd97ca4550 825e18dd3089961a
+         962ea20dbdf39f33 836aff83023b70b9
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  98f795bc50a701bf 4ac37fddf0fc30c5
-         c3f8cb22344b1637 01f6b57efc329278
+      output (32 octets):  1877a6a06d53d91c 81b0b74341518b21
+         53ac719785d37d3f 34e20e7028bad14c
 
    {client}  derive write traffic keys using label "handshake data"
       (same as server read traffic keys)
 
    {client}  derive secret "client application traffic secret":
 
-      PRK (32 octets):  8cc52d84c1e9b9a6 134c9b95b31c5bba
-         6d719dfb3de38892 21d730e4fe0b3cd7
+      PRK (32 octets):  c80d172481ed7ff8 1c58c7f951759788
+         f7ffccf639147d8d 82be9416be7bdde1
 
-      handshake hash (32 octets):  208e8f337c2e8ec0 bdbe0f7cda35d9ea
-         ce2943e067717b59 85b8083de0f0017c
+      handshake hash (32 octets):  f32ef21c2a168853 48461038db0676c8
+         2193bf71e1023a97 9f20e323ddf31679
 
       info (78 octets):  00202a544c532031 2e332c20636c6965
          6e74206170706c69 636174696f6e2074 7261666669632073
 
 
 
-Thomson                Expires September 18, 2017              [Page 36]
+Thomson                Expires September 28, 2017              [Page 36]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-         656372657420208e 8f337c2e8ec0bdbe 0f7cda35d9eace29
-         43e067717b5985b8 083de0f0017c
+         656372657420f32e f21c2a1688534846 1038db0676c82193
+         bf71e1023a979f20 e323ddf31679
 
-      output (32 octets):  c029463e53747621 ed0fab1e20ca4265
-         ba6ced371ab84e06 f5f6c45a28ff30ec
+      output (32 octets):  a56324e960410d46 ad05b4d40e224261
+         e772901a6a6fb2dd 295bcf63b17eafdd
 
    {client}  derive secret "server application traffic secret":
 
-      PRK (32 octets):  8cc52d84c1e9b9a6 134c9b95b31c5bba
-         6d719dfb3de38892 21d730e4fe0b3cd7
+      PRK (32 octets):  c80d172481ed7ff8 1c58c7f951759788
+         f7ffccf639147d8d 82be9416be7bdde1
 
-      handshake hash (32 octets):  208e8f337c2e8ec0 bdbe0f7cda35d9ea
-         ce2943e067717b59 85b8083de0f0017c
+      handshake hash (32 octets):  f32ef21c2a168853 48461038db0676c8
+         2193bf71e1023a97 9f20e323ddf31679
 
       info (78 octets):  00202a544c532031 2e332c2073657276
          6572206170706c69 636174696f6e2074 7261666669632073
-         656372657420208e 8f337c2e8ec0bdbe 0f7cda35d9eace29
-         43e067717b5985b8 083de0f0017c
+         656372657420f32e f21c2a1688534846 1038db0676c82193
+         bf71e1023a979f20 e323ddf31679
 
-      output (32 octets):  4c39d6653e46fb12 695c73d8fac3b17d
-         bbd5d21784bbc34c 173a1d9fda2e51db
+      output (32 octets):  940703ca25e0b80d 0896ae46b059d5bb
+         3dfce77948204e40 880d4ce222b2d138
 
    {client}  derive secret "exporter master secret" (same as server)
 
@@ -2047,76 +2047,76 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
    {client}  calculate finished:
 
-      PRK (32 octets):  5ca2df2f54c3a136 8e22edc58046be49
-         fabe12e59216be09 c6588948ba9ed277
+      PRK (32 octets):  cbcc6acd71090fd1 b8f61ae481754be8
+         a3320a45ce840910 a59b6ba4a8912751
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  2e8f88858ba02a4a 6adef22c1ac548fe
-         d22b304c440afbb4 5b3825483fe91eac
+      output (32 octets):  71c9a9ed51faf896 dbb7980ecb104769
+         e92750a573c8e454 376f7da86473897a
 
    {client}  send a Finished handshake message
 
    {client}  send record:
 
-      cleartext (36 octets):  14000020b8f98b92 323701916cd4e79b
-         fecdc4409ab57e9d af16d5750262f4a2 229733d6
+      cleartext (36 octets):  140000205243cdc1 83f418cff6d19985
+         c939716e57ca82bd 2c99db29a75403b4 e8e1a109
 
 
 
 
 
 
-Thomson                Expires September 18, 2017              [Page 37]
+Thomson                Expires September 28, 2017              [Page 37]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
-      ciphertext (58 octets):  1703010035d9cccd 014f835360cfbace
-         9281bd1e17614cd1 cf99d71aba7d6264 cd0ca84577bc7330
-         b004606ad3309e9e e0746fbd927c6983 fdb5
+      ciphertext (58 octets):  17030100350669e6 4dfba6ed76d85bf0
+         774f72f5141cb923 0ac1455d0cf44410 3072d1b2257c8092
+         deb5d5e614f97599 32a484472363014c 9a2b
 
    {client}  derive write traffic keys using label "application data":
 
-      PRK (32 octets):  c029463e53747621 ed0fab1e20ca4265
-         ba6ced371ab84e06 f5f6c45a28ff30ec
+      PRK (32 octets):  a56324e960410d46 ad05b4d40e224261
+         e772901a6a6fb2dd 295bcf63b17eafdd
 
       key info (16 octets):  00100c544c532031 2e332c206b657900
 
-      key output (16 octets):  9db7390e45b24880 a1dc2e38df79d6b4
+      key output (16 octets):  0e8f3f98d226f4f6 845bdf36f073a0d2
 
       iv info (15 octets):  000c0b544c532031 2e332c20697600
 
-      iv output (12 octets):  6ac1918787443bff e926ae76
+      iv output (12 octets):  d325d3055d34b5b6 adacd0fd
 
    {client}  derive secret "resumption master secret":
 
-      PRK (32 octets):  8cc52d84c1e9b9a6 134c9b95b31c5bba
-         6d719dfb3de38892 21d730e4fe0b3cd7
+      PRK (32 octets):  c80d172481ed7ff8 1c58c7f951759788
+         f7ffccf639147d8d 82be9416be7bdde1
 
-      handshake hash (32 octets):  73ac98375869f2cb a903d12596c19cc4
-         79c8a3ee7b1329b3 48bb627421003e82
+      handshake hash (32 octets):  a6c6d78c4e3cc63c f6162ad5862e26ec
+         aecd68797b01af7c ce24a4ed4f6f622e
 
       info (69 octets):  002021544c532031 2e332c2072657375
-         6d7074696f6e206d 6173746572207365 637265742073ac98
-         375869f2cba903d1 2596c19cc479c8a3 ee7b1329b348bb62 7421003e82
+         6d7074696f6e206d 6173746572207365 6372657420a6c6d7
+         8c4e3cc63cf6162a d5862e26ecaecd68 797b01af7cce24a4 ed4f6f622e
 
-      output (32 octets):  2d636c366c42af1b ee163b97690c56a5
-         4ab4de88e61ad93a 795ef56995157336
+      output (32 octets):  a0fe47c1d530330b d5260b16748f63c9
+         6c46ba6cca43c828 c1595a78d851e657
 
    {server}  calculate finished:
 
-      PRK (32 octets):  5ca2df2f54c3a136 8e22edc58046be49
-         fabe12e59216be09 c6588948ba9ed277
+      PRK (32 octets):  cbcc6acd71090fd1 b8f61ae481754be8
+         a3320a45ce840910 a59b6ba4a8912751
 
       handshake hash (0 octets):  (empty)
 
       info (21 octets):  002011544c532031 2e332c2066696e69 7368656400
 
-      output (32 octets):  2e8f88858ba02a4a 6adef22c1ac548fe
-         d22b304c440afbb4 5b3825483fe91eac
+      output (32 octets):  71c9a9ed51faf896 dbb7980ecb104769
+         e92750a573c8e454 376f7da86473897a
 
    {server}  derive read traffic keys using label "application data"
       (same as client write traffic keys)
@@ -2125,7 +2125,7 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
 
 
-Thomson                Expires September 18, 2017              [Page 38]
+Thomson                Expires September 28, 2017              [Page 38]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
@@ -2134,15 +2134,15 @@ Internet-Draft               TLS 1.3 Traces                   March 2017
 
       cleartext (2 octets):  0100
 
-      ciphertext (24 octets):  170301001358085b f1510c877f3d5546
-         4f9c5a2a85c2505b
+      ciphertext (24 octets):  17030100136dd294 cc5126a0ba06f972
+         1231bcc6307771cd
 
    {server}  send record:
 
       cleartext (2 octets):  0100
 
-      ciphertext (24 octets):  170301001335a9de 829dbf9e0ad241b7
-         88038417db6ad742
+      ciphertext (24 octets):  170301001346ed5b a255d5a85fddc4d2
+         c321297bfcb675d4
 
 6.  Security Considerations
 
@@ -2181,7 +2181,7 @@ Appendix A.  Acknowledgements
 
 
 
-Thomson                Expires September 18, 2017              [Page 39]
+Thomson                Expires September 28, 2017              [Page 39]
 
 Internet-Draft               TLS 1.3 Traces                   March 2017
 
@@ -2237,4 +2237,4 @@ Author's Address
 
 
 
-Thomson                Expires September 18, 2017              [Page 40]
+Thomson                Expires September 28, 2017              [Page 40]
