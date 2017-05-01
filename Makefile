@@ -24,7 +24,7 @@ $(GTESTS): $(NSS_DIR) $(NSPR_DIR)
 	$(NSS_DIR)/build.sh $(NSS_OPTIONS)
 
 $(NSS_DIR):
-	hg clone https://hg.mozilla.org/projects/nss $(realpath $@)
+	hg clone -b NSS_TLS13_DRAFT19_BRANCH https://hg.mozilla.org/projects/nss $(realpath $@)
 
 $(NSPR_DIR):
 	hg clone https://hg.mozilla.org/projects/nspr $(realpath $@)
