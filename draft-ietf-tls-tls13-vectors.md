@@ -127,6 +127,16 @@ curve.
 <<< KeyExchangeTest/TlsKeyExchangeTest13.EqualPriorityTestRetryECServer13/0 hrr
 
 
+# Client Authentication
+
+In this example, the server requests client authentication.  The client uses an
+ECDSA certificate with a P-256 key.
+
+>>> GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
+<<< GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
+
+
+
 # Security Considerations
 
 It probably isn't a good idea to use the private key here.  If it weren't for

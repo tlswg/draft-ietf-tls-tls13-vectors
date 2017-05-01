@@ -4,7 +4,7 @@ cd $(dirname $0)
 NSS_DIR=${NSS_DIR:-../nss}
 DIST_DIR="$NSS_DIR/../dist/$(cat $NSS_DIR/../dist/latest)"
 SSL_GTEST="${SSL_GTEST:-${DIST_DIR}/bin/ssl_gtest}"
-DB_DIR="${DB_DIR:-ssl_gtests}"
+DB_DIR="${DB_DIR:-db}"
 
 if [[ ! -x "${SSL_GTEST}" ]]; then
     echo "NSS gtests missing" 1>&2
