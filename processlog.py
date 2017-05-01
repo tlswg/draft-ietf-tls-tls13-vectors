@@ -60,7 +60,7 @@ roles = PeerRole()
 
 class HandleConnecting:
     # This only latches on the client resetting so that we count just once
-    pattern = re.compile('client: Changing state from INIT to CONNECTING')
+    pattern = re.compile('^client: Changing state from INIT to CONNECTING')
 
     def __init__(self, m):
         global handshake_number
@@ -75,7 +75,7 @@ class HandleConnecting:
 
 class HandleHandshake:
     """ HandleHandshake tracks handshake messages.  It also assigns roles. """
-    pattern = re.compile('\d+: SSL3\[(-?\d+)\]: append handshake header: type ([a-z_]+) ')
+    pattern = re.compile('^\d+: SSL3\[(-?\d+)\]: append handshake header: type ([a-z_]+) ')
     message_role = {'client_hello': 'client', 'server_hello': 'server'}
 
     def __init__(self, m):
@@ -100,11 +100,11 @@ hex_decoder = codecs.getdecoder('hex')
 
 def binary_pattern(text, socket=False):
     if socket:
-        return re.compile('\d+: SSL\[(-?\d+)\]: %s \[Len: (\d+)\]' % text)
-    return re.compile('\d+: SSL: %s \[Len: (\d+)\]' % text)
+        return re.compile('^\d+: SSL\[(-?\d+)\]: %s \[Len: (\d+)\]' % text)
+    return re.compile('^\d+: SSL: %s \[Len: (\d+)\]' % text)
 
 class BinaryReader:
-    value_pattern = re.compile('   (?:[\da-f]{2} ){1,16} ')
+    value_pattern = re.compile('^   (?:[\da-f]{2} ){1,16} ')
 
     def __init__(self, m):
         if m is None:
@@ -152,28 +152,46 @@ class BinaryReader:
         log()
 
 class HandleRecord:
-    pattern = binary_pattern('(Send record \(plain text\)|send \(encrypted\) record data:)', socket=True)
+    pattern = re.compile('^\d+: SSL3\[(-?\d+)\] SendRecord type: (\w+)')
+    inner_pattern = binary_pattern('Send record \(plain text\)', socket=True)
 
     def __init__(self, m):
         self.role = roles.lookup(m.group(1))
-        self.cleartext = m.group(2).find('enc') < 0
+        self.binary = None
+        self.type = m.group(2)
+
+    def handle(self, line):
+        if self.binary is None:
+            m = self.inner_pattern.match(line)
+            if m is None:
+                warning('no plaintext found for send record')
+                return True
+            self.binary = BinaryReader(m)
+            return False
+
+        return self.binary.handle(line)
+
+    def report(self):
+        roles.report(self.role)
+        log(': send %s record:' % self.type)
+        log()
+        self.binary.report('payload')
+
+class HandleEncrypted:
+    pattern = binary_pattern('send \(encrypted\) record data:', socket=True)
+
+    def __init__(self, m):
+        self.role = roles.lookup(m.group(1))
         self.binary = BinaryReader(m)
 
     def handle(self, line):
         return self.binary.handle(line)
 
     def report(self):
-        if self.cleartext:
-            roles.report(self.role)
-            log(': send record:')
-            log()
-            label = 'cleartext'
-        else:
-            label = 'ciphertext'
-        self.binary.report(label)
+        self.binary.report('ciphertext')
 
 class HandlePrivateKey:
-    pattern = re.compile('\d+: SSL\[(-?\d+)\]: Create ECDH ephemeral key (\d+)')
+    pattern = re.compile('^\d+: SSL\[(-?\d+)\]: Create ECDH ephemeral key (\d+)')
     key_pattern = binary_pattern('(Public|Private) Key', socket=True)
     group_name = {23: 'P-256', 29: 'x25519'}
 
@@ -227,6 +245,8 @@ class DeduplicateValues:
         """Save a set of values and report which role generated them, if any."""
         for k in self.secrets.keys():
             if self.strip(self.secrets[k]) == self.strip(values):
+                if ',' in k:
+                    return k[0:k.index(',')]
                 return k
         self.secrets[role] = values
         return None
@@ -277,9 +297,11 @@ class HandleHkdf:
         roles.report(self.role)
         if self.label is not None:
             msg = '%s "%s"' % (self.name, self.label)
+            key = '%s, %s' % (self.role, self.label)
         else:
             msg = self.name
-        dupe = self.dedupe.match(self.role, self.values)
+            key = self.role
+        dupe = self.dedupe.match(key, self.values)
         if dupe is not None:
             log(': %s (same as %s)' % (msg, dupe))
             return
@@ -366,6 +388,7 @@ class HandleMasterSecret:
     def report(self):
         if self.derive is not None:
             self.derive.report()
+            log()
         roles.report(self.role)
         msg = 'extract secret "%s"' % self.label
         dupe = self.dedupe.match(self.role, self.values)
@@ -418,7 +441,7 @@ class HandleTrafficKeys:
 
     def report(self):
         roles.report(self.role)
-        msg = 'derive %s traffic keys using label "%s"' % (self.direction, self.label)
+        msg = 'derive %s traffic keys for %s' % (self.direction, self.label)
         dupe = self.dedupe.match('%s %s traffic keys' % (self.role, self.direction), self.values)
         if dupe is not None:
             log(': %s (same as %s)' % (msg, dupe))
@@ -437,6 +460,7 @@ class HandleTrafficKeys:
 handlers = [HandleConnecting,
             HandleHandshake,
             HandleRecord,
+            HandleEncrypted,
             HandlePrivateKey,
             HandleMasterSecret,
             HandleDeriveSecret,
