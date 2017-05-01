@@ -10,7 +10,7 @@ else
 	git clone -q --depth 10 -b master https://github.com/martinthomson/i-d-template.git lib
 endif
 
-$(addsuffix .mdtmp,$(drafts)): preprocess.sh processlog.py
+$(addsuffix .xml,$(drafts)): preprocess.sh processlog.py
 
 NSS_DIR ?= $(wildcard ../nss)
 ifeq (,$(NSS_DIR))

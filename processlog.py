@@ -16,9 +16,15 @@ def log(msg=''):
     the second."""
     os.write(2 + handshake_number, msg + '\n')
 
+current_line_number = 0
+current_line = ''
+
 def warning(msg):
+    global current_line_number
+    global current_line
     warning.count += 1
-    sys.stderr.write('>>>Warning<<< %s\n' % msg)
+    sys.stderr.write('%4d: %s' % (current_line_number, current_line))
+    sys.stderr.write('Warning: %s\n' % msg)
 warning.count = 0
 
 class PeerRole:
@@ -225,55 +231,10 @@ class DeduplicateValues:
         self.secrets[role] = values
         return None
 
-class HandleExtractSecret:
-    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: compute (early|handshake|master) secrets? \((server|client)\)')
-    extract_patterns = [['salt', binary_pattern('HKDF Extract: IKM1/Salt')],
-                        ['ikm', binary_pattern('HKDF Extract: IKM2')],
-                        ['secret', binary_pattern('HKDF Extract')]]
-    dedupe = DeduplicateValues()
-
-    def __init__(self, m):
-        self.role = roles.commit(m.group(1), m.group(3))
-        self.label = m.group(2)
-        self.values = []
-        self.reader = None
-
-    def handle(self, line):
-        if self.reader is not None:
-            done = self.reader.handle(line)
-            if not done:
-                return False
-
-        if len(self.values) == len(self.extract_patterns):
-            return True
-
-        (n, p) = self.extract_patterns[len(self.values)]
-        m = p.match(line)
-        if m is None:
-            log(line)
-            warning('no %s for extract secret' % n)
-            return True
-
-        self.reader = BinaryReader(m)
-        self.values.append([n, self.reader])
-        return False
-
-    def report(self):
-        roles.report(self.role)
-        msg = 'extract secret "%s"' % self.label
-        dupe = self.dedupe.match(self.role, self.values)
-        if dupe is not None:
-            log(': %s (same as %s)' % (msg, dupe))
-            return
-        log(': %s:' % msg)
-        log()
-        for (n, v) in self.values:
-            v.report(n)
-
 class HandleHkdf:
-    hkdf_patterns = [['ignore', re.compile('HKDF Expand: label=\[TLS 1\.3, \] \+ \'[\w, ]+\',requested length=\d+')],
+    hkdf_patterns = [['label', re.compile('HKDF Expand: label=\'([\w ]+)\',requested length=\d+')],
                      ['PRK', binary_pattern('PRK')],
-                     ['handshake hash', binary_pattern('Hash')],
+                     ['hash', binary_pattern('Hash')],
                      ['info', binary_pattern('Info')],
                      ['output', binary_pattern('Derived key')]]
     message_pattern = binary_pattern('Handshake hash computed over saved messages')
@@ -302,10 +263,10 @@ class HandleHkdf:
             if m is not None:
                 self.reader = BinaryReader(m)
                 return False
-            warning(line)
             warning('no %s for %s' % (n, self.name))
             return True
-        if n == 'ignore':
+        if n == 'label':
+            self.label = m.group(1)
             self.values.append(True)
             return False
         self.reader = BinaryReader(m)
@@ -351,13 +312,70 @@ class HandleFinished(HandleHkdf):
         if self.handshake_hash is None:
             m = self.handshake_hash_pattern.match(line)
             if m is None:
-                warning(line)
                 warning('no handshake hash for finished calculation')
                 return True
             self.handshake_hash = BinaryReader(m)
             self.reader = self.handshake_hash
             return False
         return HandleHkdf.handle(self, line)
+
+class HandleMasterSecret:
+    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: compute (early|handshake|master) secrets? \((server|client)\)')
+    extract_patterns = [['salt', binary_pattern('HKDF Extract: IKM1/Salt')],
+                        ['ikm', binary_pattern('HKDF Extract: IKM2')],
+                        ['secret', binary_pattern('HKDF Extract')]]
+    dedupe = DeduplicateValues()
+
+    def __init__(self, m):
+        self.role = roles.commit(m.group(1), m.group(3))
+        self.label = m.group(2)
+        self.values = []
+        self.reader = None
+        self.derive_done = self.label == 'early'
+        if not self.derive_done:
+            self.derive = HandleHkdf()
+            self.derive.name = 'derive secret for %s' % self.label
+            self.derive.role = self.role
+        else:
+            self.derive = None
+
+    def handle(self, line):
+        if not self.derive_done:
+            self.derive_done = self.derive.handle(line)
+            if not self.derive_done:
+                return False
+
+        if self.reader is not None:
+            done = self.reader.handle(line)
+            if not done:
+                return False
+
+        if len(self.values) == len(self.extract_patterns):
+            return True
+
+        (n, p) = self.extract_patterns[len(self.values)]
+        m = p.match(line)
+        if m is None:
+            warning('no %s for master secret' % n)
+            return True
+
+        self.reader = BinaryReader(m)
+        self.values.append([n, self.reader])
+        return False
+
+    def report(self):
+        if self.derive is not None:
+            self.derive.report()
+        roles.report(self.role)
+        msg = 'extract secret "%s"' % self.label
+        dupe = self.dedupe.match(self.role, self.values)
+        if dupe is not None:
+            log(': %s (same as %s)' % (msg, dupe))
+            return
+        log(': %s:' % msg)
+        log()
+        for (n, v) in self.values:
+            v.report(n)
 
 class HandleTrafficKeys:
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving (read|write) traffic keys phase=\'([\w ]+)\'')
@@ -389,10 +407,9 @@ class HandleTrafficKeys:
         (n, p) = HandleHkdf.hkdf_patterns[len(self.values)]
         m = p.match(line)
         if m is None:
-            log(line)
             warning('no %s for traffic key derivation' % n)
             return True
-        if n == 'ignore':
+        if n == 'label':
             self.values.append(True)
             return False
         self.reader = BinaryReader(m)
@@ -421,7 +438,7 @@ handlers = [HandleConnecting,
             HandleHandshake,
             HandleRecord,
             HandlePrivateKey,
-            HandleExtractSecret,
+            HandleMasterSecret,
             HandleDeriveSecret,
             HandleFinished,
             HandleTrafficKeys]
@@ -433,8 +450,12 @@ def pick_handler(line):
     return None
 
 def main():
+    global current_line_number
+    global current_line
     handler = None
     for line in fileinput.input():
+        current_line_number += 1
+        current_line = line
         if handler is not None:
             done = handler.handle(line)
             if not done:
