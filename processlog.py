@@ -341,6 +341,35 @@ class HandleFinished(HandleHkdf):
             return False
         return HandleHkdf.handle(self, line)
 
+class HandleResumptionSecretServer(HandleHkdf):
+    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: send new session ticket message (\d+)')
+    name = 'generate resumption secret'
+
+    def __init__(self, m):
+        HandleHkdf.__init__(self)
+        self.role = roles.lookup(m.group(1))
+        self.label = m.group(2)
+
+class HandleResumptionSecretClient():
+    pattern = re.compile('\d+: SSL\[(-?\d+)\]: Caching session ticket \[Len: (\d+)\]')
+
+    def __init__(self, m):
+        self.ticket = BinaryReader(m)
+        self.ticket_done = False
+        self.hkdf = HandleHkdf()
+        self.hkdf.role = roles.lookup(m.group(1))
+        self.hkdf.name = 'generate resumption secret'
+
+    def handle(self, line):
+        if not self.ticket_done:
+            self.ticket_done = self.ticket.handle(line)
+            if not self.ticket_done:
+                return False
+        return self.hkdf.handle(line)
+
+    def report(self):
+        self.hkdf.report()
+
 class HandleMasterSecret:
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: compute (early|handshake|master) secrets? \((server|client)\)')
     extract_patterns = [['salt', binary_pattern('HKDF Extract: IKM1/Salt')],
@@ -465,6 +494,8 @@ handlers = [HandleConnecting,
             HandleMasterSecret,
             HandleDeriveSecret,
             HandleFinished,
+            HandleResumptionSecretServer,
+            HandleResumptionSecretClient,
             HandleTrafficKeys]
 def pick_handler(line):
     for h in handlers:
