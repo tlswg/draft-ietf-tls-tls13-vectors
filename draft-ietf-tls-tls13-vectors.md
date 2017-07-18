@@ -138,5 +138,7 @@ well known.
 
 # Acknowledgements
 
-None of this would have been possible without Franziskus Kiefer, Eric Rescorla
-and Tim Taubert, who did a lot of the work in NSS.
+This draft is generated using tests that were written for
+[NSS](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS).  None of
+this would have been possible without Franziskus Kiefer, Eric Rescorla and Tim
+Taubert, who did a lot of the work in NSS.
