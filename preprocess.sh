@@ -6,6 +6,11 @@ DIST_DIR="$NSS_DIR/../dist/$(cat $NSS_DIR/../dist/latest)"
 SSL_GTEST="${SSL_GTEST:-${DIST_DIR}/bin/ssl_gtest}"
 DB_DIR="${DB_DIR:-ssl_gtests}"
 
+if [[ ! -x "${SSL_GTEST}" ]]; then
+    echo "NSS gtests missing" 1>&2
+    exit 2
+fi
+
 declare -A tmpfiles
 rmtmp() {
     rm -f "${tmpfiles[@]}" 1>&2

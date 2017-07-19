@@ -18,7 +18,7 @@ ifeq (,$(NSS_DIR))
 endif
 NSPR_DIR := $(NSS_DIR)/../nspr
 GTESTS := $(NSS_DIR)/../dist/$(shell cat $(NSS_DIR)/../dist/latest)/bin/ssl_gtests
-$(addsuffix .mdtmp,$(drafts)): $(GTESTS)
+$(addsuffix .xml,$(drafts)): $(GTESTS)
 
 $(GTESTS): $(NSS_DIR) $(NSPR_DIR)
 	$(NSS_DIR)/build.sh $(NSS_OPTIONS)
