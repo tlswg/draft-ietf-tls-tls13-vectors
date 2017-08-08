@@ -257,7 +257,9 @@ class HandleHkdf:
                      ['hash', binary_pattern('Hash')],
                      ['info', binary_pattern('Info')],
                      ['output', binary_pattern('Derived key')]]
-    message_pattern = binary_pattern('Handshake hash computed over saved messages')
+    message_pattern = binary_pattern('Handshake hash computed over saved messages',
+                                     socket=True)
+    handshake_hash_pattern = binary_pattern('Handshake hash', socket=True)
     dedupe = DeduplicateValues()
 
     def __init__(self):
@@ -280,6 +282,8 @@ class HandleHkdf:
             # Sometimes we get an extra blob inserted, we need to read that, but
             # not save it or anything like that.
             m = self.message_pattern.match(line)
+            if m is None:
+                m = self.handshake_hash_pattern.match(line)
             if m is not None:
                 self.reader = BinaryReader(m)
                 return False
@@ -323,7 +327,6 @@ class HandleFinished(HandleHkdf):
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: (client|server) calculate finished')
     name = 'calculate finished'
     label = None
-    handshake_hash_pattern = binary_pattern('Handshake hash', socket=True)
 
     def __init__(self, m):
         HandleHkdf.__init__(self)
