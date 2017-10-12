@@ -23,17 +23,14 @@ jobs:
       - restore_cache:
           keys:
             - refcache
-            - nss_nspr
+            - nss
+            - nspr
       - run:
-          name: "Update NSS and NSPR"
-          command: |
-            [ -d ~/draft/nss ] && hg -q -R ~/draft/nss pull -u https://hg.mozilla.org/projects/nss
-            [ -d ~/draft/nspr ] && hg -q -R ~/draft/nspr pull -u https://hg.mozilla.org/projects/nspr
-      - save_cache:
-          key: nss_nspr
-          paths:
-            - ~/draft/nss
-            - ~/draft/nspr
+          name: "Update NSS"
+          command: "[ -d ~/draft/nss ] && hg -q -R ~/draft/nss pull -u https://hg.mozilla.org/projects/nss"
+      - run:
+          name: "Update NSPR"
+          command: "[ -d ~/draft/nspr ] && hg -q -R ~/draft/nspr pull -u https://hg.mozilla.org/projects/nspr"
 
       - run:
           name: "Build Drafts"
@@ -42,6 +39,14 @@ jobs:
           key: refcache
           paths:
             - ~/.cache/xml2rfc
+      - save_cache:
+          key: nss
+          paths:
+            - ~/draft/nss
+      - save_cache:
+          key: nspr
+          paths:
+            - ~/draft/nspr
 
       # Create and store artifacts
       - run:
