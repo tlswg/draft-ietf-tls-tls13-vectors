@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: martinthomson/tls13-vectors:latest
+      - image: martinthomson/draft-ietf-tls-tls13-vectors:latest
     working_directory: ~/draft
     steps:
       - checkout
@@ -25,7 +25,7 @@ jobs:
             - refcache
       - run:
           name: "Build Drafts"
-          command: "make 'CLONE_ARGS=--reference ~/i-d-template' NSS_BUNDLE=~/nss.bundle NSPR_BUNDLE=~/nspr.bundle"
+          command: "make 'CLONE_ARGS=--reference ~/i-d-template'"
       - save_cache:
           key: refcache
           paths:
