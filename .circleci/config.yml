@@ -27,8 +27,8 @@ jobs:
       - run:
           name: "Update NSS and NSPR"
           command: |
-            hg -q -R ~/draft/nss pull -u https://hg.mozilla.org/projects/nss
-            hg -q -R ~/draft/nspr pull -u https://hg.mozilla.org/projects/nspr
+            [ -d ~/draft/nss ] && hg -q -R ~/draft/nss pull -u https://hg.mozilla.org/projects/nss
+            [ -d ~/draft/nspr ] && hg -q -R ~/draft/nspr pull -u https://hg.mozilla.org/projects/nspr
       - save_cache:
           key: nss_nspr
           paths:
