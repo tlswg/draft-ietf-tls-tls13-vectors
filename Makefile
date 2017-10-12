@@ -1,3 +1,8 @@
+NSS_DIR ?= $(wildcard ../nss)
+ifeq (,$(NSS_DIR))
+  NSS_DIR := nss
+endif
+NSPR_DIR := $(NSS_DIR)/../nspr
 MD_PREPROCESSOR = NSS_DIR=$(NSS_DIR) ./preprocess.sh
 
 LIBDIR := lib
@@ -14,18 +19,13 @@ endif
 
 $(addsuffix .xml,$(drafts)): preprocess.sh processlog.py
 
-NSS_DIR ?= $(wildcard ../nss)
-ifeq (,$(NSS_DIR))
-  NSS_DIR := nss
-endif
-NSPR_DIR := $(NSS_DIR)/../nspr
 ifneq (,$(wildcard $(NSS_DIR)/../dist/latest))
   NSS_LATEST := $(shell cat $(NSS_DIR)/../dist/latest)
 else
   NSS_LATEST := Debug
 endif
 GTESTS := $(NSS_DIR)/../dist/$(NSS_LATEST)/bin/ssl_gtests
-$(addsuffix .mdtmp,$(drafts)): $(GTESTS)
+$(addsuffix .xml,$(drafts)): $(GTESTS)
 
 $(GTESTS): $(NSS_DIR) $(NSPR_DIR)
 	$(NSS_DIR)/build.sh $(NSS_OPTIONS)
