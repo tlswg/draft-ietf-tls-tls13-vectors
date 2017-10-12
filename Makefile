@@ -2,7 +2,8 @@ NSS_DIR ?= $(wildcard ../nss)
 ifeq (,$(NSS_DIR))
   NSS_DIR := nss
 endif
-NSPR_DIR := $(NSS_DIR)/../nspr
+NSS_DIR := $(abspath $(NSS_DIR))
+NSPR_DIR := $(abspath $(NSS_DIR)/../nspr)
 MD_PREPROCESSOR = NSS_DIR=$(NSS_DIR) ./preprocess.sh
 
 LIBDIR := lib
@@ -32,14 +33,14 @@ $(GTESTS): $(NSS_DIR) $(NSPR_DIR)
 
 $(NSS_DIR):
 ifneq (,$(NSS_BUNDLE))
-	hg clone -b NSS_TLS13_DRAFT19_BRANCH $(NSS_BUNDLE) $(realpath $@) && hg -R $(realpath $@) pull -u https://hg.mozilla.org/projects/nss
+	hg clone -b NSS_TLS13_DRAFT19_BRANCH $(NSS_BUNDLE) $@ && hg -R $@ pull -u https://hg.mozilla.org/projects/nss
 else
-	hg clone -b NSS_TLS13_DRAFT19_BRANCH https://hg.mozilla.org/projects/nss $(realpath $@)
+	hg clone -b NSS_TLS13_DRAFT19_BRANCH https://hg.mozilla.org/projects/nss $@
 endif
 
 $(NSPR_DIR):
 ifneq (,$(NSPR_BUNDLE))
-	hg clone $(NSPR_BUNDLE) $(realpath $@) && hg -R $(realpath $@) pull -u https://hg.mozilla.org/projects/nspr
+	hg clone $(NSPR_BUNDLE) $@ && hg -R $@ pull -u https://hg.mozilla.org/projects/nspr
 else
-	hg clone https://hg.mozilla.org/projects/nspr $(realpath $@)
+	hg clone https://hg.mozilla.org/projects/nspr $@
 endif
