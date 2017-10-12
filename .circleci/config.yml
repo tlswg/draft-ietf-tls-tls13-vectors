@@ -27,10 +27,10 @@ jobs:
             - nspr
       - run:
           name: "Update NSS"
-          command: "[ -d ~/draft/nss ] && hg -q -R ~/draft/nss pull -u https://hg.mozilla.org/projects/nss"
+          command: "[ ! -d ~/draft/nss ] || hg -q -R ~/draft/nss pull -u https://hg.mozilla.org/projects/nss"
       - run:
           name: "Update NSPR"
-          command: "[ -d ~/draft/nspr ] && hg -q -R ~/draft/nspr pull -u https://hg.mozilla.org/projects/nspr"
+          command: "[ ! -d ~/draft/nspr ] || hg -q -R ~/draft/nspr pull -u https://hg.mozilla.org/projects/nspr"
 
       - run:
           name: "Build Drafts"
