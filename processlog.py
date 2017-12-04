@@ -130,10 +130,10 @@ class BinaryReader:
     def hex(self, b):
         h = hex_encoder(b)[0].decode('ascii')
         r = ''
-        for i in list(range(0, len(h), 16)):
+        for i in list(range(0, len(h), 2)):
             if r != '':
                 r += ' '
-            r += h[i:i+16]
+            r += h[i:i+2]
         return r
 
     def report(self, label, indent=1):
