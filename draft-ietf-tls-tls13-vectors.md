@@ -43,8 +43,8 @@ implementations might be checked incrementally against these values.
 
 # Introduction
 
-TLS 1.3 {{!I-D.ietf-tls-tls13}} defines a new key schedule and a number new
-cryptographic operations.  This document includes sample handshakes that
+TLS 1.3 {{!TLS13=I-D.ietf-tls-tls13}} defines a new key schedule and a number
+new cryptographic operations.  This document includes sample handshakes that
 show all intermediate values.  This allows an implementation to be verified
 incrementally, examining inputs and outputs of each cryptographic computation
 independently.
@@ -151,6 +151,14 @@ key.
 >>> GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
 <<< GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
 
+
+# Compatibility Mode
+
+This example shows use of the handshake with the client requesting that the
+server use compatibility mode as defined in Appendix D.4 of {{!TLS13}}.
+
+>>> Tls13CompatTest.Enabled compat_mode
+<<< Tls13CompatTest.Enabled compat_mode
 
 
 # Security Considerations

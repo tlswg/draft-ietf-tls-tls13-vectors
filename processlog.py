@@ -193,7 +193,7 @@ class HandleEncrypted:
 class HandlePrivateKey:
     pattern = re.compile('^\d+: SSL\[(-?\d+)\]: Create ECDH ephemeral key (\d+)')
     key_pattern = binary_pattern('(Public|Private) Key', socket=True)
-    group_name = {23: 'P-256', 29: 'x25519'}
+    group_name = {23: 'P-256', 24: 'P-384', 29: 'x25519'}
 
     def __init__(self, m):
         self.role = roles.lookup(m.group(1))
