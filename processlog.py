@@ -347,6 +347,8 @@ class HandleFinished(HandleHkdf):
 class HandleResumptionSecretServer(HandleHkdf):
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: send new session ticket message (\d+)')
     name = 'generate resumption secret'
+    # Don't insist that this be run for every invocation
+    run = True
 
     def __init__(self, m):
         HandleHkdf.__init__(self)
@@ -355,6 +357,8 @@ class HandleResumptionSecretServer(HandleHkdf):
 
 class HandleResumptionSecretClient():
     pattern = re.compile('\d+: SSL\[(-?\d+)\]: Caching session ticket \[Len: (\d+)\]')
+    # Don't insist that this be run for every invocation
+    run = True
 
     def __init__(self, m):
         self.ticket = BinaryReader(m)
@@ -504,6 +508,7 @@ def pick_handler(line):
     for h in handlers:
         m = h.pattern.match(line)
         if m is not None:
+            h.run = True
             return h(m)
     return None
 
@@ -522,6 +527,10 @@ def main():
             handler.report()
 
         handler = pick_handler(line)
+
+    for h in handlers:
+        if not h.run:
+            warning('handler %s not run' % h)
 
 if __name__ == '__main__':
     main()
