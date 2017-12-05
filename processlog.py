@@ -433,7 +433,7 @@ class HandleMasterSecret:
             v.report(n)
 
 class HandleTrafficKeys:
-    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving (read|write) traffic keys phase=\'([\w ]+)\'')
+    pattern = re.compile('\d+: TLS13\[(-?\d+)\]: deriving (read|write) traffic keys epoch=\d+ \(([\w ]+)\)')
     dedupe = DeduplicateValues()
 
     def __init__(self, m):
