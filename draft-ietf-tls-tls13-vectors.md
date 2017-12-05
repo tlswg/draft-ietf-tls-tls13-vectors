@@ -144,8 +144,9 @@ curve.
 
 # Client Authentication
 
-In this example, the server requests client authentication.  The client uses an
-ECDSA certificate with a P-256 key.
+In this example, the server requests client authentication.  The client uses a
+certificate with an RSA key, the server uses an ECDSA certificate with a P-256
+key.
 
 >>> GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
 <<< GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
