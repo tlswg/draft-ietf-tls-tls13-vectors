@@ -49,7 +49,7 @@ show all intermediate values.  This allows an implementation to be verified
 incrementally, examining inputs and outputs of each cryptographic computation
 independently.
 
-Private keys are included with the traces so that implementations can be
+A private key is included with the traces so that implementations can be
 checked by importing these values and verifying that the same outputs are
 produced.
 
@@ -146,7 +146,7 @@ curve.
 
 In this example, the server requests client authentication.  The client uses a
 certificate with an RSA key, the server uses an ECDSA certificate with a P-256
-key.
+key.  Note that private keys for this example are not included in the draft.
 
 >>> GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
 <<< GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
