@@ -4,8 +4,8 @@
 
 TLS                                                           M. Thomson
 Internet-Draft                                                   Mozilla
-Intended status: Standards Track                        October 12, 2017
-Expires: April 15, 2018
+Intended status: Standards Track                        December 5, 2017
+Expires: June 8, 2018
 
 
                   Example Handshake Traces for TLS 1.3
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 15, 2018.
+   This Internet-Draft will expire on June 8, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Thomson                  Expires April 15, 2018                 [Page 1]
+Thomson                   Expires June 8, 2018                  [Page 1]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
 Table of Contents
@@ -63,15 +63,15 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Private Keys  . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Simple 1-RTT Handshake  . . . . . . . . . . . . . . . . . . .   3
-   4.  Resumed 0-RTT Handshake . . . . . . . . . . . . . . . . . . .  14
-   5.  HelloRetryRequest . . . . . . . . . . . . . . . . . . . . . .  25
-   6.  Client Authentication . . . . . . . . . . . . . . . . . . . .  36
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  46
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  46
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  47
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .  47
-   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  47
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  47
+   4.  Resumed 0-RTT Handshake . . . . . . . . . . . . . . . . . . .  13
+   5.  HelloRetryRequest . . . . . . . . . . . . . . . . . . . . . .  22
+   6.  Client Authentication . . . . . . . . . . . . . . . . . . . .  32
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  42
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  42
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  42
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  42
+   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  42
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  42
 
 1.  Introduction
 
@@ -92,50 +92,54 @@ Table of Contents
    The server in most examples uses an RSA certificate with a private
    key of:
 
-   modulus (public):  b4bb498f8279303d 980836399b36c698 8c0c68de55e1bdb8
-      26d3901a2461eafd 2de49a91d015abbc 9a95137ace6c1af1
-      9eaa6af98c7ced43 120998e187a80ee0 ccb0524b1b018c3e
-      0b63264d449a6d38 e22a5fda43084674 8030530ef0461c8c
-      a9d9efbfae8ea6d1 d03e2bd193eff0ab 9a8002c47428a6d3
-      5a8d88d79f7f1e3f
+   modulus (public):  b4 bb 49 8f 82 79 30 3d 98 08 36 39 9b 36 c6 98 8c
+      0c 68 de 55 e1 bd b8 26 d3 90 1a 24 61 ea fd 2d e4 9a 91 d0 15 ab
+      bc 9a 95 13 7a ce 6c 1a f1 9e aa 6a f9 8c 7c ed 43 12 09 98 e1 87
+      a8 0e e0 cc b0 52 4b 1b 01 8c 3e 0b 63 26 4d 44 9a 6d 38 e2 2a 5f
+      da 43 08 46 74 80 30 53 0e f0 46 1c 8c a9 d9 ef bf ae 8e a6 d1 d0
+      3e 2b d1 93 ef f0 ab 9a 80 02 c4 74 28 a6 d3 5a 8d 88 d7 9f 7f 1e
+      3f
 
-   public exponent:  010001
+   public exponent:  01 00 01
 
-   private exponent:  04dea705d43a6ea7 209dd8072111a83c 81e322a59278b334
-      80641eaf7c0a6985 b8e31c44f6de62e1 b4c2309f6126e77b
-      7c41e923314bbfa3 881305dc1217f16c 819ce538e922f369
-      828d0e57195d8c84 88460207b2faa726 bcf708bbd7db7f67
-
-
+   private exponent:  04 de a7 05 d4 3a 6e a7 20 9d d8 07 21 11 a8 3c 81
+      e3 22 a5 92 78 b3 34 80 64 1e af 7c 0a 69 85 b8 e3 1c 44 f6 de 62
+      e1 b4 c2 30 9f 61 26 e7 7b 7c 41 e9 23 31 4b bf a3 88 13 05 dc 12
+      17 f1 6c 81 9c e5 38 e9 22 f3 69 82 8d 0e 57 19 5d 8c 84 88 46 02
 
 
-Thomson                  Expires April 15, 2018                 [Page 2]
+
+Thomson                   Expires June 8, 2018                  [Page 2]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-      9f893492fc2a622e 08970aac441ce4e0 c3088df25ae67923
-      3df8a3bda2ff9941
+      07 b2 fa a7 26 bc f7 08 bb d7 db 7f 67 9f 89 34 92 fc 2a 62 2e 08
+      97 0a ac 44 1c e4 e0 c3 08 8d f2 5a e6 79 23 3d f8 a3 bd a2 ff 99
+      41
 
-   prime1:  e435fb7cc8373775 6dacea96ab7f59a2 cc1069db7deb190e
-      17e33a532b273f30 a327aa0aaabc58cd 67466af9845fadc6
-      75fe094af92c4bd1 f2c1bc33dd2e0515
+   prime1:  e4 35 fb 7c c8 37 37 75 6d ac ea 96 ab 7f 59 a2 cc 10 69 db
+      7d eb 19 0e 17 e3 3a 53 2b 27 3f 30 a3 27 aa 0a aa bc 58 cd 67 46
+      6a f9 84 5f ad c6 75 fe 09 4a f9 2c 4b d1 f2 c1 bc 33 dd 2e 05 15
 
-   prime2:  cabd3bc0e0438664 c8d4cc9f99977a94 d9bbfead8e43870a
-      bae3f7eb8b4e0eee 8af1d9b4719ba619 6cf2cbbaeeebf8b3
-      490afe9e9ffa74a8 8aa51fc645629303
+   prime2:  ca bd 3b c0 e0 43 86 64 c8 d4 cc 9f 99 97 7a 94 d9 bb fe ad
+      8e 43 87 0a ba e3 f7 eb 8b 4e 0e ee 8a f1 d9 b4 71 9b a6 19 6c f2
+      cb ba ee eb f8 b3 49 0a fe 9e 9f fa 74 a8 8a a5 1f c6 45 62 93 03
 
-   exponent1:  3f57345c27fe1b68 7e6e761627b78b1b 826433dd760fa0be
-      a6a6acf39490aa1b 47cda4869d68f584 dd5b5029bd32093b
-      8258661fe715025e 5d70a45a08d3d319
+   exponent1:  3f 57 34 5c 27 fe 1b 68 7e 6e 76 16 27 b7 8b 1b 82 64 33
+      dd 76 0f a0 be a6 a6 ac f3 94 90 aa 1b 47 cd a4 86 9d 68 f5 84 dd
+      5b 50 29 bd 32 09 3b 82 58 66 1f e7 15 02 5e 5d 70 a4 5a 08 d3 d3
+      19
 
-   exponent2:  183da01363bd2f28 85cacbdc9964bf47 64f1517636f86401
-      286f71893c52ccfe 40a6c23d0d086b47 c6fb10d8fd1041e0
-      4def7e9a40ce957c 417794e10412d139
+   exponent2:  18 3d a0 13 63 bd 2f 28 85 ca cb dc 99 64 bf 47 64 f1 51
+      76 36 f8 64 01 28 6f 71 89 3c 52 cc fe 40 a6 c2 3d 0d 08 6b 47 c6
+      fb 10 d8 fd 10 41 e0 4d ef 7e 9a 40 ce 95 7c 41 77 94 e1 04 12 d1
+      39
 
-   coefficient:  839ca9a085e4286b 2c90e466997a2c68 1f21339aa3477814
-      e4dec11833050ed5 0dd13cc038048a43 c59b2acc416889c0
-      37665fe5afa60596 9f8c01dfa5ca969d
+   coefficient:  83 9c a9 a0 85 e4 28 6b 2c 90 e4 66 99 7a 2c 68 1f 21
+      33 9a a3 47 78 14 e4 de c1 18 33 05 0e d5 0d d1 3c c0 38 04 8a 43
+      c5 9b 2a cc 41 68 89 c0 37 66 5f e5 af a6 05 96 9f 8c 01 df a5 ca
+      96 9d
 
 3.  Simple 1-RTT Handshake
 
@@ -147,183 +151,179 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  5c3dd261c63df767 521c170233085d1c
-         cb402f31a467b39b e07d129c84fc8606
+      private key (32 octets):  b6 07 c5 62 b9 05 e1 76 06 23 ef 31 19
+         2d 6f 82 5c 83 69 f7 85 68 1a fb 4f 85 0a e6 f4 99 06 63
 
-      public key (32 octets):  af3ca6504f60cdf2 ac4acc8d55f87f6c
-         4a22004e3f73b927 38a276cece234838
+      public key (32 octets):  7f 37 b1 ba ab 47 d3 f9 cc 56 67 6f 22 ea
+         91 bb 4d 2c 63 8b 0c b0 6b 81 76 3d f4 1d 68 71 e7 65
 
    {client}  send a ClientHello handshake message
 
    {client}  send handshake record:
 
-      payload (190 octets):  010000ba03033fec 5fcd3e550df13970
-         bd7c948078829f13 56803790a6291aa6 efe9bf11bae50000
-         0613011303130201 00008b0000000b00 0900000673657276
-         6572ff0100010000 0a00140012001d00 1700180019010001
-         0101020103010400 2300000028002600 24001d0020af3ca6
 
 
 
-Thomson                  Expires April 15, 2018                 [Page 3]
+
+Thomson                   Expires June 8, 2018                  [Page 3]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-         504f60cdf2ac4acc 8d55f87f6c4a2200 4e3f73b92738a276
-         cece234838002b00 03027f15000d0020 001e040305030603
-         0203080408050806 0401050106010201 0402050206020202 002d00020101
+      payload (190 octets):  01 00 00 ba 03 03 1a 5e 97 46 0f cc 26 68
+         ba 0f 12 88 53 c6 48 68 8f bd ed dc 28 6d ab 12 d0 c5 b5 40 65
+         6e cc 9c 00 00 06 13 01 13 03 13 02 01 00 00 8b 00 00 00 0b 00
+         09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00 00 0a 00 14 00 12
+         00 1d 00 17 00 18 00 19 01 00 01 01 01 02 01 03 01 04 00 23 00
+         00 00 28 00 26 00 24 00 1d 00 20 7f 37 b1 ba ab 47 d3 f9 cc 56
+         67 6f 22 ea 91 bb 4d 2c 63 8b 0c b0 6b 81 76 3d f4 1d 68 71 e7
+         65 00 2b 00 03 02 7f 16 00 0d 00 20 00 1e 04 03 05 03 06 03 02
+         03 08 04 08 05 08 06 04 01 05 01 06 01 02 01 04 02 05 02 06 02
+         02 02 00 2d 00 02 01 01
 
-      ciphertext (195 octets):  16030100be010000 ba03033fec5fcd3e
-         550df13970bd7c94 8078829f13568037 90a6291aa6efe9bf
-         11bae50000061301 130313020100008b 0000000b00090000
-         06736572766572ff 01000100000a0014 0012001d00170018
-         0019010001010102 0103010400230000 002800260024001d
-         0020af3ca6504f60 cdf2ac4acc8d55f8 7f6c4a22004e3f73
-         b92738a276cece23 4838002b0003027f 15000d0020001e04
-         0305030603020308 0408050806040105 0106010201040205
-         0206020202002d00 020101
+      ciphertext (195 octets):  16 03 01 00 be 01 00 00 ba 03 03 1a 5e
+         97 46 0f cc 26 68 ba 0f 12 88 53 c6 48 68 8f bd ed dc 28 6d ab
+         12 d0 c5 b5 40 65 6e cc 9c 00 00 06 13 01 13 03 13 02 01 00 00
+         8b 00 00 00 0b 00 09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00
+         00 0a 00 14 00 12 00 1d 00 17 00 18 00 19 01 00 01 01 01 02 01
+         03 01 04 00 23 00 00 00 28 00 26 00 24 00 1d 00 20 7f 37 b1 ba
+         ab 47 d3 f9 cc 56 67 6f 22 ea 91 bb 4d 2c 63 8b 0c b0 6b 81 76
+         3d f4 1d 68 71 e7 65 00 2b 00 03 02 7f 16 00 0d 00 20 00 1e 04
+         03 05 03 06 03 02 03 08 04 08 05 08 06 04 01 05 01 06 01 02 01
+         04 02 05 02 06 02 02 02 00 2d 00 02 01 01
 
    {server}  extract secret "early":
 
       salt:  (absent)
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      secret (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c
+         e2 10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
    {server}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  dc8aa84da1a88fa6 aff74e8d48a70085
-         b502e840fb90a979 0b34e66707130d9b
+      private key (32 octets):  85 6d 6a c9 2a 54 10 31 e4 5a 89 5c b5
+         ac da cc c8 2c b9 4d f5 64 04 7b 2e 69 e7 49 7b 2f 39 d0
 
-      public key (32 octets):  713ac02891216b7d b8540ca5e97ea9c7
-         bc78ae22439922db 4f820962a2337c79
+      public key (32 octets):  2f d8 57 a5 b8 a2 1e 99 7e 82 65 02 dd 74
+         eb 7c be 96 84 b9 1b e3 6f b7 bf 94 53 2b 50 1c 93 3c
 
    {server}  send a ServerHello handshake message
 
    {server}  derive secret for handshake "tls13 derived":
 
-      PRK (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
-
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
-
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
-
-      output (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+      PRK (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c e2
+         10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
 
 
-Thomson                  Expires April 15, 2018                 [Page 4]
+
+
+Thomson                   Expires June 8, 2018                  [Page 4]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
+
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
+
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
+
+      output (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6
+         97 16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
    {server}  extract secret "handshake":
 
-      salt (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+      salt (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6 97
+         16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
-      ikm (32 octets):  9a49f48bc0480393 c87fe861b9288de7
-         57478572150dd713 c911eca1d3b8fe6a
+      ikm (32 octets):  e8 14 3d 20 99 f5 ea 7c a1 e5 d1 db 5f 52 8e 8e
+         32 0d 5a 9b f9 44 65 3e 5b a5 80 4e bf d9 6b 37
 
-      secret (32 octets):  6dfb2c60e61243a9 13479cbe8a061d10
-         a655b420d51a9b2a 894d091c84559a58
+      secret (32 octets):  52 0c 9c 27 b7 a8 e1 24 2f c9 14 9e 48 1b b1
+         22 ba 18 23 70 59 8b a3 88 18 a5 22 2a b8 16 e0 fc
 
    {server}  derive secret "tls13 c hs traffic":
 
-      PRK (32 octets):  6dfb2c60e61243a9 13479cbe8a061d10
-         a655b420d51a9b2a 894d091c84559a58
+      PRK (32 octets):  52 0c 9c 27 b7 a8 e1 24 2f c9 14 9e 48 1b b1 22
+         ba 18 23 70 59 8b a3 88 18 a5 22 2a b8 16 e0 fc
 
-      hash (32 octets):  7eb6b9ce3c343ba0 fb655959eb5df0e4
-         6358efe357f59884 20adc4686f927391
+      hash (32 octets):  c1 53 36 09 31 7c eb a4 fb 98 d6 d5 81 1e b2 e4
+         59 e5 72 4a 6d d3 e7 fc 4d 80 0a 48 41 99 25 03
 
-      info (54 octets):  002012746c733133 2063206873207472
-         6166666963207eb6 b9ce3c343ba0fb65 5959eb5df0e46358
-         efe357f5988420ad c4686f927391
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 63 20 68 73 20 74 72
+         61 66 66 69 63 20 c1 53 36 09 31 7c eb a4 fb 98 d6 d5 81 1e b2
+         e4 59 e5 72 4a 6d d3 e7 fc 4d 80 0a 48 41 99 25 03
 
-      output (32 octets):  ab700c700ddf5fa0 c0e42021931afd6f
-         8feb8b1068c60403 62c2e35dd8d50fd8
+      output (32 octets):  43 37 cc a0 82 16 d3 12 a8 84 33 99 40 d4 04
+         d0 69 55 04 3f 62 6b 53 bf 27 5c 1e ee 64 09 d9 cf
 
    {server}  derive secret "tls13 s hs traffic":
 
-      PRK (32 octets):  6dfb2c60e61243a9 13479cbe8a061d10
-         a655b420d51a9b2a 894d091c84559a58
+      PRK (32 octets):  52 0c 9c 27 b7 a8 e1 24 2f c9 14 9e 48 1b b1 22
+         ba 18 23 70 59 8b a3 88 18 a5 22 2a b8 16 e0 fc
 
-      hash (32 octets):  7eb6b9ce3c343ba0 fb655959eb5df0e4
-         6358efe357f59884 20adc4686f927391
+      hash (32 octets):  c1 53 36 09 31 7c eb a4 fb 98 d6 d5 81 1e b2 e4
+         59 e5 72 4a 6d d3 e7 fc 4d 80 0a 48 41 99 25 03
 
-      info (54 octets):  002012746c733133 2073206873207472
-         6166666963207eb6 b9ce3c343ba0fb65 5959eb5df0e46358
-         efe357f5988420ad c4686f927391
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 73 20 68 73 20 74 72
+         61 66 66 69 63 20 c1 53 36 09 31 7c eb a4 fb 98 d6 d5 81 1e b2
+         e4 59 e5 72 4a 6d d3 e7 fc 4d 80 0a 48 41 99 25 03
 
-      output (32 octets):  a8ebce29ba8300e7 e273a9b9694000fa
-         262813e79cfacbca 803e09fdb7a4e7b4
+
+
+
+Thomson                   Expires June 8, 2018                  [Page 5]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      output (32 octets):  e3 f0 3d 09 8f ed c7 40 a4 91 2c d6 4a 6a 4f
+         c9 74 da 99 e3 84 2a a6 97 b8 da e9 d8 fb 1e 85 73
 
    {server}  derive secret for master "tls13 derived":
 
-      PRK (32 octets):  6dfb2c60e61243a9 13479cbe8a061d10
-         a655b420d51a9b2a 894d091c84559a58
+      PRK (32 octets):  52 0c 9c 27 b7 a8 e1 24 2f c9 14 9e 48 1b b1 22
+         ba 18 23 70 59 8b a3 88 18 a5 22 2a b8 16 e0 fc
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-
-Thomson                  Expires April 15, 2018                 [Page 5]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
-
-      output (32 octets):  3175600693958946 156a021fd55fc816
-         c1c536458116a210 369d179808cfe077
+      output (32 octets):  8e a8 5f 53 96 2d 62 d2 bc 6d 19 6e d4 a5 1f
+         6f 51 d4 7b 34 28 67 4d 5b cc 2f 57 24 42 21 63 8a
 
    {server}  extract secret "master":
 
-      salt (32 octets):  3175600693958946 156a021fd55fc816
-         c1c536458116a210 369d179808cfe077
+      salt (32 octets):  8e a8 5f 53 96 2d 62 d2 bc 6d 19 6e d4 a5 1f 6f
+         51 d4 7b 34 28 67 4d 5b cc 2f 57 24 42 21 63 8a
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  9646f11c032e0783 fb62bd708b512269
-         12f2b9798352c6ef ce06058a5f71285e
+      secret (32 octets):  8f 9e 4c 88 c1 c2 8d 54 59 fc d9 bd a2 27 50
+         bc 61 4d c3 01 52 38 28 6e 6e 75 6f 92 45 da 50 9a
 
    {server}  send handshake record:
 
-      payload (82 octets):  0200004e7f15fd8c 173f8704c83ef3d6
-         061c2f26d7a93732 a7acecb36ecd1073 23ad575a230a1301
-         002800280024001d 0020713ac0289121 6b7db8540ca5e97e
-         a9c7bc78ae224399 22db4f820962a233 7c79
+      payload (90 octets):  02 00 00 56 03 03 a3 be 88 82 c4 92 d9 b2 8e
+         90 10 73 ed fa 67 e2 d0 1d 04 9f 59 6d 3f d6 b8 78 44 12 77 e9
+         53 fc 00 13 01 00 00 2e 00 28 00 24 00 1d 00 20 2f d8 57 a5 b8
+         a2 1e 99 7e 82 65 02 dd 74 eb 7c be 96 84 b9 1b e3 6f b7 bf 94
+         53 2b 50 1c 93 3c 00 2b 00 02 7f 16
 
-      ciphertext (87 octets):  1603010052020000 4e7f15fd8c173f87
-         04c83ef3d6061c2f 26d7a93732a7acec b36ecd107323ad57
-         5a230a1301002800 280024001d002071 3ac02891216b7db8
-         540ca5e97ea9c7bc 78ae22439922db4f 820962a2337c79
-
-   {server}  derive write traffic keys for handshake data:
-
-      PRK (32 octets):  a8ebce29ba8300e7 e273a9b9694000fa
-         262813e79cfacbca 803e09fdb7a4e7b4
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  7ecad5f3f6eb5210 8cabc5427bed9658
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  ccab61cd189e4c89 0f440cdd
+      ciphertext (95 octets):  16 03 03 00 5a 02 00 00 56 03 03 a3 be 88
+         82 c4 92 d9 b2 8e 90 10 73 ed fa 67 e2 d0 1d 04 9f 59 6d 3f d6
+         b8 78 44 12 77 e9 53 fc 00 13 01 00 00 2e 00 28 00 24 00 1d 00
+         20 2f d8 57 a5 b8 a2 1e 99 7e 82 65 02 dd 74 eb 7c be 96 84 b9
+         1b e3 6f b7 bf 94 53 2b 50 1c 93 3c 00 2b 00 02 7f 16
 
    {server}  send a EncryptedExtensions handshake message
 
@@ -333,216 +333,199 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
 
 
-Thomson                  Expires April 15, 2018                 [Page 6]
+Thomson                   Expires June 8, 2018                  [Page 6]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
    {server}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  a8ebce29ba8300e7 e273a9b9694000fa
-         262813e79cfacbca 803e09fdb7a4e7b4
+      PRK (32 octets):  e3 f0 3d 09 8f ed c7 40 a4 91 2c d6 4a 6a 4f c9
+         74 da 99 e3 84 2a a6 97 b8 da e9 d8 fb 1e 85 73
 
       hash (0 octets):  (empty)
 
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-      output (32 octets):  06402926cffdb8b3 4430f9aebba4b9ed
-         2c5dec4805ccd687 4a55587efcb4de61
+      output (32 octets):  59 71 83 87 bb 58 03 fa 55 3d 15 5d 7c 23 1d
+         60 01 28 c7 f5 2f 28 51 d3 6b b4 7c 17 bb ff 6b ca
 
    {server}  send a Finished handshake message
 
    {server}  send handshake record:
 
-      payload (651 octets):  0800001e001c000a 00140012001d0017
-         0018001901000101 0102010301040000 00000b0001b90000
-         01b50001b0308201 ac30820115a00302 0102020102300d06
-         092a864886f70d01 010b0500300e310c 300a060355040313
-         03727361301e170d 3136303733303031 323335395a170d32
-         3630373330303132 3335395a300e310c 300a060355040313
-         0372736130819f30 0d06092a864886f7 0d01010105000381
-         8d00308189028181 00b4bb498f827930 3d980836399b36c6
-         988c0c68de55e1bd b826d3901a2461ea fd2de49a91d015ab
-         bc9a95137ace6c1a f19eaa6af98c7ced 43120998e187a80e
-         e0ccb0524b1b018c 3e0b63264d449a6d 38e22a5fda430846
-         748030530ef0461c 8ca9d9efbfae8ea6 d1d03e2bd193eff0
-         ab9a8002c47428a6 d35a8d88d79f7f1e 3f0203010001a31a
-         301830090603551d 1304023000300b06 03551d0f04040302
-         05a0300d06092a86 4886f70d01010b05 000381810085aad2
-         a0e5b9276b908c65 f73a7267170618a5 4c5f8a7b337d2df7
-         a594365417f2eae8 f8a58c8f8172f931 9cf36b7fd6c55b80
-         f21a030151567260 96fd335e5e67f2db f102702e608ccae6
-         bec1fc63a42a99be 5c3eb7107c3c54e9 b9eb2bd5203b1c3b
-         84e0a8b2f759409b a3eac9d91d402dcc 0cc8f8961229ac91
-         87b42b4de100000f 000084080400805d 198d80c1785c59d0
-         462b90de5b1bcd83 a9425b14d4effce8 cd87f326564a0d29
-         d0c6aa2b48ecb38c 26100756d9c70bf0 2e6080a0d8c29ace
-         d54e5fc4887320b5 229dcb94901c5b49 e4098a1ff913193a
-         3b401178a3671fd5 5f63beaf0055c74a b13693b6aff13908
-         589ed309a1b457b1 e943ccbf532c1e2e 83610b450419e414
-         00002020be1d3d13 fe095ed875da34a0 644a26039ccd5521
-         9d7a2895ed0f5599 52b897
-
-      ciphertext (673 octets):  170301029cd4e281 fce798b326c117b1
-         e8968bf1b1295973 4e4cb8ac5f9cb39e 2aa25d5798b1fd0c
-         a7723ececb65ab78 fa04ce67727dc354 866d46f27132e96b
+      payload (651 octets):  08 00 00 1e 00 1c 00 0a 00 14 00 12 00 1d
+         00 17 00 18 00 19 01 00 01 01 01 02 01 03 01 04 00 00 00 00 0b
+         00 01 b9 00 00 01 b5 00 01 b0 30 82 01 ac 30 82 01 15 a0 03 02
+         01 02 02 01 02 30 0d 06 09 2a 86 48 86 f7 0d 01 01 0b 05 00 30
+         0e 31 0c 30 0a 06 03 55 04 03 13 03 72 73 61 30 1e 17 0d 31 36
+         30 37 33 30 30 31 32 33 35 39 5a 17 0d 32 36 30 37 33 30 30 31
+         32 33 35 39 5a 30 0e 31 0c 30 0a 06 03 55 04 03 13 03 72 73 61
+         30 81 9f 30 0d 06 09 2a 86 48 86 f7 0d 01 01 01 05 00 03 81 8d
+         00 30 81 89 02 81 81 00 b4 bb 49 8f 82 79 30 3d 98 08 36 39 9b
+         36 c6 98 8c 0c 68 de 55 e1 bd b8 26 d3 90 1a 24 61 ea fd 2d e4
+         9a 91 d0 15 ab bc 9a 95 13 7a ce 6c 1a f1 9e aa 6a f9 8c 7c ed
+         43 12 09 98 e1 87 a8 0e e0 cc b0 52 4b 1b 01 8c 3e 0b 63 26 4d
+         44 9a 6d 38 e2 2a 5f da 43 08 46 74 80 30 53 0e f0 46 1c 8c a9
+         d9 ef bf ae 8e a6 d1 d0 3e 2b d1 93 ef f0 ab 9a 80 02 c4 74 28
+         a6 d3 5a 8d 88 d7 9f 7f 1e 3f 02 03 01 00 01 a3 1a 30 18 30 09
+         06 03 55 1d 13 04 02 30 00 30 0b 06 03 55 1d 0f 04 04 03 02 05
+         a0 30 0d 06 09 2a 86 48 86 f7 0d 01 01 0b 05 00 03 81 81 00 85
+         aa d2 a0 e5 b9 27 6b 90 8c 65 f7 3a 72 67 17 06 18 a5 4c 5f 8a
+         7b 33 7d 2d f7 a5 94 36 54 17 f2 ea e8 f8 a5 8c 8f 81 72 f9 31
+         9c f3 6b 7f d6 c5 5b 80 f2 1a 03 01 51 56 72 60 96 fd 33 5e 5e
+         67 f2 db f1 02 70 2e 60 8c ca e6 be c1 fc 63 a4 2a 99 be 5c 3e
+         b7 10 7c 3c 54 e9 b9 eb 2b d5 20 3b 1c 3b 84 e0 a8 b2 f7 59 40
+         9b a3 ea c9 d9 1d 40 2d cc 0c c8 f8 96 12 29 ac 91 87 b4 2b 4d
+         e1 00 00 0f 00 00 84 08 04 00 80 06 90 69 66 66 03 ad bd 7f 6d
+         1b a2 7d fd b1 e4 70 7e 4a 4b 7c d6 69 26 cd c6 e0 6a 41 6a 15
+         9e 74 86 73 fb ef bb 73 be 1e 9e 4b 10 c4 ed 2f 9b 75 49 4a c5
+         9d 88 a9 a1 5e d4 3a 09 3e cd f3 02 0d fe 61 21 9f 76 2c 1d c6
+         8f 80 49 76 f2 d4 e1 fb c1 01 c1 56 95 c7 25 66 6b 05 83 7b fa
+         43 54 bf 20 a4 67 26 0a df dc ab e0 32 b0 c9 ae b9 16 eb 88 50
+         f9 8d e8 d4 69 10 ec ae a9 8c 5f c1 10 14 00 00 20 b6 86 bf 7e
 
 
 
-Thomson                  Expires April 15, 2018                 [Page 7]
+
+Thomson                   Expires June 8, 2018                  [Page 7]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-         cbe5426f614d0773 0f43e8602ec2254b c69272396b262841
-         629ea9826c407b92 215d306b2b7c0db5 0208296b21984c3e
-         feba9f2149569be1 c6fc2133c6636667 23a87a5ffd83bbb4
-         98c370cb8e4dad0c e92a83d8e224e87b ec3cdc29460135fc
-         04d1797b18a90de2 b6a6323969c291e9 7e314a0319a25ee7
-         be9564ec5c7517f2 a1c8f33c54717462 fbf1ac3a59adeb49
-         791b631ba9e98221 bdb5ad8649715117 0ed6cf9b8e896936
-         81b6632d8e9934f3 84873260c9cff957 d059195f18524aed
-         ffe90a36550bdca7 a64b1d38773e6cdc 7834579ea5ebcf63
-         09cffaabd01ff0ab b2ddf65da58d6f55 8d97eeeb8187d67a
-         2887d8aac8800c5c 8f5e9970c949e461 cc807b0128a8a9ac
-         c5cc3cec2f597aa7 3f87dabffe7e001f 98edebbdaefbccaf
-         692efefa44a86005 a1c565fc5a8da56c 4b19a718958db1fc
-         bce6a98118f9ddf6 5694e5f5db125379 39bd49a370e123ba
-         8a4c78a1635b8fed 7b74f5fa76a29d5c cee9f23a03a5edf3
-         665b0b1cb8e5a8c9 ab319bfe972b18ed 2ff50c23eb55cf2d
-         b16107f89167f2ff 5d7fea99aa5c75d0 dee051e083a2b9db
-         0715f877a9ed553c 5d4aa22e45d0fa06 4fbbe267c0c6fa23
-         56938ab94ea560c8 e7294206b22a2093 6c3a38986e9da944
-         106680b14bc179de da7b0d9b81e02f47 592fd7eb3a943b2a
-         e4f6efbff3272076 fee3b9965a0c3bc2 a00739c37dff55cd
-         c13d92e1dc01babc 6046b911d97d5862 46957e36dbe78efe
-         865985f580ca43ae 6f84971a2f8cb2e1 1135b7eb02d01b3e
-         65099911d15a8612 7d70817512af67bc 5a6ae55bf3882e3a
-         c0cf547ddeda5755 aa82802f7e05ad1f f546855ce395bad7
-         d298bdb48f2a3e5b 86
+         91 9b 85 66 71 c6 38 8f 2e 13 99 ba 76 3f 43 db e1 8f 16 51 71
+         7e a3 85 d9 a4 a8 08
+
+      ciphertext (673 octets):  17 03 03 02 9c ce 0b 38 1a 1e 9e 01 70
+         b2 a9 40 a6 de d7 e8 3a 0a d3 62 d3 3a bf ef 0f 26 76 26 0f 01
+         26 a6 0a 00 b8 d7 20 ae 13 1a ca 3e 61 1e a5 6f a9 f2 1a 23 ac
+         2e 1c 86 d0 2a 51 01 15 fa 59 b0 c9 78 da 43 ef 45 b1 f2 9e cf
+         13 03 81 c5 2c 97 9e df 31 32 ec 3e aa 1d 07 4e 20 8f dc 51 49
+         14 36 8e 90 19 da 3f 68 ca 0f 62 55 0b b1 7b 6f be 7c fd cb ff
+         50 57 3e 04 4e 3a e4 05 2b 65 da 7c 8d d3 cb 46 d9 02 7c ab 9b
+         64 f9 ca fd 25 b5 ae 2f 6d eb f6 d2 46 d1 f6 12 ee 93 ee 4c 6a
+         b4 57 bf de 68 4c ad d7 f7 4a 43 eb b0 ae 5a fb c0 e2 cc 7f da
+         fe 5b 3c ce 3a 43 60 40 97 81 6e 98 52 01 78 72 95 f1 d5 0d 4b
+         5d 35 ca 6b 77 8e d9 1b ab c8 5f e2 04 f3 70 50 d7 27 70 ea 51
+         fd ba df 83 79 99 66 0f 9b fd 87 ab 26 3c 0a 8e 39 c3 55 7a 3f
+         e1 67 26 3c e9 09 3c b7 7c c7 e0 67 69 a5 f5 c2 df e5 fc 8f 06
+         e1 76 9b a6 ea bc 46 cb c6 dd ce 3d 7f 53 22 fc bc 3b 4e 52 fd
+         59 cc 70 c3 27 d1 1e 28 60 95 ca 6f 04 67 58 43 f8 bf 18 ea aa
+         ee 5d f2 93 e6 d3 79 e0 51 74 7c 1b 36 cb e3 a8 d3 ef e6 56 9b
+         f4 e3 40 4c 7d 42 64 2d 0a 61 73 0e 3b 4d d5 42 88 9a f4 c7 21
+         db e6 ea 3a c3 ab 37 d9 3f 8d 92 25 d7 fe 1b 66 17 99 de 26 b6
+         68 0e 05 0d cc 8b 4a 66 4d a3 4e cd fd dc 97 b1 57 a0 80 0c d0
+         37 a7 c6 37 2b 76 12 a0 1f 30 76 22 da 81 78 85 69 87 2f f0 e4
+         be 3a c8 66 8e 7b 40 d9 65 31 63 68 86 e3 d0 0e a9 d8 92 c3 64
+         b3 80 cd 36 61 c7 c1 71 9e 2a 1e 3e 51 dc 24 c2 c0 6a f2 b4 f4
+         3e 07 b0 b1 46 a0 8f 04 d8 7c ea 8a 2d 89 d5 76 e9 b5 43 a6 29
+         85 f1 8b 0b d1 52 65 e8 b3 63 80 53 54 bb 91 60 92 8c 7b 2c f7
+         5c 68 54 3f 9b 18 79 cc 85 26 12 c1 db ad 89 de 54 8a d9 a0 a3
+         28 fd cf 02 a2 e3 12 d4 51 ea d5 6f 2f 10 38 54 b0 1d 6f 7c e2
+         a6 88 07 7c 31 b0 3f c9 7d c2 a6 7d 64 ce bd 64 f4 ba 9b 75 5d
+         94 ca 59 ef 81 9b 25 01 5c 58 ef ca 28 f7 f2 df e1 f9 fa 82 77
+         67 53 8b ec 12 06 9e 58 ff 65 63 48 61 58 b9 e8 11 34 e0 c8 87
+         ed 6d 31 36 d6 2a 51 a7 d3 a9 5f 11 b6 2b 4e 47 25 35 61 3f d5
+         b2 eb 6b 61 c3 e4 4e 08 f9 41 a2 cd 63 16 5c fe 77 71 5a f7 9f
+         fd 9f d6 82 de 02 2d 43 7e ee 63 1f b5 2d 25 3e cb c5 f2 89 42
+         39 96 8a 3d 46 9a 74 ea 37
 
    {server}  derive secret "tls13 c ap traffic":
 
-      PRK (32 octets):  9646f11c032e0783 fb62bd708b512269
-         12f2b9798352c6ef ce06058a5f71285e
+      PRK (32 octets):  8f 9e 4c 88 c1 c2 8d 54 59 fc d9 bd a2 27 50 bc
+         61 4d c3 01 52 38 28 6e 6e 75 6f 92 45 da 50 9a
 
-      hash (32 octets):  a9bbc0d1354194b0 910b75dd339e4e41
-         8bd41a549a253c5f bba9a4d28da9c9a5
+      hash (32 octets):  20 1a a6 ca 6f 90 71 54 2f ae 47 41 0b 60 b7 32
+         8c 39 42 5f 9a 5b 5b c7 f7 11 31 fa 25 b9 61 99
 
-      info (54 octets):  002012746c733133 2063206170207472
-         616666696320a9bb c0d1354194b0910b 75dd339e4e418bd4
-         1a549a253c5fbba9 a4d28da9c9a5
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 63 20 61 70 20 74 72
+         61 66 66 69 63 20 20 1a a6 ca 6f 90 71 54 2f ae 47 41 0b 60 b7
+         32 8c 39 42 5f 9a 5b 5b c7 f7 11 31 fa 25 b9 61 99
 
-      output (32 octets):  86a8f89a08ad4fc9 501c8e9e66646b9c
-         3d542389c6226ef5 1b252ff07dcb9deb
+
+
+Thomson                   Expires June 8, 2018                  [Page 8]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      output (32 octets):  85 7f 0f 8d 58 b0 cb e2 42 09 b3 0a 61 80 c4
+         97 c6 93 09 a2 fd f1 0a 7a 5e 83 a7 69 42 a7 50 14
 
    {server}  derive secret "tls13 s ap traffic":
 
-      PRK (32 octets):  9646f11c032e0783 fb62bd708b512269
-         12f2b9798352c6ef ce06058a5f71285e
+      PRK (32 octets):  8f 9e 4c 88 c1 c2 8d 54 59 fc d9 bd a2 27 50 bc
+         61 4d c3 01 52 38 28 6e 6e 75 6f 92 45 da 50 9a
 
+      hash (32 octets):  20 1a a6 ca 6f 90 71 54 2f ae 47 41 0b 60 b7 32
+         8c 39 42 5f 9a 5b 5b c7 f7 11 31 fa 25 b9 61 99
 
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 73 20 61 70 20 74 72
+         61 66 66 69 63 20 20 1a a6 ca 6f 90 71 54 2f ae 47 41 0b 60 b7
+         32 8c 39 42 5f 9a 5b 5b c7 f7 11 31 fa 25 b9 61 99
 
-
-
-Thomson                  Expires April 15, 2018                 [Page 8]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      hash (32 octets):  a9bbc0d1354194b0 910b75dd339e4e41
-         8bd41a549a253c5f bba9a4d28da9c9a5
-
-      info (54 octets):  002012746c733133 2073206170207472
-         616666696320a9bb c0d1354194b0910b 75dd339e4e418bd4
-         1a549a253c5fbba9 a4d28da9c9a5
-
-      output (32 octets):  5b69d0f969655bba 87d383915c006a8d
-         777ccc66b78febca a37698783e5e98d1
+      output (32 octets):  21 f0 db 48 ca 7c d9 d0 ae b5 60 4d 47 a3 40
+         55 12 2d b9 ae e6 62 4e 5e d7 51 81 18 de f7 a5 80
 
    {server}  derive secret "tls13 exp master":
 
-      PRK (32 octets):  9646f11c032e0783 fb62bd708b512269
-         12f2b9798352c6ef ce06058a5f71285e
+      PRK (32 octets):  8f 9e 4c 88 c1 c2 8d 54 59 fc d9 bd a2 27 50 bc
+         61 4d c3 01 52 38 28 6e 6e 75 6f 92 45 da 50 9a
 
-      hash (32 octets):  a9bbc0d1354194b0 910b75dd339e4e41
-         8bd41a549a253c5f bba9a4d28da9c9a5
+      hash (32 octets):  20 1a a6 ca 6f 90 71 54 2f ae 47 41 0b 60 b7 32
+         8c 39 42 5f 9a 5b 5b c7 f7 11 31 fa 25 b9 61 99
 
-      info (52 octets):  002010746c733133 20657870206d6173
-         74657220a9bbc0d1 354194b0910b75dd 339e4e418bd41a54
-         9a253c5fbba9a4d2 8da9c9a5
+      info (52 octets):  00 20 10 74 6c 73 31 33 20 65 78 70 20 6d 61 73
+         74 65 72 20 20 1a a6 ca 6f 90 71 54 2f ae 47 41 0b 60 b7 32 8c
+         39 42 5f 9a 5b 5b c7 f7 11 31 fa 25 b9 61 99
 
-      output (32 octets):  8103e2eea910d5cf 1516a8dfccd49362
-         e56d97a1c66789cc 5ae21609c81d1c6e
-
-   {server}  derive write traffic keys for application data:
-
-      PRK (32 octets):  5b69d0f969655bba 87d383915c006a8d
-         777ccc66b78febca a37698783e5e98d1
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  2507b3dcebccce57 3050febde36432b5
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  1332bae4a6f8b818 86c4f2a5
-
-   {server}  derive read traffic keys for handshake data:
-
-      PRK (32 octets):  ab700c700ddf5fa0 c0e42021931afd6f
-         8feb8b1068c60403 62c2e35dd8d50fd8
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  e78c54403c03fbdc 45cda7f2ff876d00
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-
-
-Thomson                  Expires April 15, 2018                 [Page 9]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      iv output (12 octets):  e9472f18513dc971 acd8817d
+      output (32 octets):  6b 97 e4 d6 49 29 94 c4 a7 57 58 98 37 59 b8
+         7b 0f 03 69 6b b6 5b d3 4b db 10 15 e4 50 e1 ba 71
 
    {client}  extract secret "early":
 
       salt:  (absent)
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      secret (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c
+         e2 10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
    {client}  derive secret for handshake "tls13 derived":
 
-      PRK (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      PRK (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c e2
+         10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
 
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
 
-      output (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+
+Thomson                   Expires June 8, 2018                  [Page 9]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
+
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
+
+      output (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6
+         97 16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
    {client}  extract secret "handshake":
 
-      salt (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+      salt (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6 97
+         16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
-      ikm (32 octets):  9a49f48bc0480393 c87fe861b9288de7
-         57478572150dd713 c911eca1d3b8fe6a
+      ikm (32 octets):  e8 14 3d 20 99 f5 ea 7c a1 e5 d1 db 5f 52 8e 8e
+         32 0d 5a 9b f9 44 65 3e 5b a5 80 4e bf d9 6b 37
 
-      secret (32 octets):  6dfb2c60e61243a9 13479cbe8a061d10
-         a655b420d51a9b2a 894d091c84559a58
+      secret (32 octets):  52 0c 9c 27 b7 a8 e1 24 2f c9 14 9e 48 1b b1
+         22 ba 18 23 70 59 8b a3 88 18 a5 22 2a b8 16 e0 fc
 
    {client}  derive secret "tls13 c hs traffic" (same as server)
 
@@ -551,27 +534,6 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
    {client}  derive secret for master "tls13 derived" (same as server)
 
    {client}  extract secret "master" (same as server)
-
-   {client}  derive read traffic keys for handshake data:
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 10]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      PRK (32 octets):  a8ebce29ba8300e7 e273a9b9694000fa
-         262813e79cfacbca 803e09fdb7a4e7b4
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  7ecad5f3f6eb5210 8cabc5427bed9658
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  ccab61cd189e4c89 0f440cdd
 
    {client}  calculate finished "tls13 finished" (same as server)
 
@@ -581,168 +543,153 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  derive secret "tls13 exp master" (same as server)
 
-   {client}  derive write traffic keys for handshake data (same as
-      server read traffic keys)
-
-   {client}  derive read traffic keys for application data (same as
-      server write traffic keys)
-
    {client}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  ab700c700ddf5fa0 c0e42021931afd6f
-         8feb8b1068c60403 62c2e35dd8d50fd8
+      PRK (32 octets):  43 37 cc a0 82 16 d3 12 a8 84 33 99 40 d4 04 d0
+         69 55 04 3f 62 6b 53 bf 27 5c 1e ee 64 09 d9 cf
 
       hash (0 octets):  (empty)
 
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-      output (32 octets):  6c163dcb8f0b92ce 0ad7b77691704727
-         e171d3dda7bed268 edb0f6ec968a5da3
+
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 10]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      output (32 octets):  bb 80 b6 be 86 ea 93 7d b1 2a 1c 6c 7e 93 a4
+         cc 91 11 7c df 2e b8 1b 21 1e be 85 58 cf c7 a1 7b
 
    {client}  send a Finished handshake message
 
    {client}  send handshake record:
 
-      payload (36 octets):  14000020bbebed15 1f8cf07fe875ebbb
-         95eee499a1fcf8be f279da1f3b90d1b5 f75952cc
+      payload (36 octets):  14 00 00 20 8a 00 c7 9a c1 72 f7 f5 5c 2a e5
+         5f bd 61 68 04 b5 ea 86 50 08 e6 48 b4 ad d5 d4 a5 40 87 e2 5a
 
-      ciphertext (58 octets):  1703010035dd3b69 66af88f87a9c5145
-         f1adfe86235eb9eb 2c603a7739491e99 34f3b034b7b03752
-         8da222cc4f8450a2 2df4681e49a5d6b6 c51b
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 11]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-   {client}  derive write traffic keys for application data:
-
-      PRK (32 octets):  86a8f89a08ad4fc9 501c8e9e66646b9c
-         3d542389c6226ef5 1b252ff07dcb9deb
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  3a6bbb906da869c7 40341fd649db1bfc
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  6eb1035764a98296 a8594c9d
+      ciphertext (58 octets):  17 03 03 00 35 ae 0a 76 b7 1a b7 19 7a ed
+         28 f6 94 3d cc 57 a2 87 c8 71 c9 dc 91 33 3a d2 dd a6 aa 38 80
+         da 9a 5f 45 dd a0 75 43 d6 ba 30 d8 8a a9 c4 4e ac 4b 99 b0 97
+         2c d2
 
    {client}  derive secret "tls13 res master":
 
-      PRK (32 octets):  9646f11c032e0783 fb62bd708b512269
-         12f2b9798352c6ef ce06058a5f71285e
+      PRK (32 octets):  8f 9e 4c 88 c1 c2 8d 54 59 fc d9 bd a2 27 50 bc
+         61 4d c3 01 52 38 28 6e 6e 75 6f 92 45 da 50 9a
 
-      hash (32 octets):  84652dc486022d32 e87da0f1bb2c1611
-         1e634207ef5ab49b e4fe4979cb57af4a
+      hash (32 octets):  16 cf 44 ee ce d2 f6 60 9e 5f 4a 28 90 ff 4d e9
+         d8 64 28 19 28 5e c9 29 0e 5e 59 ed 6a c3 bf 23
 
-      info (52 octets):  002010746c733133 20726573206d6173
-         7465722084652dc4 86022d32e87da0f1 bb2c16111e634207
-         ef5ab49be4fe4979 cb57af4a
+      info (52 octets):  00 20 10 74 6c 73 31 33 20 72 65 73 20 6d 61 73
+         74 65 72 20 16 cf 44 ee ce d2 f6 60 9e 5f 4a 28 90 ff 4d e9 d8
+         64 28 19 28 5e c9 29 0e 5e 59 ed 6a c3 bf 23
 
-      output (32 octets):  c338251f668c89d7 499b42133129f624
-         33569a0b933aa88d 4449cbdcd7d604ad
+      output (32 octets):  be e9 e2 af bd 2b 8a 23 53 67 b7 b2 5f d9 9c
+         01 93 4e 0e eb 95 96 70 af d6 db 6e d3 07 2d c1 19
 
    {server}  calculate finished "tls13 finished" (same as client)
-
-   {server}  derive read traffic keys for application data (same as
-      client write traffic keys)
 
    {server}  derive secret "tls13 res master" (same as client)
 
    {server}  generate resumption secret "tls13 resumption":
 
-      PRK (32 octets):  c338251f668c89d7 499b42133129f624
-         33569a0b933aa88d 4449cbdcd7d604ad
+      PRK (32 octets):  be e9 e2 af bd 2b 8a 23 53 67 b7 b2 5f d9 9c 01
+         93 4e 0e eb 95 96 70 af d6 db 6e d3 07 2d c1 19
 
-      hash (2 octets):  0000
+      hash (2 octets):  00 00
 
-      info (22 octets):  002010746c733133 20726573756d7074 696f6e020000
+      info (22 octets):  00 20 10 74 6c 73 31 33 20 72 65 73 75 6d 70 74
+         69 6f 6e 02 00 00
 
-      output (32 octets):  de1a45496c9990e6 d2ac4f1971360a60
-         83d0a778ef75eea9 408fa22eb4ad792c
+      output (32 octets):  e8 45 42 2f 05 c3 28 d5 ab f3 ea e9 a7 5b e1
+         19 ef 32 8b a9 c4 f4 65 b8 f1 ca ab e1 7f f6 93 40
 
    {server}  send a NewSessionTicket handshake message
 
 
 
-Thomson                  Expires April 15, 2018                [Page 12]
+Thomson                   Expires June 8, 2018                 [Page 11]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
    {server}  send handshake record:
 
-      payload (205 octets):  040000c90000001e 9aca5c6c02000000
-         b29f53132300058e 209b8facd6000000 000c65e04737db83
-         4ba911150217805f 9d0070deb3aa4ad3 6ac234baa4fdc22e
-         224cd28788a19513 74c8e2b15ef97320 f8257b66658c5ac1
-         cc81b186715f92f2 b7accd043e9f2780 b0407929c5cb9104
-         da7076576672e0c2 6ecc2a5706b84431 4367329cea65bd87
-         f8ac9ce5abed653f 1a845ac293bb9fcd 5f94f784955caa12
-         cac80d778751a754 4028a9d3c9fececf 426fed478abaf52b
-         1879198035091ca7 54b8d20008002a00 0400000400
+      payload (205 octets):  04 00 00 c9 00 00 00 1e 90 47 63 00 02 00
+         00 00 b2 8f f6 a3 97 10 a6 bb 44 a1 3e 91 3e 00 00 00 00 e0 c4
+         54 d2 1d 85 8f f8 96 7b 6a 05 63 e3 ee ae 00 70 66 e5 d5 4b 1e
+         da 47 fa 76 cc b9 60 f4 c6 28 9d 2e eb f7 47 93 59 66 f3 20 c2
+         0c b1 d6 14 c9 fd 66 d3 3e c9 e3 88 4c ae 15 78 a8 c3 56 94 69
+         e3 ee cd ad 46 e4 83 81 70 a8 8c 68 11 11 60 49 7e 7e 63 bb e0
+         8d 60 8c 69 47 06 93 73 72 c2 b2 e3 0c 40 6b b7 b3 44 8b 43 4a
+         d1 4e d7 64 75 74 06 0f b2 8c 61 d9 ca 12 98 5c 3e 11 91 c1 30
+         20 83 50 fc 74 56 35 d8 0c a0 05 0a 91 7b 8c 02 31 99 30 65 eb
+         eb ab 7d 6f a8 95 11 e8 46 88 39 57 f0 00 08 00 2a 00 04 00 00
+         04 00
 
-      ciphertext (227 octets):  17030100de6f9c86 7928671b30f7df3a
-         58104b592aa780ab 238b9b61994e6aeb 0faf8c539db221a1
-         933232ff7b777d59 545a9b5a985c0fda 6574541098b922c6
-         a37b70b2dd10e548 52eb7c5d7b479b8e e911fb35fcc31f76
-         604dc521b9509558 52d42072f8c56f05 8c9455c91f7dff1a
-         23a380a839f8cec9 d538250784fbf005 4dedce270a1bb429
-         2710fd48d2239665 5282990dd7ccb289 a6e2884037f0c49a
-         f88fe05c1b839ea3 2d952e833a495340 988cd03c30d709db
-         e35a451635961cf6 e5b8800f02443362 6fdf9ca623981bf2
-         f5338b6784ed586e 216eeb5a65f02cd9 1648ea
+      ciphertext (227 octets):  17 03 03 00 de c2 61 ef d0 b2 64 8d 1c
+         38 0a 89 54 88 f8 96 ee f2 60 cf 05 45 d7 4c 4c 5d 20 22 35 d4
+         fa 5f b7 fb 3e 60 8e 75 04 24 26 b4 a0 2e 0f fd d9 90 de 95 6a
+         64 d2 18 0c 84 dc 0d 4f 79 db 8c 09 10 91 fc 0b 9c e3 0c 2d c0
+         8b be 1a e7 9d a1 40 fa 1b 95 8d 38 f1 ac 40 48 75 3a c6 e6 5f
+         90 d4 f6 04 b0 e4 e9 0c bb f0 5a 88 63 18 d5 db 07 ed 1a 5c 10
+         25 c9 8b b7 f1 53 22 aa c6 3a 45 e8 5a e0 32 e8 df e9 b8 79 0c
+         17 b7 2b 92 3b 0c 66 36 b6 7e e5 cc ac 8a 92 39 d8 00 f4 57 17
+         e2 00 fb 19 eb 7f 21 bd 86 f4 b5 b8 a4 b9 84 6f 65 c6 16 33 6d
+         2b 3f 3e 2e eb 17 1b bf ea 27 30 ea 44 3d 68 eb e2 33 ef 07 90
+         f1 83 68 f4 56 95 89 f8 7e ea c1 8b 86 da e2 fa ce 8b 40 13 c1
+         e8 02 ac fe
 
    {client}  send application_data record:
 
-      payload (50 octets):  0001020304050607 08090a0b0c0d0e0f
-         1011121314151617 18191a1b1c1d1e1f 2021222324252627
-         28292a2b2c2d2e2f 3031
+      payload (50 octets):  00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e
+         0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f 20 21 22 23
+         24 25 26 27 28 29 2a 2b 2c 2d 2e 2f 30 31
 
-      ciphertext (72 octets):  170301004352d86e b76a03865118e47c
-         5251cd51070e91bd fe20e37ac82098d1 b0ce42f9381b9fd7
-         0acf0600d48ebf6b 9b8520f2c1d403fb a689f082428b427b
-         a279260521d0e217
+      ciphertext (72 octets):  17 03 03 00 43 cc c8 b2 0f f1 7a 16 57 7c
+         14 2d 0a 60 28 47 14 04 70 ee db b1 93 99 5e c2 26 af 22 f6 37
+         41 56 41 ad 3d 56 d3 c1 5d cc 39 ca bb cd 63 dd 03 49 ed b7 5d
+         a4 4e 4b a4 d3 4a 8d d1 15 26 b1 03 7f a6 72 f7
 
    {server}  send application_data record:
 
-      payload (50 octets):  0001020304050607 08090a0b0c0d0e0f
-         1011121314151617 18191a1b1c1d1e1f 2021222324252627
-         28292a2b2c2d2e2f 3031
+      payload (50 octets):  00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e
+         0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f 20 21 22 23
+         24 25 26 27 28 29 2a 2b 2c 2d 2e 2f 30 31
 
-      ciphertext (72 octets):  170301004398527e f97458e748adcaac
-         bacd61861ea2bd34 841ae4dc62f39617 a3cf466b1abb5cd4
-         e8857268549296f4 518e62e7da9dd5bb c49f8ae1e02d9165
-         c8841b70312f9b13
+      ciphertext (72 octets):  17 03 03 00 43 a3 d8 3b f8 0a 04 44 bf 7c
+         0c fd 1b e9 3f ca 30 4b cc 8f 39 d7 a6 8b 6f a2 be db a6 2d 6a
+         01 aa 58 1e 07 64 05 29 71 10 75 30 e9 b9 7a c5 4b dd cc ce 80
+         20 44 82 22 56 92 18 fa 01 5b 1b 34 76 78 22 7c
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 12]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
 
    {client}  generate resumption secret "tls13 resumption" (same as
       server)
 
-
-
-
-Thomson                  Expires April 15, 2018                [Page 13]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
    {client}  send alert record:
 
-      payload (2 octets):  0100
+      payload (2 octets):  01 00
 
-      ciphertext (24 octets):  170301001318421e d35a584dae39f63b
-         4855888b619a6c63
+      ciphertext (24 octets):  17 03 03 00 13 f3 43 df 69 16 ba 92 c4 01
+         a9 b1 27 f7 bc 75 06 03 f1 2a
 
    {server}  send alert record:
 
-      payload (2 octets):  0100
+      payload (2 octets):  01 00
 
-      ciphertext (24 octets):  1703010013c3148f 9353cc288a8f2155
-         a9c0fa396c5e5aee
+      ciphertext (24 octets):  17 03 03 00 13 6f 99 81 39 a8 6a a8 ac db
+         e6 32 1a 52 2e 75 50 98 2b 04
 
 4.  Resumed 0-RTT Handshake
 
@@ -752,133 +699,128 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  64dbbe008ea96ba6 fe1d503fe8581826
-         d9c06656874c56c1 380c222d302142bf
+      private key (32 octets):  04 b6 61 85 23 9e e9 1d 50 2e 28 11 2f
+         58 a8 77 c3 46 d6 6b 44 fc ef d6 8c a4 cd de aa 4b 71 80
 
-      public key (32 octets):  061956b37645c81e 9f9f86e72c8025a6
-         d7d1be1491bc5617 998db68c25aa0871
+      public key (32 octets):  0a 23 67 ab 1b 3e 31 1a 19 0e 64 62 3c b5
+         fe 77 38 ce 6d 9d 85 0d 6a 4a 2d fd 25 0f 23 2d 53 0f
 
    {client}  extract secret "early":
 
       salt:  (absent)
 
-      ikm (32 octets):  de1a45496c9990e6 d2ac4f1971360a60
-         83d0a778ef75eea9 408fa22eb4ad792c
+      ikm (32 octets):  e8 45 42 2f 05 c3 28 d5 ab f3 ea e9 a7 5b e1 19
+         ef 32 8b a9 c4 f4 65 b8 f1 ca ab e1 7f f6 93 40
 
-      secret (32 octets):  ff197ed391b567c2 04694ee579a2dbc5
-         1cd966ac8eb37482 97d964d1436870cb
+      secret (32 octets):  27 43 31 9e ea 2f 39 bb 93 23 14 c8 7a c6 fb
+         76 c7 c6 91 c8 d9 ea 28 f0 30 90 d5 d1 76 35 bd 7f
 
    {client}  send a ClientHello handshake message
 
    {client}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  9449c21f88be8a81 406013ff09047519
-         31fcd7943d918ff7 f2437a4360d10daf
+      PRK (32 octets):  44 27 3d 95 a5 b5 d6 00 62 ee 6b 98 a9 a8 36 68
+         4e 02 fa 9d b3 04 91 67 18 c2 58 b9 5e 3f 9e 22
+
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 13]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
 
       hash (0 octets):  (empty)
 
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-
-
-Thomson                  Expires April 15, 2018                [Page 14]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      output (32 octets):  5407798b1cf72d52 ac16ee235401f056
-         09eca350d26fab72 22a1987c0b8b93a9
+      output (32 octets):  d9 f4 5a 5b 10 27 de 2a 79 53 e7 09 95 d9 fe
+         45 b3 3e 6c c8 51 b2 f1 ad da cd 1e f6 fb ef f1 d3
 
    {client}  send handshake record:
 
-      payload (512 octets):  010001fc0303c3ec ce35a675c08bb724
-         9a1bb5cccc1436e4 2b8b481c22b64648 10fe0840cac70000
-         0613011303130201 0001cd0000000b00 0900000673657276
-         6572ff0100010000 0a00140012001d00 1700180019010001
-         0101020103010400 2800260024001d00 20061956b37645c8
-         1e9f9f86e72c8025 a6d7d1be1491bc56 17998db68c25aa08
-         71002a0000002b00 03027f15000d0020 001e040305030603
-         0203080408050806 0401050106010201 0402050206020202
-         002d000201010015 005d000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 2900dd00b800b29f 53132300058e209b
-         8facd6000000000c 65e04737db834ba9 11150217805f9d00
-         70deb3aa4ad36ac2 34baa4fdc22e224c d28788a1951374c8
-         e2b15ef97320f825 7b66658c5ac1cc81 b186715f92f2b7ac
-         cd043e9f2780b040 7929c5cb9104da70 76576672e0c26ecc
-         2a5706b844314367 329cea65bd87f8ac 9ce5abed653f1a84
-         5ac293bb9fcd5f94 f784955caa12cac8 0d778751a7544028
-         a9d3c9fececf426f ed478abaf52b1879 198035091ca754b8
-         d29aca5c71002120 5a69bbf42c1b00b6 89393fcb142e88a5
-         d1b47c3433bc770d f9cbe8e6e14e1f73
+      payload (512 octets):  01 00 01 fc 03 03 62 ac 42 92 e2 06 ae 89
+         cf 81 df 37 22 c8 34 d2 89 d0 f4 d2 5c f3 d7 26 42 6c 76 c1 76
+         fb 13 a5 00 00 06 13 01 13 03 13 02 01 00 01 cd 00 00 00 0b 00
+         09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00 00 0a 00 14 00 12
+         00 1d 00 17 00 18 00 19 01 00 01 01 01 02 01 03 01 04 00 28 00
+         26 00 24 00 1d 00 20 0a 23 67 ab 1b 3e 31 1a 19 0e 64 62 3c b5
+         fe 77 38 ce 6d 9d 85 0d 6a 4a 2d fd 25 0f 23 2d 53 0f 00 2a 00
+         00 00 2b 00 03 02 7f 16 00 0d 00 20 00 1e 04 03 05 03 06 03 02
+         03 08 04 08 05 08 06 04 01 05 01 06 01 02 01 04 02 05 02 06 02
+         02 02 00 2d 00 02 01 01 00 15 00 5d 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 29 00 dd 00 b8 00 b2 8f f6 a3 97 10 a6 bb 44 a1 3e 91 3e 00
+         00 00 00 e0 c4 54 d2 1d 85 8f f8 96 7b 6a 05 63 e3 ee ae 00 70
+         66 e5 d5 4b 1e da 47 fa 76 cc b9 60 f4 c6 28 9d 2e eb f7 47 93
+         59 66 f3 20 c2 0c b1 d6 14 c9 fd 66 d3 3e c9 e3 88 4c ae 15 78
+         a8 c3 56 94 69 e3 ee cd ad 46 e4 83 81 70 a8 8c 68 11 11 60 49
+         7e 7e 63 bb e0 8d 60 8c 69 47 06 93 73 72 c2 b2 e3 0c 40 6b b7
+         b3 44 8b 43 4a d1 4e d7 64 75 74 06 0f b2 8c 61 d9 ca 12 98 5c
+         3e 11 91 c1 30 20 83 50 fc 74 56 35 d8 0c a0 05 0a 91 7b 8c 02
+         31 99 30 65 eb eb ab 7d 6f a8 95 11 e8 46 88 39 57 f0 90 47 63
+         05 00 21 20 c4 12 85 e8 99 63 f2 d9 9b e7 1b b0 6f fb 99 bb e2
+         10 73 cd de 30 cc b5 b5 d0 e9 1f ac 87 45 81
 
-      ciphertext (517 octets):  1603010200010001 fc0303c3ecce35a6
-         75c08bb7249a1bb5 cccc1436e42b8b48 1c22b6464810fe08
-         40cac70000061301 13031302010001cd 0000000b00090000
-         06736572766572ff 01000100000a0014 0012001d00170018
-         0019010001010102 0103010400280026 0024001d00200619
-         56b37645c81e9f9f 86e72c8025a6d7d1 be1491bc5617998d
-         b68c25aa0871002a 0000002b0003027f 15000d0020001e04
-         0305030603020308 0408050806040105 0106010201040205
-         0206020202002d00 0201010015005d00 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 00000000002900dd 00b800b29f531323
-         00058e209b8facd6 000000000c65e047 37db834ba9111502
-         17805f9d0070deb3 aa4ad36ac234baa4 fdc22e224cd28788
-         a1951374c8e2b15e f97320f8257b6665 8c5ac1cc81b18671
-         5f92f2b7accd043e 9f2780b0407929c5 cb9104da70765766
-         72e0c26ecc2a5706 b844314367329cea 65bd87f8ac9ce5ab
-         ed653f1a845ac293 bb9fcd5f94f78495 5caa12cac80d7787
-         51a7544028a9d3c9 fececf426fed478a baf52b1879198035
+      ciphertext (517 octets):  16 03 01 02 00 01 00 01 fc 03 03 62 ac
+         42 92 e2 06 ae 89 cf 81 df 37 22 c8 34 d2 89 d0 f4 d2 5c f3 d7
+         26 42 6c 76 c1 76 fb 13 a5 00 00 06 13 01 13 03 13 02 01 00 01
+         cd 00 00 00 0b 00 09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00
+         00 0a 00 14 00 12 00 1d 00 17 00 18 00 19 01 00 01 01 01 02 01
+         03 01 04 00 28 00 26 00 24 00 1d 00 20 0a 23 67 ab 1b 3e 31 1a
+         19 0e 64 62 3c b5 fe 77 38 ce 6d 9d 85 0d 6a 4a 2d fd 25 0f 23
+         2d 53 0f 00 2a 00 00 00 2b 00 03 02 7f 16 00 0d 00 20 00 1e 04
+         03 05 03 06 03 02 03 08 04 08 05 08 06 04 01 05 01 06 01 02 01
+         04 02 05 02 06 02 02 02 00 2d 00 02 01 01 00 15 00 5d 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 
 
-Thomson                  Expires April 15, 2018                [Page 15]
+Thomson                   Expires June 8, 2018                 [Page 14]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-         091ca754b8d29aca 5c710021205a69bb f42c1b00b689393f
-         cb142e88a5d1b47c 3433bc770df9cbe8 e6e14e1f73
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 29 00 dd 00 b8 00 b2 8f f6 a3 97 10 a6 bb
+         44 a1 3e 91 3e 00 00 00 00 e0 c4 54 d2 1d 85 8f f8 96 7b 6a 05
+         63 e3 ee ae 00 70 66 e5 d5 4b 1e da 47 fa 76 cc b9 60 f4 c6 28
+         9d 2e eb f7 47 93 59 66 f3 20 c2 0c b1 d6 14 c9 fd 66 d3 3e c9
+         e3 88 4c ae 15 78 a8 c3 56 94 69 e3 ee cd ad 46 e4 83 81 70 a8
+         8c 68 11 11 60 49 7e 7e 63 bb e0 8d 60 8c 69 47 06 93 73 72 c2
+         b2 e3 0c 40 6b b7 b3 44 8b 43 4a d1 4e d7 64 75 74 06 0f b2 8c
+         61 d9 ca 12 98 5c 3e 11 91 c1 30 20 83 50 fc 74 56 35 d8 0c a0
+         05 0a 91 7b 8c 02 31 99 30 65 eb eb ab 7d 6f a8 95 11 e8 46 88
+         39 57 f0 90 47 63 05 00 21 20 c4 12 85 e8 99 63 f2 d9 9b e7 1b
+         b0 6f fb 99 bb e2 10 73 cd de 30 cc b5 b5 d0 e9 1f ac 87 45 81
 
    {client}  derive secret "tls13 c e traffic":
 
-      PRK (32 octets):  ff197ed391b567c2 04694ee579a2dbc5
-         1cd966ac8eb37482 97d964d1436870cb
+      PRK (32 octets):  27 43 31 9e ea 2f 39 bb 93 23 14 c8 7a c6 fb 76
+         c7 c6 91 c8 d9 ea 28 f0 30 90 d5 d1 76 35 bd 7f
 
-      hash (32 octets):  bba11f4617dcb591 d47ae4afec296ab6
-         804f1a29d27d5a77 28ada117578f89b6
+      hash (32 octets):  23 b6 b8 63 ba 94 a8 59 78 74 e9 bf 82 c5 ef a3
+         f2 23 40 9b 46 d1 b5 74 8f 66 94 7a a3 ef 37 a4
 
-      info (53 octets):  002011746c733133 2063206520747261
-         6666696320bba11f 4617dcb591d47ae4 afec296ab6804f1a
-         29d27d5a7728ada1 17578f89b6
+      info (53 octets):  00 20 11 74 6c 73 31 33 20 63 20 65 20 74 72 61
+         66 66 69 63 20 23 b6 b8 63 ba 94 a8 59 78 74 e9 bf 82 c5 ef a3
+         f2 23 40 9b 46 d1 b5 74 8f 66 94 7a a3 ef 37 a4
 
-      output (32 octets):  99fcc02ccbfe35c5 bff7019eccade44d
-         69d1c1c3fdcf6813 da31369fb0251729
-
-   {client}  derive write traffic keys for early application data:
-
-      PRK (32 octets):  99fcc02ccbfe35c5 bff7019eccade44d
-         69d1c1c3fdcf6813 da31369fb0251729
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  2ced1ea2186fe673 dd3821dc6498f893
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  f652dee1eaad628e c6634acb
+      output (32 octets):  a2 f5 ee 6e 5b 65 13 20 aa 09 d2 cd 1d f9 7d
+         38 b5 06 b5 d5 be 58 a2 ab 74 63 14 95 fe 03 80 31
 
    {client}  send application_data record:
 
-      payload (6 octets):  414243444546
+      payload (6 octets):  41 42 43 44 45 46
 
-      ciphertext (28 octets):  17030100171f660e 6d8f3df1e4f26f83
-         3230b213fca492c3 1c9829a0
+      ciphertext (28 octets):  17 03 03 00 17 3d 1d 34 35 63 1a d0 3c 02
+         58 78 9f 65 42 7f 24 0c 69 a2 c7 10 49 c8
 
    {server}  extract secret "early" (same as client)
 
@@ -886,20 +828,19 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {server}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  2ef21b9271f9f304 5a21fba21d0a071f
-         0f5931e045dd3835 d228b7a59e6a79a6
+      private key (32 octets):  4b 2e c9 f7 d4 6e 5b 15 ad a1 5e 30 79
+         0e 5c 85 df 6a 7f 2a 83 e9 a3 a5 e3 a0 da 97 15 a0 54 6f
+
+      public key (32 octets):  1d 9a 82 49 ce 1b 32 12 a6 d0 d7 69 f6 9b
+         ab b6 dd be 20 ff 5f 81 22 24 2d 41 ed a9 f8 ca 07 1d
 
 
 
 
-
-Thomson                  Expires April 15, 2018                [Page 16]
+Thomson                   Expires June 8, 2018                 [Page 15]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
-
-      public key (32 octets):  9e7cfd7ec1dca57f 62b94d1ece749443
-         4114143ea1113fff feade7784d1ba91b
 
    {server}  derive secret "tls13 c e traffic" (same as client)
 
@@ -907,257 +848,234 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {server}  derive secret for handshake "tls13 derived":
 
-      PRK (32 octets):  ff197ed391b567c2 04694ee579a2dbc5
-         1cd966ac8eb37482 97d964d1436870cb
+      PRK (32 octets):  27 43 31 9e ea 2f 39 bb 93 23 14 c8 7a c6 fb 76
+         c7 c6 91 c8 d9 ea 28 f0 30 90 d5 d1 76 35 bd 7f
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      output (32 octets):  7f8b454e91e6116f 02a7b0648af8d4d0
-         4868a789320517f8 d6a9925e3a8fdb18
+      output (32 octets):  89 be c2 66 b9 63 e4 ef cd 93 75 4b d5 56 c0
+         6c 18 ad e1 dd dc 7b dd e8 fd 9e d4 3b 6b 3d d0 fc
 
    {server}  extract secret "handshake":
 
-      salt (32 octets):  7f8b454e91e6116f 02a7b0648af8d4d0
-         4868a789320517f8 d6a9925e3a8fdb18
+      salt (32 octets):  89 be c2 66 b9 63 e4 ef cd 93 75 4b d5 56 c0 6c
+         18 ad e1 dd dc 7b dd e8 fd 9e d4 3b 6b 3d d0 fc
 
-      ikm (32 octets):  a9845103208c0d96 585dfb71b7f4ceed
-         7d70df75f5f63814 f596e7812a5f1311
+      ikm (32 octets):  89 61 30 66 32 2c 03 49 2c 62 d9 b2 42 44 99 62
+         66 21 f4 60 22 c8 ce 32 02 4d a2 53 ce c2 e0 08
 
-      secret (32 octets):  b6655f822fc60c6d 3305b92472c35234
-         5bc024df49818592 1bd61f0d031eaa2b
+      secret (32 octets):  1b 4e 4e 6d bd cd c3 2d 62 34 b5 35 eb 5c f6
+         c7 d9 d5 da 6a 5c b6 02 17 15 11 56 a7 bd 70 f1 9d
 
    {server}  derive secret "tls13 c hs traffic":
 
-      PRK (32 octets):  b6655f822fc60c6d 3305b92472c35234
-         5bc024df49818592 1bd61f0d031eaa2b
+      PRK (32 octets):  1b 4e 4e 6d bd cd c3 2d 62 34 b5 35 eb 5c f6 c7
+         d9 d5 da 6a 5c b6 02 17 15 11 56 a7 bd 70 f1 9d
 
-      hash (32 octets):  c8ae7dd1b1b00d92 7479a3475623bbce
-         bd4adf267947fd08 aa55c53bbea6848b
+      hash (32 octets):  1e aa b6 77 ab 98 ad e0 9b d8 13 f1 ca f0 31 50
+         01 49 f1 9b 66 2f c9 79 60 48 1e 01 64 9d a0 d0
 
-      info (54 octets):  002012746c733133 2063206873207472
-         616666696320c8ae 7dd1b1b00d927479 a3475623bbcebd4a
-         df267947fd08aa55 c53bbea6848b
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 63 20 68 73 20 74 72
+         61 66 66 69 63 20 1e aa b6 77 ab 98 ad e0 9b d8 13 f1 ca f0 31
+         50 01 49 f1 9b 66 2f c9 79 60 48 1e 01 64 9d a0 d0
 
-      output (32 octets):  ff732dcb700a5f05 da38ba440f629210
-         d9c991bd67f8534d 5f51ae75e46b8f95
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 17]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
+      output (32 octets):  6a f8 94 78 09 97 1f 14 59 66 ef 2c 25 da b2
+         b0 83 cc 50 51 df 03 71 c3 f8 b0 3b 7c 9c 8d 5a 01
 
    {server}  derive secret "tls13 s hs traffic":
 
-      PRK (32 octets):  b6655f822fc60c6d 3305b92472c35234
-         5bc024df49818592 1bd61f0d031eaa2b
 
-      hash (32 octets):  c8ae7dd1b1b00d92 7479a3475623bbce
-         bd4adf267947fd08 aa55c53bbea6848b
 
-      info (54 octets):  002012746c733133 2073206873207472
-         616666696320c8ae 7dd1b1b00d927479 a3475623bbcebd4a
-         df267947fd08aa55 c53bbea6848b
 
-      output (32 octets):  c43b0e3c54d6a2e3 0351d4d3014f9dbd
-         0a17e0671a1b4da8 de8dce440f5d4e78
+
+Thomson                   Expires June 8, 2018                 [Page 16]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      PRK (32 octets):  1b 4e 4e 6d bd cd c3 2d 62 34 b5 35 eb 5c f6 c7
+         d9 d5 da 6a 5c b6 02 17 15 11 56 a7 bd 70 f1 9d
+
+      hash (32 octets):  1e aa b6 77 ab 98 ad e0 9b d8 13 f1 ca f0 31 50
+         01 49 f1 9b 66 2f c9 79 60 48 1e 01 64 9d a0 d0
+
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 73 20 68 73 20 74 72
+         61 66 66 69 63 20 1e aa b6 77 ab 98 ad e0 9b d8 13 f1 ca f0 31
+         50 01 49 f1 9b 66 2f c9 79 60 48 1e 01 64 9d a0 d0
+
+      output (32 octets):  01 38 75 e5 cd a9 7e 1a ec 5a c6 d5 ee 9b 53
+         6b e4 ac 34 91 b5 ac 37 84 1d cf 3e 41 c7 cf bb 8f
 
    {server}  derive secret for master "tls13 derived":
 
-      PRK (32 octets):  b6655f822fc60c6d 3305b92472c35234
-         5bc024df49818592 1bd61f0d031eaa2b
+      PRK (32 octets):  1b 4e 4e 6d bd cd c3 2d 62 34 b5 35 eb 5c f6 c7
+         d9 d5 da 6a 5c b6 02 17 15 11 56 a7 bd 70 f1 9d
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      output (32 octets):  4351cd078baf7e7d 4e17a913e16816c6
-         f5f71c2e16fead1c f5a73ccb505990ed
+      output (32 octets):  a2 50 0d 54 d1 e3 4c bd f8 89 19 a9 43 91 b6
+         d5 a1 db 48 95 ad bd 12 90 cb d5 cf 8c 6d b6 5d 54
 
    {server}  extract secret "master":
 
-      salt (32 octets):  4351cd078baf7e7d 4e17a913e16816c6
-         f5f71c2e16fead1c f5a73ccb505990ed
+      salt (32 octets):  a2 50 0d 54 d1 e3 4c bd f8 89 19 a9 43 91 b6 d5
+         a1 db 48 95 ad bd 12 90 cb d5 cf 8c 6d b6 5d 54
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  2ae6c14394cee63b 10da68414cbd934a
-         6038f7e674f63ca0 238748171bfb9608
+      secret (32 octets):  ef 5f 99 70 6a ea 23 32 84 5a 35 96 33 ec 0a
+         3d 9a f3 5f d8 9c 0a be 62 83 c4 1d f4 20 5c da 83
 
    {server}  send handshake record:
 
-      payload (88 octets):  020000547f150489 743b750bac2a5979
-         0649d2fc4cb3034b 44984b548fe62cd3 e7206d54d9791301
-         002e002900020000 00280024001d0020 9e7cfd7ec1dca57f
-         62b94d1ece749443 4114143ea1113fff feade7784d1ba91b
+      payload (96 octets):  02 00 00 5c 03 03 29 4e 69 05 ef 60 57 c8 dc
+         eb ca 84 95 01 b4 eb 7b 35 c3 46 e4 54 d1 44 d9 80 d5 78 5c f5
+         f7 c4 00 13 01 00 00 34 00 29 00 02 00 00 00 28 00 24 00 1d 00
+         20 1d 9a 82 49 ce 1b 32 12 a6 d0 d7 69 f6 9b ab b6 dd be 20 ff
+         5f 81 22 24 2d 41 ed a9 f8 ca 07 1d 00 2b 00 02 7f 16
 
 
 
 
-Thomson                  Expires April 15, 2018                [Page 18]
+
+Thomson                   Expires June 8, 2018                 [Page 17]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-      ciphertext (93 octets):  1603010058020000 547f150489743b75
-         0bac2a59790649d2 fc4cb3034b44984b 548fe62cd3e7206d
-         54d9791301002e00 2900020000002800 24001d00209e7cfd
-         7ec1dca57f62b94d 1ece749443411414 3ea1113ffffeade7 784d1ba91b
-
-   {server}  derive write traffic keys for handshake data:
-
-      PRK (32 octets):  c43b0e3c54d6a2e3 0351d4d3014f9dbd
-         0a17e0671a1b4da8 de8dce440f5d4e78
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  58806336480f5773 a10263cc829682a1
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  e612dd8f866726f9 7bb85ecb
+      ciphertext (101 octets):  16 03 03 00 60 02 00 00 5c 03 03 29 4e
+         69 05 ef 60 57 c8 dc eb ca 84 95 01 b4 eb 7b 35 c3 46 e4 54 d1
+         44 d9 80 d5 78 5c f5 f7 c4 00 13 01 00 00 34 00 29 00 02 00 00
+         00 28 00 24 00 1d 00 20 1d 9a 82 49 ce 1b 32 12 a6 d0 d7 69 f6
+         9b ab b6 dd be 20 ff 5f 81 22 24 2d 41 ed a9 f8 ca 07 1d 00 2b
+         00 02 7f 16
 
    {server}  send a EncryptedExtensions handshake message
 
    {server}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  c43b0e3c54d6a2e3 0351d4d3014f9dbd
-         0a17e0671a1b4da8 de8dce440f5d4e78
+      PRK (32 octets):  01 38 75 e5 cd a9 7e 1a ec 5a c6 d5 ee 9b 53 6b
+         e4 ac 34 91 b5 ac 37 84 1d cf 3e 41 c7 cf bb 8f
 
       hash (0 octets):  (empty)
 
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-      output (32 octets):  2eb08b10aa5c6d03 360ce45662d799bc
-         37b589a9dc59a725 c4114fc37ba5123f
+      output (32 octets):  ee 12 f0 69 c7 50 f0 26 d2 67 9d de 6e f7 94
+         bb 2d b4 43 f6 d1 08 5d 0f aa 83 03 5c b2 a1 3a c7
 
    {server}  send a Finished handshake message
 
    {server}  send handshake record:
 
-      payload (74 octets):  080000220020000a 00140012001d0017
-         0018001901000101 0102010301040000 0000002a00001400
-         0020955509271da6 5db3d7750038c58c aeb4516160dd152a
-         40513b2ba213d4e3 df2b
+      payload (74 octets):  08 00 00 22 00 20 00 0a 00 14 00 12 00 1d 00
+         17 00 18 00 19 01 00 01 01 01 02 01 03 01 04 00 00 00 00 00 2a
+         00 00 14 00 00 20 da 26 7a 34 aa 9f e4 51 46 c2 9b 87 a2 bc be
+         ee 0d 1a d7 72 0a 14 77 19 08 4e f0 fe cd 5f f8 12
 
-      ciphertext (96 octets):  170301005bac1c87 e10eb32f54e246c2
-         38e83b6bd02d3114 9cdb3ce2e4e4a4b2 9472d66cad41188d
-         451eed4737885ab2 8f7e8adb5495d36a 600f7d8704a282f3
-         a5d799264db8907b e4109c10cd6207ed 6cb7e20e0e8e99f3
-         8e1a14608214c7a2
+      ciphertext (96 octets):  17 03 03 00 5b cc bd 07 56 c0 2e c1 dc ec
+         3a 8e 54 d2 6f ee 05 81 79 b5 13 01 63 47 53 6d 89 cf 56 5c 68
+         2b 35 bf c3 03 27 15 86 c1 02 f6 9b 28 fa af 01 bf e6 bc f7 eb
+         9c 99 3f 7f d2 85 79 a9 8b 25 6c 50 19 a3 76 c0 5f e0 b2 a9 1d
+         74 d4 3c 3e 6e d3 e0 1e 8d df 8f cf fb 8d 19 50 6f 74 43
 
    {server}  derive secret "tls13 c ap traffic":
 
+      PRK (32 octets):  ef 5f 99 70 6a ea 23 32 84 5a 35 96 33 ec 0a 3d
+         9a f3 5f d8 9c 0a be 62 83 c4 1d f4 20 5c da 83
+
+      hash (32 octets):  33 8a 63 4e a0 f6 da be 04 a6 de 64 2d f8 cb 6f
+         a4 61 3f 72 aa b2 0d 03 c8 f0 bf 35 f3 e2 77 93
+
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 63 20 61 70 20 74 72
+         61 66 66 69 63 20 33 8a 63 4e a0 f6 da be 04 a6 de 64 2d f8 cb
+         6f a4 61 3f 72 aa b2 0d 03 c8 f0 bf 35 f3 e2 77 93
 
 
-Thomson                  Expires April 15, 2018                [Page 19]
+
+Thomson                   Expires June 8, 2018                 [Page 18]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-      PRK (32 octets):  2ae6c14394cee63b 10da68414cbd934a
-         6038f7e674f63ca0 238748171bfb9608
-
-      hash (32 octets):  631ad7f0c54fa155 23aa467103c7109e
-         178f9ac7f3f2093b cc20d8171b7c7719
-
-      info (54 octets):  002012746c733133 2063206170207472
-         616666696320631a d7f0c54fa15523aa 467103c7109e178f
-         9ac7f3f2093bcc20 d8171b7c7719
-
-      output (32 octets):  bf824b919b06084d 64558b0f4e5b695d
-         ee88346a118b3712 78396f9ac99d45a5
+      output (32 octets):  92 d3 1a 2a 06 8c 6f 67 60 02 01 23 ce f7 0d
+         6f d2 48 a4 f2 7f 5e 01 1d 62 46 02 ac 2a c7 19 e2
 
    {server}  derive secret "tls13 s ap traffic":
 
-      PRK (32 octets):  2ae6c14394cee63b 10da68414cbd934a
-         6038f7e674f63ca0 238748171bfb9608
+      PRK (32 octets):  ef 5f 99 70 6a ea 23 32 84 5a 35 96 33 ec 0a 3d
+         9a f3 5f d8 9c 0a be 62 83 c4 1d f4 20 5c da 83
 
-      hash (32 octets):  631ad7f0c54fa155 23aa467103c7109e
-         178f9ac7f3f2093b cc20d8171b7c7719
+      hash (32 octets):  33 8a 63 4e a0 f6 da be 04 a6 de 64 2d f8 cb 6f
+         a4 61 3f 72 aa b2 0d 03 c8 f0 bf 35 f3 e2 77 93
 
-      info (54 octets):  002012746c733133 2073206170207472
-         616666696320631a d7f0c54fa15523aa 467103c7109e178f
-         9ac7f3f2093bcc20 d8171b7c7719
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 73 20 61 70 20 74 72
+         61 66 66 69 63 20 33 8a 63 4e a0 f6 da be 04 a6 de 64 2d f8 cb
+         6f a4 61 3f 72 aa b2 0d 03 c8 f0 bf 35 f3 e2 77 93
 
-      output (32 octets):  76c56140260f538f 2b6a31052814aa51
-         7149566d97a31c4a 5b6a5967c3a87f33
+      output (32 octets):  4c 26 ec f1 fa da ba af 36 c7 4a 87 e6 19 82
+         51 83 c6 b9 02 c3 8f 7b f5 7b 95 82 d1 01 c8 60 8a
 
    {server}  derive secret "tls13 exp master":
 
-      PRK (32 octets):  2ae6c14394cee63b 10da68414cbd934a
-         6038f7e674f63ca0 238748171bfb9608
+      PRK (32 octets):  ef 5f 99 70 6a ea 23 32 84 5a 35 96 33 ec 0a 3d
+         9a f3 5f d8 9c 0a be 62 83 c4 1d f4 20 5c da 83
 
-      hash (32 octets):  631ad7f0c54fa155 23aa467103c7109e
-         178f9ac7f3f2093b cc20d8171b7c7719
+      hash (32 octets):  33 8a 63 4e a0 f6 da be 04 a6 de 64 2d f8 cb 6f
+         a4 61 3f 72 aa b2 0d 03 c8 f0 bf 35 f3 e2 77 93
 
-      info (52 octets):  002010746c733133 20657870206d6173
-         74657220631ad7f0 c54fa15523aa4671 03c7109e178f9ac7
-         f3f2093bcc20d817 1b7c7719
+      info (52 octets):  00 20 10 74 6c 73 31 33 20 65 78 70 20 6d 61 73
+         74 65 72 20 33 8a 63 4e a0 f6 da be 04 a6 de 64 2d f8 cb 6f a4
+         61 3f 72 aa b2 0d 03 c8 f0 bf 35 f3 e2 77 93
 
-      output (32 octets):  620c2ef2925cdd4a 205f6ef34209cc72
-         9de41f5ed8e1f571 3e3dbba6d1b67ee7
-
-   {server}  derive write traffic keys for application data:
-
-      PRK (32 octets):  76c56140260f538f 2b6a31052814aa51
-         7149566d97a31c4a 5b6a5967c3a87f33
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 20]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  433109690232000f 58a29bc91b935d38
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  a5f54e2c0e3a4e66 dbcfbc2a
-
-   {server}  derive read traffic keys for early application data (same
-      as client write traffic keys)
+      output (32 octets):  66 82 a9 29 ab 34 9e 98 95 d4 86 dc 7c 0b 2f
+         38 6f 6d 31 25 17 f5 f8 eb 7d 7f 84 b9 b9 21 49 e0
 
    {client}  derive secret for handshake "tls13 derived":
 
-      PRK (32 octets):  ff197ed391b567c2 04694ee579a2dbc5
-         1cd966ac8eb37482 97d964d1436870cb
+      PRK (32 octets):  27 43 31 9e ea 2f 39 bb 93 23 14 c8 7a c6 fb 76
+         c7 c6 91 c8 d9 ea 28 f0 30 90 d5 d1 76 35 bd 7f
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      output (32 octets):  7f8b454e91e6116f 02a7b0648af8d4d0
-         4868a789320517f8 d6a9925e3a8fdb18
+      output (32 octets):  89 be c2 66 b9 63 e4 ef cd 93 75 4b d5 56 c0
+         6c 18 ad e1 dd dc 7b dd e8 fd 9e d4 3b 6b 3d d0 fc
+
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 19]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
 
    {client}  extract secret "handshake":
 
-      salt (32 octets):  7f8b454e91e6116f 02a7b0648af8d4d0
-         4868a789320517f8 d6a9925e3a8fdb18
+      salt (32 octets):  89 be c2 66 b9 63 e4 ef cd 93 75 4b d5 56 c0 6c
+         18 ad e1 dd dc 7b dd e8 fd 9e d4 3b 6b 3d d0 fc
 
-      ikm (32 octets):  a9845103208c0d96 585dfb71b7f4ceed
-         7d70df75f5f63814 f596e7812a5f1311
+      ikm (32 octets):  89 61 30 66 32 2c 03 49 2c 62 d9 b2 42 44 99 62
+         66 21 f4 60 22 c8 ce 32 02 4d a2 53 ce c2 e0 08
 
-      secret (32 octets):  b6655f822fc60c6d 3305b92472c35234
-         5bc024df49818592 1bd61f0d031eaa2b
+      secret (32 octets):  1b 4e 4e 6d bd cd c3 2d 62 34 b5 35 eb 5c f6
+         c7 d9 d5 da 6a 5c b6 02 17 15 11 56 a7 bd 70 f1 9d
 
    {client}  derive secret "tls13 c hs traffic" (same as server)
 
@@ -1166,28 +1084,6 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
    {client}  derive secret for master "tls13 derived" (same as server)
 
    {client}  extract secret "master" (same as server)
-
-   {client}  derive read traffic keys for handshake data:
-
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 21]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      PRK (32 octets):  c43b0e3c54d6a2e3 0351d4d3014f9dbd
-         0a17e0671a1b4da8 de8dce440f5d4e78
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  58806336480f5773 a10263cc829682a1
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  e612dd8f866726f9 7bb85ecb
 
    {client}  calculate finished "tls13 finished" (same as server)
 
@@ -1201,155 +1097,105 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  send handshake record:
 
-      payload (4 octets):  05000000
+      payload (4 octets):  05 00 00 00
 
-      ciphertext (26 octets):  17030100152260eb 98b01ec01794cdbd
-         ced138241ffece4a 475a
-
-   {client}  derive write traffic keys for handshake data:
-
-      PRK (32 octets):  ff732dcb700a5f05 da38ba440f629210
-         d9c991bd67f8534d 5f51ae75e46b8f95
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  a817693b0c518056 b786d87ac5488090
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  c53870caaa69dc4e 231a0dfd
-
-   {client}  derive read traffic keys for application data (same as
-      server write traffic keys)
+      ciphertext (26 octets):  17 03 03 00 15 ac 3b 67 02 84 f3 77 5f b6
+         e1 61 cc 39 75 1c 83 6e 2a 60 02 a5
 
    {client}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  ff732dcb700a5f05 da38ba440f629210
-         d9c991bd67f8534d 5f51ae75e46b8f95
-
-
-
-Thomson                  Expires April 15, 2018                [Page 22]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
+      PRK (32 octets):  6a f8 94 78 09 97 1f 14 59 66 ef 2c 25 da b2 b0
+         83 cc 50 51 df 03 71 c3 f8 b0 3b 7c 9c 8d 5a 01
 
       hash (0 octets):  (empty)
 
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-      output (32 octets):  b4f0d52c5302d9a1 b6c717473a0f4fa7
-         48e7a35c219c94b2 1acacf852afcb7d7
+      output (32 octets):  51 08 d1 74 c8 a6 87 f9 dd c6 52 5c eb 8e 11
+         d0 14 5a a6 03 8f 7f f4 18 4a c8 f9 96 cc ec 84 21
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 20]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
 
    {client}  send a Finished handshake message
 
    {client}  send handshake record:
 
-      payload (36 octets):  140000205734e66b 5b0d49331998bd39
-         a0c62441ab9c816b a2ec989af583afd8 b5446216
+      payload (36 octets):  14 00 00 20 71 58 af 6b ae 5f 60 09 4d f4 89
+         dd 78 bf 1a cd ac 70 2b 02 34 2b 67 f8 da a7 2a 28 94 b9 27 8a
 
-      ciphertext (58 octets):  17030100355fc41e 30d20a4b6e5e2ac8
-         9c6131bd968b726e 5584d089f4806594 ed647feab688bcf4
-         35b3f41e2a95612b 011eaa3325ac7dcd 423b
-
-   {client}  derive write traffic keys for application data:
-
-      PRK (32 octets):  bf824b919b06084d 64558b0f4e5b695d
-         ee88346a118b3712 78396f9ac99d45a5
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  465a9de433ff5fd0 582a533285ce5fee
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  67ae39d48ae76717 7d9cae6c
+      ciphertext (58 octets):  17 03 03 00 35 68 ca f0 33 0f f0 0c 2c 3b
+         4e 1a 4b 87 08 b6 2c ec e1 40 d3 5a cc 0b 00 88 2e 9f 8d e6 88
+         5d 8c 3c db 36 5f f2 33 bd 27 94 ce a9 e1 da fa 00 f5 ef e3 c0
+         5f 79
 
    {client}  derive secret "tls13 res master":
 
-      PRK (32 octets):  2ae6c14394cee63b 10da68414cbd934a
-         6038f7e674f63ca0 238748171bfb9608
+      PRK (32 octets):  ef 5f 99 70 6a ea 23 32 84 5a 35 96 33 ec 0a 3d
+         9a f3 5f d8 9c 0a be 62 83 c4 1d f4 20 5c da 83
 
-      hash (32 octets):  053e4fd7cae31c07 677a9dbc61e09ad4
-         bcfdbea0b326116a 3719f754abe9a12c
+      hash (32 octets):  8f 19 11 2c ae 39 67 c4 23 3a 35 42 9a e0 c9 16
+         78 dd d4 9f bc 92 74 f4 f7 ea af 76 87 c0 75 ea
 
-      info (52 octets):  002010746c733133 20726573206d6173
-         74657220053e4fd7 cae31c07677a9dbc 61e09ad4bcfdbea0
-         b326116a3719f754 abe9a12c
+      info (52 octets):  00 20 10 74 6c 73 31 33 20 72 65 73 20 6d 61 73
+         74 65 72 20 8f 19 11 2c ae 39 67 c4 23 3a 35 42 9a e0 c9 16 78
+         dd d4 9f bc 92 74 f4 f7 ea af 76 87 c0 75 ea
 
-      output (32 octets):  cd374b17289441f3 36019b6deb7ce471
-         12e414124690c4cf 3f51f1398cf9ad9b
-
-   {server}  derive read traffic keys for handshake data:
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 23]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      PRK (32 octets):  ff732dcb700a5f05 da38ba440f629210
-         d9c991bd67f8534d 5f51ae75e46b8f95
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  a817693b0c518056 b786d87ac5488090
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  c53870caaa69dc4e 231a0dfd
+      output (32 octets):  08 cc 68 85 09 b3 f9 ce bd 72 72 45 e0 b8 d2
+         54 9a ca ab 12 30 f1 65 7e 11 dd 06 c7 fb e1 95 93
 
    {server}  calculate finished "tls13 finished" (same as client)
-
-   {server}  derive read traffic keys for application data (same as
-      client write traffic keys)
 
    {server}  derive secret "tls13 res master" (same as client)
 
    {client}  send application_data record:
 
-      payload (50 octets):  0001020304050607 08090a0b0c0d0e0f
-         1011121314151617 18191a1b1c1d1e1f 2021222324252627
-         28292a2b2c2d2e2f 3031
+      payload (50 octets):  00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e
+         0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f 20 21 22 23
+         24 25 26 27 28 29 2a 2b 2c 2d 2e 2f 30 31
 
-      ciphertext (72 octets):  1703010043b69393 305a0c95b8ab1491
-         1415e0f14bf5f72e 9d0e22a310ef70cc 52fc546e574226d9
-         27e16be61cc87e5b 1075374bcaa6c4c1 8dee7fb03aec3e78
-         619ba1ceeadac276
+      ciphertext (72 octets):  17 03 03 00 43 2a aa 76 63 50 25 b5 ff 7b
+         65 99 1c ab ea 45 84 57 b2 57 9e 27 ff 93 ab 7a 70 ee 92 75 ef
+         d8 d7 a2 3d 95 13 30 29 3a aa 7e d3 c8 40 fb 7f b7 c6 65 6f a2
+         fa 92 d1 f4 81 f9 6f aa 4c 3b 25 49 17 b7 89 f1
 
    {server}  send application_data record:
 
-      payload (50 octets):  0001020304050607 08090a0b0c0d0e0f
-         1011121314151617 18191a1b1c1d1e1f 2021222324252627
-         28292a2b2c2d2e2f 3031
+      payload (50 octets):  00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e
+         0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f 20 21 22 23
+         24 25 26 27 28 29 2a 2b 2c 2d 2e 2f 30 31
 
-      ciphertext (72 octets):  170301004301a682 1d15655b812c7f4d
-         c1048ecdfaaf495d 26d096266f8cb4f5 de7f150a6daa9794
-         9862b2114d4f09d6 dd616171753b2612 e7e600817426eb7c
-         c129df96a2b4c85f
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 21]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      ciphertext (72 octets):  17 03 03 00 43 5d e8 dc 76 11 bb 5a 6d ab
+         f1 e9 ad 4b eb f9 8f 54 58 b7 69 91 b1 37 9a 58 60 77 1e 26 3a
+         13 6f a3 17 b3 a4 a8 45 9e 4a 6f 88 4a aa 90 24 27 60 b3 09 94
+         24 e9 c8 0d 6f cd dd 60 5d 90 ab cd 29 80 e6 0c
 
    {client}  send alert record:
 
-      payload (2 octets):  0100
+      payload (2 octets):  01 00
 
-      ciphertext (24 octets):  1703010013836727 1d8c597c2d920285
-         65ef0ac764bd56ed
+      ciphertext (24 octets):  17 03 03 00 13 f6 e8 93 78 31 50 2d d1 17
+         45 c6 0c 30 72 cb 0c f4 c5 3c
 
    {server}  send alert record:
 
+      payload (2 octets):  01 00
 
-
-Thomson                  Expires April 15, 2018                [Page 24]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      payload (2 octets):  0100
-
-      ciphertext (24 octets):  17030100136f6ae2 27b8c759df7d11af
-         94ee385724476cfc
+      ciphertext (24 octets):  17 03 03 00 13 bf 27 cc a2 96 a3 07 79 ef
+         2b 00 d0 b5 b0 69 1d ae 20 f7
 
 5.  HelloRetryRequest
 
@@ -1360,279 +1206,286 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  9494772af07be719 99c67632a87e6ad2
-         f7173850d14275e4 591a230c54924460
+      private key (32 octets):  62 9f c0 6a 29 c2 76 c1 53 0c 88 60 09
+         c9 7b 1b fc d3 1a 82 2f d5 6e 01 5c 51 7e 08 df 48 48 bc
 
-      public key (32 octets):  d813be622946adf4 e3df23c21c22afa7
-         8f621df6524b584b b19c04832a685433
+      public key (32 octets):  f6 c4 23 eb 92 09 e5 c6 bb 36 c9 4f 0d ad
+         dd 9d f0 de 82 24 bd ac 61 b4 6f 78 c2 bb 3d 66 3e 74
 
    {client}  send a ClientHello handshake message
 
    {client}  send handshake record:
 
-      payload (174 octets):  010000aa0303e5a9 575291b54e3a860d
-         36d8c64c89a5646b a86b641499f0a761 49810020f1b30000
-         0613011303130201 00007b0000000b00 0900000673657276
-         6572ff0100010000 0a00080006001d00 1700180028002600
-         24001d0020d813be 622946adf4e3df23 c21c22afa78f621d
-         f6524b584bb19c04 832a685433002b00 03027f15000d0020
-         001e040305030603 0203080408050806 0401050106010201
-         0402050206020202 002d00020101
+      payload (174 octets):  01 00 00 aa 03 03 91 bb b6 97 7a 3b c3 f4
+         93 89 0a 35 e1 88 a6 6d 4b 19 b6 fc 90 37 76 b5 ec c3 97 51 46
+         b5 a7 f5 00 00 06 13 01 13 03 13 02 01 00 00 7b 00 00 00 0b 00
+         09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00 00 0a 00 08 00 06
+         00 1d 00 17 00 18 00 28 00 26 00 24 00 1d 00 20 f6 c4 23 eb 92
+         09 e5 c6 bb 36 c9 4f 0d ad dd 9d f0 de 82 24 bd ac 61 b4 6f 78
+         c2 bb 3d 66 3e 74 00 2b 00 03 02 7f 16 00 0d 00 20 00 1e 04 03
+         05 03 06 03 02 03 08 04 08 05 08 06 04 01 05 01 06 01 02 01 04
+         02 05 02 06 02 02 02 00 2d 00 02 01 01
 
-      ciphertext (179 octets):  16030100ae010000 aa0303e5a9575291
-         b54e3a860d36d8c6 4c89a5646ba86b64 1499f0a761498100
-         20f1b30000061301 130313020100007b 0000000b00090000
-         06736572766572ff 01000100000a0008 0006001d00170018
-         002800260024001d 0020d813be622946 adf4e3df23c21c22
-         afa78f621df6524b 584bb19c04832a68 5433002b0003027f
-         15000d0020001e04 0305030603020308 0408050806040105
-         0106010201040205 0206020202002d00 020101
 
-   {server}  send a HelloRetryRequest handshake message
+
+
+Thomson                   Expires June 8, 2018                 [Page 22]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      ciphertext (179 octets):  16 03 01 00 ae 01 00 00 aa 03 03 91 bb
+         b6 97 7a 3b c3 f4 93 89 0a 35 e1 88 a6 6d 4b 19 b6 fc 90 37 76
+         b5 ec c3 97 51 46 b5 a7 f5 00 00 06 13 01 13 03 13 02 01 00 00
+         7b 00 00 00 0b 00 09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00
+         00 0a 00 08 00 06 00 1d 00 17 00 18 00 28 00 26 00 24 00 1d 00
+         20 f6 c4 23 eb 92 09 e5 c6 bb 36 c9 4f 0d ad dd 9d f0 de 82 24
+         bd ac 61 b4 6f 78 c2 bb 3d 66 3e 74 00 2b 00 03 02 7f 16 00 0d
+         00 20 00 1e 04 03 05 03 06 03 02 03 08 04 08 05 08 06 04 01 05
+         01 06 01 02 01 04 02 05 02 06 02 02 02 00 2d 00 02 01 01
+
+   {server}  send a ServerHello handshake message
 
    {server}  send handshake record:
 
-      payload (136 octets):  060000847f151301 007e002800020017
-         002c00740072337d 0b62cccf8cdc0b7d d68000000000644a
+      payload (176 octets):  02 00 00 ac 03 03 cf 21 ad 74 e5 9a 61 11
+         be 1d 8c 02 1e 65 b8 91 c2 a2 11 16 7a bb 8c 5e 07 9e 09 e2 c8
+         a8 33 9c 00 13 01 00 00 84 00 28 00 02 00 17 00 2c 00 74 00 72
+         93 8c 0d db b9 4e a2 8a c1 6f 06 c1 00 00 00 00 da 70 87 8e 93
+         5b a6 f9 51 03 de 74 22 0f 83 1c 00 30 85 63 80 3b 95 c3 37 7c
+         8d c1 e3 0c e6 0a 5e 3f e6 88 75 98 d5 78 8c 83 aa 5a 26 e8 bd
+         15 f6 ac 35 d0 37 2c d0 14 e6 8a 15 8f 64 e3 83 2c d9 23 d0 74
+         ab 4e 7f 23 d9 2b e0 e7 9d b2 f7 c9 e4 d4 f3 74 34 66 ed 21 dc
+         67 bd a1 80 a2 1c b2 87 1f 00 2b 00 02 7f 16
 
-
-
-Thomson                  Expires April 15, 2018                [Page 25]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-         fe3f62879392be13 4a971a59a89f0030 0691cf3711518be7
-         bc37e8a29ced7566 3aa2ac28d570c290 1ad076c18819f950
-         ca5a83f1bb9f78be d3617ad6d8415380 a01ea213d550cd1c
-         f35ae8dfd49348d1 9728218c4213c3bd c9aa47fb0d04654e
-
-      ciphertext (141 octets):  1603010088060000 847f151301007e00
-         2800020017002c00 740072337d0b62cc cf8cdc0b7dd68000
-         000000644afe3f62 879392be134a971a 59a89f00300691cf
-         3711518be7bc37e8 a29ced75663aa2ac 28d570c2901ad076
-         c18819f950ca5a83 f1bb9f78bed3617a d6d8415380a01ea2
-         13d550cd1cf35ae8 dfd49348d1972821 8c4213c3bdc9aa47 fb0d04654e
+      ciphertext (181 octets):  16 03 03 00 b0 02 00 00 ac 03 03 cf 21
+         ad 74 e5 9a 61 11 be 1d 8c 02 1e 65 b8 91 c2 a2 11 16 7a bb 8c
+         5e 07 9e 09 e2 c8 a8 33 9c 00 13 01 00 00 84 00 28 00 02 00 17
+         00 2c 00 74 00 72 93 8c 0d db b9 4e a2 8a c1 6f 06 c1 00 00 00
+         00 da 70 87 8e 93 5b a6 f9 51 03 de 74 22 0f 83 1c 00 30 85 63
+         80 3b 95 c3 37 7c 8d c1 e3 0c e6 0a 5e 3f e6 88 75 98 d5 78 8c
+         83 aa 5a 26 e8 bd 15 f6 ac 35 d0 37 2c d0 14 e6 8a 15 8f 64 e3
+         83 2c d9 23 d0 74 ab 4e 7f 23 d9 2b e0 e7 9d b2 f7 c9 e4 d4 f3
+         74 34 66 ed 21 dc 67 bd a1 80 a2 1c b2 87 1f 00 2b 00 02 7f 16
 
    {client}  create an ephemeral P-256 key pair:
 
-      private key (32 octets):  8b5cddbc91b32ad3 09b4c334a4e14411
-         7fc5f2c88048ea85 b0c0cbeddaf8ca0e
+      private key (32 octets):  c5 2a 40 9c 32 6c 42 03 b8 6a e8 5f 4e
+         b8 a5 d9 85 21 ec 77 1a ae da 3c a7 14 6d 99 32 65 8e 5f
 
-      public key (65 octets):  04fb82a50180c191 a3d549f3821b4a11
-         11397d72cb46d16e 9cce5f342616d28e 1c83ceaa91de7538
-         bffe09c4cd191093 b1c3487045af7f4a 2df72686a3136fd6 40
+      public key (65 octets):  04 01 68 3a e3 6c 03 9e cb e6 1b a7 81 2d
+         c8 e6 19 83 25 2e 88 89 b4 4a 70 97 2d ec 30 83 1d f6 ae 50 fb
+         5e c3 6b 7c c6 b9 c6 21 7a 7b 6f 45 fb 73 2d 75 ce 33 4d 5f 46
+         74 a4 39 48 33 b7 68 34 46
 
    {client}  send a ClientHello handshake message
 
    {client}  send handshake record:
 
-      payload (512 octets):  010001fc0303e5a9 575291b54e3a860d
-         36d8c64c89a5646b a86b641499f0a761 49810020f1b30000
-         0613011303130201 0001cd0000000b00 0900000673657276
-         6572ff0100010000 0a00080006001d00 1700180028004700
-         450017004104fb82 a50180c191a3d549 f3821b4a1111397d
-         72cb46d16e9cce5f 342616d28e1c83ce aa91de7538bffe09
-         c4cd191093b1c348 7045af7f4a2df726 86a3136fd640002b
-         0003027f15000d00 20001e0403050306 0302030804080508
-         0604010501060102 0104020502060202 02002c0074007233
-         7d0b62cccf8cdc0b 7dd6800000000064 4afe3f62879392be
-         134a971a59a89f00 300691cf3711518b e7bc37e8a29ced75
-         663aa2ac28d570c2 901ad076c18819f9 50ca5a83f1bb9f78
-         bed3617ad6d84153 80a01ea213d550cd 1cf35ae8dfd49348
-         d19728218c4213c3 bdc9aa47fb0d0465 4e002d0002010100
-         1500b50000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
 
 
 
-
-Thomson                  Expires April 15, 2018                [Page 26]
+Thomson                   Expires June 8, 2018                 [Page 23]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-      ciphertext (517 octets):  1603010200010001 fc0303e5a9575291
-         b54e3a860d36d8c6 4c89a5646ba86b64 1499f0a761498100
-         20f1b30000061301 13031302010001cd 0000000b00090000
-         06736572766572ff 01000100000a0008 0006001d00170018
-         0028004700450017 004104fb82a50180 c191a3d549f3821b
-         4a1111397d72cb46 d16e9cce5f342616 d28e1c83ceaa91de
-         7538bffe09c4cd19 1093b1c3487045af 7f4a2df72686a313
-         6fd640002b000302 7f15000d0020001e 0403050306030203
-         0804080508060401 0501060102010402 050206020202002c
-         00740072337d0b62 cccf8cdc0b7dd680 00000000644afe3f
-         62879392be134a97 1a59a89f00300691 cf3711518be7bc37
-         e8a29ced75663aa2 ac28d570c2901ad0 76c18819f950ca5a
-         83f1bb9f78bed361 7ad6d8415380a01e a213d550cd1cf35a
-         e8dfd49348d19728 218c4213c3bdc9aa 47fb0d04654e002d
-         00020101001500b5 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000000000
-         0000000000000000 0000000000000000 0000000000
+      payload (512 octets):  01 00 01 fc 03 03 91 bb b6 97 7a 3b c3 f4
+         93 89 0a 35 e1 88 a6 6d 4b 19 b6 fc 90 37 76 b5 ec c3 97 51 46
+         b5 a7 f5 00 00 06 13 01 13 03 13 02 01 00 01 cd 00 00 00 0b 00
+         09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00 00 0a 00 08 00 06
+         00 1d 00 17 00 18 00 28 00 47 00 45 00 17 00 41 04 01 68 3a e3
+         6c 03 9e cb e6 1b a7 81 2d c8 e6 19 83 25 2e 88 89 b4 4a 70 97
+         2d ec 30 83 1d f6 ae 50 fb 5e c3 6b 7c c6 b9 c6 21 7a 7b 6f 45
+         fb 73 2d 75 ce 33 4d 5f 46 74 a4 39 48 33 b7 68 34 46 00 2b 00
+         03 02 7f 16 00 0d 00 20 00 1e 04 03 05 03 06 03 02 03 08 04 08
+         05 08 06 04 01 05 01 06 01 02 01 04 02 05 02 06 02 02 02 00 2c
+         00 74 00 72 93 8c 0d db b9 4e a2 8a c1 6f 06 c1 00 00 00 00 da
+         70 87 8e 93 5b a6 f9 51 03 de 74 22 0f 83 1c 00 30 85 63 80 3b
+         95 c3 37 7c 8d c1 e3 0c e6 0a 5e 3f e6 88 75 98 d5 78 8c 83 aa
+         5a 26 e8 bd 15 f6 ac 35 d0 37 2c d0 14 e6 8a 15 8f 64 e3 83 2c
+         d9 23 d0 74 ab 4e 7f 23 d9 2b e0 e7 9d b2 f7 c9 e4 d4 f3 74 34
+         66 ed 21 dc 67 bd a1 80 a2 1c b2 87 1f 00 2d 00 02 01 01 00 15
+         00 b5 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+      ciphertext (517 octets):  16 03 03 02 00 01 00 01 fc 03 03 91 bb
+         b6 97 7a 3b c3 f4 93 89 0a 35 e1 88 a6 6d 4b 19 b6 fc 90 37 76
+         b5 ec c3 97 51 46 b5 a7 f5 00 00 06 13 01 13 03 13 02 01 00 01
+         cd 00 00 00 0b 00 09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00
+         00 0a 00 08 00 06 00 1d 00 17 00 18 00 28 00 47 00 45 00 17 00
+         41 04 01 68 3a e3 6c 03 9e cb e6 1b a7 81 2d c8 e6 19 83 25 2e
+         88 89 b4 4a 70 97 2d ec 30 83 1d f6 ae 50 fb 5e c3 6b 7c c6 b9
+         c6 21 7a 7b 6f 45 fb 73 2d 75 ce 33 4d 5f 46 74 a4 39 48 33 b7
+         68 34 46 00 2b 00 03 02 7f 16 00 0d 00 20 00 1e 04 03 05 03 06
+         03 02 03 08 04 08 05 08 06 04 01 05 01 06 01 02 01 04 02 05 02
+         06 02 02 02 00 2c 00 74 00 72 93 8c 0d db b9 4e a2 8a c1 6f 06
+         c1 00 00 00 00 da 70 87 8e 93 5b a6 f9 51 03 de 74 22 0f 83 1c
+         00 30 85 63 80 3b 95 c3 37 7c 8d c1 e3 0c e6 0a 5e 3f e6 88 75
+         98 d5 78 8c 83 aa 5a 26 e8 bd 15 f6 ac 35 d0 37 2c d0 14 e6 8a
+         15 8f 64 e3 83 2c d9 23 d0 74 ab 4e 7f 23 d9 2b e0 e7 9d b2 f7
+         c9 e4 d4 f3 74 34 66 ed 21 dc 67 bd a1 80 a2 1c b2 87 1f 00 2d
+         00 02 01 01 00 15 00 b5 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 24]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
    {server}  extract secret "early":
 
       salt:  (absent)
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      secret (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c
+         e2 10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
    {server}  create an ephemeral P-256 key pair:
 
-      private key (32 octets):  486b3ad95b4149e3 18927683b9973c15
-         6554ba79c36bbbe4 56ff75d1ece8e951
+      private key (32 octets):  aa 89 3f ad 2b 0e ac 54 60 2d f9 df db
+         5a b7 11 a1 0b 7f d5 4e 22 72 d3 d8 ae aa e1 eb 9e cf ed
 
-      public key (65 octets):  04278a8a647e775b 51ef7c2119594a49
-         ec7d5d2ebf849c65 9dcf987684a085d5 d4531115a7a86d12
-         2fbb56e352a9c42f 298bac60bfe74554 b4d1135e663d6504 e4
+      public key (65 octets):  04 02 f2 b3 16 bc d4 a3 b3 1a 3e 9e f0 3f
+         0d cb d9 53 45 e8 5d 12 8e b1 ae 0f 0b 97 08 6b ca d5 c9 4f 5f
+         9e b6 a1 0d ef ee 09 c4 c0 9d f2 59 e3 20 f4 f0 c7 53 66 7c e9
+         87 e6 38 e3 7a f7 b5 b5 5e
 
    {server}  send a ServerHello handshake message
 
    {server}  derive secret for handshake "tls13 derived":
 
-      PRK (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      PRK (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c e2
+         10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-Thomson                  Expires April 15, 2018                [Page 27]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
-
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
-
-      output (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+      output (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6
+         97 16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
    {server}  extract secret "handshake":
 
-      salt (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+      salt (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6 97
+         16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
-      ikm (32 octets):  c63105b7ae7f5504 b1788eaff7ab4e62
-         d5d1b9ff2e4fccfe ee84fe595262d43e
+      ikm (32 octets):  41 55 10 d4 57 24 93 b8 99 dd fa 6c 76 e9 4a 89
+         21 ea 35 60 1d 73 c6 33 b1 d5 17 88 f5 e4 02 46
 
-      secret (32 octets):  052076248abb7ab4 312a4edd19b52b2a
-         f9072565b8b66f28 ed050a446bd6e9e3
+
+
+Thomson                   Expires June 8, 2018                 [Page 25]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      secret (32 octets):  ca f6 2e 46 49 88 68 7b 56 20 01 a0 1b 71 b3
+         84 c3 6b 6b a0 65 94 a4 8c da d2 25 87 98 9a 9f 73
 
    {server}  derive secret "tls13 c hs traffic":
 
-      PRK (32 octets):  052076248abb7ab4 312a4edd19b52b2a
-         f9072565b8b66f28 ed050a446bd6e9e3
+      PRK (32 octets):  ca f6 2e 46 49 88 68 7b 56 20 01 a0 1b 71 b3 84
+         c3 6b 6b a0 65 94 a4 8c da d2 25 87 98 9a 9f 73
 
-      hash (32 octets):  fe960beb4dd90fe8 b988e063aa0e8ab9
-         27d6a1f67f7f6277 8cb0f5c31fab9672
+      hash (32 octets):  c5 57 43 91 81 73 b2 c1 71 95 4c f2 01 be 49 1b
+         5b 6e e5 39 35 14 97 a1 2e 6c eb 5b df e2 c0 c0
 
-      info (54 octets):  002012746c733133 2063206873207472
-         616666696320fe96 0beb4dd90fe8b988 e063aa0e8ab927d6
-         a1f67f7f62778cb0 f5c31fab9672
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 63 20 68 73 20 74 72
+         61 66 66 69 63 20 c5 57 43 91 81 73 b2 c1 71 95 4c f2 01 be 49
+         1b 5b 6e e5 39 35 14 97 a1 2e 6c eb 5b df e2 c0 c0
 
-      output (32 octets):  88599842eb8fb3ae b2924e1ce5173647
-         4d6407556706c6d4 f1a4c66c061422fe
+      output (32 octets):  f2 70 30 c0 67 0c 55 b3 58 02 cc 46 d2 0f 78
+         b8 89 27 86 a0 f5 9d e1 5c 74 df 46 b4 12 9c 53 82
 
    {server}  derive secret "tls13 s hs traffic":
 
-      PRK (32 octets):  052076248abb7ab4 312a4edd19b52b2a
-         f9072565b8b66f28 ed050a446bd6e9e3
+      PRK (32 octets):  ca f6 2e 46 49 88 68 7b 56 20 01 a0 1b 71 b3 84
+         c3 6b 6b a0 65 94 a4 8c da d2 25 87 98 9a 9f 73
 
-      hash (32 octets):  fe960beb4dd90fe8 b988e063aa0e8ab9
-         27d6a1f67f7f6277 8cb0f5c31fab9672
+      hash (32 octets):  c5 57 43 91 81 73 b2 c1 71 95 4c f2 01 be 49 1b
+         5b 6e e5 39 35 14 97 a1 2e 6c eb 5b df e2 c0 c0
 
-      info (54 octets):  002012746c733133 2073206873207472
-         616666696320fe96 0beb4dd90fe8b988 e063aa0e8ab927d6
-         a1f67f7f62778cb0 f5c31fab9672
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 73 20 68 73 20 74 72
+         61 66 66 69 63 20 c5 57 43 91 81 73 b2 c1 71 95 4c f2 01 be 49
+         1b 5b 6e e5 39 35 14 97 a1 2e 6c eb 5b df e2 c0 c0
 
-
-
-
-Thomson                  Expires April 15, 2018                [Page 28]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      output (32 octets):  8f965fb8e46cda0c e764a3aef2265b40
-         cdf9a86a0156b299 9490cd7c0d092268
+      output (32 octets):  92 25 80 fb 87 01 49 24 88 c0 26 31 c0 ed 55
+         81 fd b6 90 5c 79 df 71 f5 2b 16 43 f9 c6 2b 7c e7
 
    {server}  derive secret for master "tls13 derived":
 
-      PRK (32 octets):  052076248abb7ab4 312a4edd19b52b2a
-         f9072565b8b66f28 ed050a446bd6e9e3
+      PRK (32 octets):  ca f6 2e 46 49 88 68 7b 56 20 01 a0 1b 71 b3 84
+         c3 6b 6b a0 65 94 a4 8c da d2 25 87 98 9a 9f 73
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      output (32 octets):  a76e55b188f80e48 67ab9e8cb1e9768b
-         8a43909758569c4d be476625ca6d0195
+      output (32 octets):  a5 2e 78 9a 13 96 46 81 21 47 31 02 fe 92 da
+         b8 98 23 0d ef 35 b3 f0 f5 5b f1 ab 2a d9 80 6f fd
+
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 26]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
 
    {server}  extract secret "master":
 
-      salt (32 octets):  a76e55b188f80e48 67ab9e8cb1e9768b
-         8a43909758569c4d be476625ca6d0195
+      salt (32 octets):  a5 2e 78 9a 13 96 46 81 21 47 31 02 fe 92 da b8
+         98 23 0d ef 35 b3 f0 f5 5b f1 ab 2a d9 80 6f fd
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  4ef6de8584e1baf7 ef9e4c58e7db4464
-         180ebbfef477be24 22d75fa98b6073e6
+      secret (32 octets):  31 1b f9 31 12 89 e6 42 fd 48 5d b9 01 77 d0
+         5c f6 f9 f6 1b b9 4e cc 4d c1 22 fe d4 f2 e0 dd cf
 
    {server}  send handshake record:
 
-      payload (115 octets):  0200006f7f1548b1 40ba36c2ab1ceb39
-         ee2939bf87ff7f37 8154f5c39c3fdfe9 42ac7fb823221301
-         0049002800450017 004104278a8a647e 775b51ef7c211959
-         4a49ec7d5d2ebf84 9c659dcf987684a0 85d5d4531115a7a8
-         6d122fbb56e352a9 c42f298bac60bfe7 4554b4d1135e663d 6504e4
+      payload (123 octets):  02 00 00 77 03 03 52 b8 07 da c6 25 2d 2e
+         0f 1d 4c 53 9d 79 fc f0 e4 e3 87 2b 2c 10 a3 a2 0d 37 c3 1a 92
+         8c 6d 5d 00 13 01 00 00 4f 00 28 00 45 00 17 00 41 04 02 f2 b3
+         16 bc d4 a3 b3 1a 3e 9e f0 3f 0d cb d9 53 45 e8 5d 12 8e b1 ae
+         0f 0b 97 08 6b ca d5 c9 4f 5f 9e b6 a1 0d ef ee 09 c4 c0 9d f2
+         59 e3 20 f4 f0 c7 53 66 7c e9 87 e6 38 e3 7a f7 b5 b5 5e 00 2b
+         00 02 7f 16
 
-      ciphertext (120 octets):  1603010073020000 6f7f1548b140ba36
-         c2ab1ceb39ee2939 bf87ff7f378154f5 c39c3fdfe942ac7f
-         b823221301004900 2800450017004104 278a8a647e775b51
-         ef7c2119594a49ec 7d5d2ebf849c659d cf987684a085d5d4
-         531115a7a86d122f bb56e352a9c42f29 8bac60bfe74554b4
-         d1135e663d6504e4
-
-   {server}  derive write traffic keys for handshake data:
-
-      PRK (32 octets):  8f965fb8e46cda0c e764a3aef2265b40
-         cdf9a86a0156b299 9490cd7c0d092268
-
-
-
-Thomson                  Expires April 15, 2018                [Page 29]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  3b4a19da30bb9193 086fff0e308af9ee
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  6597215aa5741173 f38b6ec6
+      ciphertext (128 octets):  16 03 03 00 7b 02 00 00 77 03 03 52 b8
+         07 da c6 25 2d 2e 0f 1d 4c 53 9d 79 fc f0 e4 e3 87 2b 2c 10 a3
+         a2 0d 37 c3 1a 92 8c 6d 5d 00 13 01 00 00 4f 00 28 00 45 00 17
+         00 41 04 02 f2 b3 16 bc d4 a3 b3 1a 3e 9e f0 3f 0d cb d9 53 45
+         e8 5d 12 8e b1 ae 0f 0b 97 08 6b ca d5 c9 4f 5f 9e b6 a1 0d ef
+         ee 09 c4 c0 9d f2 59 e3 20 f4 f0 c7 53 66 7c e9 87 e6 38 e3 7a
+         f7 b5 b5 5e 00 2b 00 02 7f 16
 
    {server}  send a EncryptedExtensions handshake message
 
@@ -1642,216 +1495,198 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {server}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  8f965fb8e46cda0c e764a3aef2265b40
-         cdf9a86a0156b299 9490cd7c0d092268
+      PRK (32 octets):  92 25 80 fb 87 01 49 24 88 c0 26 31 c0 ed 55 81
+         fd b6 90 5c 79 df 71 f5 2b 16 43 f9 c6 2b 7c e7
 
       hash (0 octets):  (empty)
 
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-      output (32 octets):  ec1167bbda40f411 80c1242ee6e48164
-         a2e5fe0cfeab0690 58d2870b4b32108f
+      output (32 octets):  3b 13 ec 2f 98 10 f3 5f 44 0f c3 65 9c 04 bd
+         2f 5a 54 e0 4d 44 5c 9b c3 7f 84 2f b2 9b 80 08 02
+
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 27]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
 
    {server}  send a Finished handshake message
 
    {server}  send handshake record:
 
-      payload (639 octets):  080000120010000a 0008000600170018
-         001d000000000b00 01b9000001b50001 b0308201ac308201
-         15a0030201020201 02300d06092a8648 86f70d01010b0500
-         300e310c300a0603 5504031303727361 301e170d31363037
-         3330303132333539 5a170d3236303733 303031323335395a
-         300e310c300a0603 5504031303727361 30819f300d06092a
-         864886f70d010101 050003818d003081 8902818100b4bb49
-         8f8279303d980836 399b36c6988c0c68 de55e1bdb826d390
-         1a2461eafd2de49a 91d015abbc9a9513 7ace6c1af19eaa6a
-         f98c7ced43120998 e187a80ee0ccb052 4b1b018c3e0b6326
-         4d449a6d38e22a5f da43084674803053 0ef0461c8ca9d9ef
-         bfae8ea6d1d03e2b d193eff0ab9a8002 c47428a6d35a8d88
-         d79f7f1e3f020301 0001a31a30183009 0603551d13040230
-         00300b0603551d0f 0404030205a0300d 06092a864886f70d
-         01010b0500038181 0085aad2a0e5b927 6b908c65f73a7267
-         170618a54c5f8a7b 337d2df7a5943654 17f2eae8f8a58c8f
-         8172f9319cf36b7f d6c55b80f21a0301 5156726096fd335e
-         5e67f2dbf102702e 608ccae6bec1fc63 a42a99be5c3eb710
+      payload (639 octets):  08 00 00 12 00 10 00 0a 00 08 00 06 00 17
+         00 18 00 1d 00 00 00 00 0b 00 01 b9 00 00 01 b5 00 01 b0 30 82
+         01 ac 30 82 01 15 a0 03 02 01 02 02 01 02 30 0d 06 09 2a 86 48
+         86 f7 0d 01 01 0b 05 00 30 0e 31 0c 30 0a 06 03 55 04 03 13 03
+         72 73 61 30 1e 17 0d 31 36 30 37 33 30 30 31 32 33 35 39 5a 17
+         0d 32 36 30 37 33 30 30 31 32 33 35 39 5a 30 0e 31 0c 30 0a 06
+         03 55 04 03 13 03 72 73 61 30 81 9f 30 0d 06 09 2a 86 48 86 f7
+         0d 01 01 01 05 00 03 81 8d 00 30 81 89 02 81 81 00 b4 bb 49 8f
+         82 79 30 3d 98 08 36 39 9b 36 c6 98 8c 0c 68 de 55 e1 bd b8 26
+         d3 90 1a 24 61 ea fd 2d e4 9a 91 d0 15 ab bc 9a 95 13 7a ce 6c
+         1a f1 9e aa 6a f9 8c 7c ed 43 12 09 98 e1 87 a8 0e e0 cc b0 52
+         4b 1b 01 8c 3e 0b 63 26 4d 44 9a 6d 38 e2 2a 5f da 43 08 46 74
+         80 30 53 0e f0 46 1c 8c a9 d9 ef bf ae 8e a6 d1 d0 3e 2b d1 93
+         ef f0 ab 9a 80 02 c4 74 28 a6 d3 5a 8d 88 d7 9f 7f 1e 3f 02 03
+         01 00 01 a3 1a 30 18 30 09 06 03 55 1d 13 04 02 30 00 30 0b 06
+         03 55 1d 0f 04 04 03 02 05 a0 30 0d 06 09 2a 86 48 86 f7 0d 01
+         01 0b 05 00 03 81 81 00 85 aa d2 a0 e5 b9 27 6b 90 8c 65 f7 3a
+         72 67 17 06 18 a5 4c 5f 8a 7b 33 7d 2d f7 a5 94 36 54 17 f2 ea
+         e8 f8 a5 8c 8f 81 72 f9 31 9c f3 6b 7f d6 c5 5b 80 f2 1a 03 01
+         51 56 72 60 96 fd 33 5e 5e 67 f2 db f1 02 70 2e 60 8c ca e6 be
+         c1 fc 63 a4 2a 99 be 5c 3e b7 10 7c 3c 54 e9 b9 eb 2b d5 20 3b
+         1c 3b 84 e0 a8 b2 f7 59 40 9b a3 ea c9 d9 1d 40 2d cc 0c c8 f8
+         96 12 29 ac 91 87 b4 2b 4d e1 00 00 0f 00 00 84 08 04 00 80 4c
+         56 10 fd a8 20 8b f1 b9 7b ea 18 13 0d eb 56 a5 96 b2 2e f7 fb
+         44 3e 47 c1 9e 2a b0 91 26 83 ac 5b 06 85 c7 9a 88 2f 68 fa 40
+         19 73 3b 27 c4 73 f8 a2 3e 7e b5 79 f2 8a b9 7e 2d 1c c4 e8 0c
+         4c 7e 9f 5f 52 f6 6f ea 5b 02 e6 c3 02 90 72 a8 e7 92 31 7d 95
+         63 12 ff bd b0 0e 4c e0 9d 09 1a c3 c8 f0 6d 4e 3b fd 50 5a aa
+         05 62 e0 99 08 94 09 09 bd 04 07 52 53 87 44 36 8b c3 40 97 3f
+         51 14 00 00 20 53 94 64 5a be 1a 8f 66 39 01 a0 a1 8f dd 8f 6e
+         c4 b8 ed 59 1f e8 76 e9 ea bb f6 75 76 e1 8e a3
+
+      ciphertext (661 octets):  17 03 03 02 90 9e 6d 44 c4 05 8d b3 80
+         7b 40 c2 a6 b1 5e 43 b8 c5 86 13 9e 63 e9 3c c2 c0 8e 50 7a 86
+         e8 6e 61 53 1e 1f df a5 e5 ff 57 6a 26 49 8d 1f a2 03 00 7c 07
+         55 f1 c9 6a 18 d2 04 91 a3 6b f3 95 4f 6f 4b 66 6e 35 e7 a8 32
+         4b ab 86 1e 1f c6 47 be e8 83 8f 1d eb 6b 77 fc 9f fd a0 08 02
+         92 fe 83 9c 58 94 58 3d 73 66 14 88 c3 fe c5 78 96 8a 48 44 64
+         0f 1e 21 fc 8d 77 1f fa 9e c3 2b e4 0f c4 78 fc 4e 94 b0 6b 1e
+         26 db c2 4f 66 43 f3 61 d0 46 e4 b6 ae 91 a7 a4 f4 a2 47 0e 10
+         39 6c 9b 49 d2 b0 d3 e2 51 82 93 39 c3 a2 b3 e4 92 2b 28 5b 10
+         b5 1b 91 72 9e 32 4d d6 f8 da ee 55 a9 08 1c fb 65 bd bd d2 72
+         0d 2a 76 b4 50 a4 11 b4 c6 f7 f1 8e 1c 36 6e 08 c7 d7 5d 15 b4
+         cc 8c aa 58 40 b0 13 5e bc 05 f5 c3 5b 3a 9c 74 53 57 3b 1c 04
 
 
 
-Thomson                  Expires April 15, 2018                [Page 30]
+Thomson                   Expires June 8, 2018                 [Page 28]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-         7c3c54e9b9eb2bd5 203b1c3b84e0a8b2 f759409ba3eac9d9
-         1d402dcc0cc8f896 1229ac9187b42b4d e100000f00008408
-         0400805abeac6792 4d720a29a324f4a3 0903903a5f0979ab
-         8b6e55165f47830e e0b5270b982e9a45 de799f4e4e065daa
-         e44ae8a98cc9a1ca ad7df894476c7c64 3a45c11bdc434020
-         787eba4d433e8a94 077ec528c9885378 8af3ed8b56a67f97
-         adeff984114c2f4f 9fb0df5b31979fc6 c5c68378d986537d
-         b8b5d22b8dc9cbe2 67427f140000208e acc56e9a7c3c29b7
-         06486d45213423ae d4352c2690e28ccb 6eb62998b2aa6d
-
-      ciphertext (661 octets):  1703010290497d27 0c9be7f6cd79c7e2
-         736ddf6c016da917 1b1f43258410004a ad9c0b05e4398f27
-         0f72dc4ae8a2e8f9 1536809e88c08850 68b7cae1a4d99c6f
-         9846a9a94a4d85c7 17a8311e0f48e32f 36dc863fa22374da
-         d20cecadf89c5f77 d174294f0bebf08d 76fc88c5371b8be2
-         491153e4ab18861a aea85da0970105b1 1b06921c592b618f
-         f3b8e721d4f29f21 aaf87ac897b83f23 cb3ebb5e555bf32d
-         02290875226d572c 63d0112113fa94e1 2b36c3bd9549405f
-         7e871def723d6ec1 210ce813dc1b2cb0 f086bbb2f85dc20a
-         2aa362fcbe6fa337 f3d83df2ba53c64b db5d5c3ccd5fdc89
-         65ec85cce06ba35c 0ce7fa36eb29d547 38366107b7d674eb
-         8dcefca90fa37653 17ba8819eaf9c19e 73a0eb6119d4a218
-         c6e70562e0c4726f ba3e3ba9f93475b6 48c3fff3610d9307
-         87c15d57e4f0fed7 f606116abe7b0cef f79f0627b56263f3
-         a70a81d234ef31ac 3aade43a3f9bb29e 71b660a0768d9353
-         e55f2741fe4bd994 a8f37cb936747a4e 55a65d07b7bb12c9
-         d1b0031636d1c6c3 614c8ffe450b09a8 60943a7ac1d8faee
-         4ecc2267f132910a 77c309e3e7497bc7 53170069af406d34
-         ec849d72323e20a3 6a368e792dada93f a6e16d82b471ee17
-         fe753d230e1763ad 829b655506622567 4d6abe1adb6f2162
-         241aa604f25456b2 1dfc78ce15baee89 143ee7753c46de81
-         8cb48bc90b1a75c9 cda3b5192c7a34d2 92dfe61333936e23
-         4f9c04ea77d8e705 41b3b304440e4a6f dd6410171070ea4b
-         660dedbb32079d77 ee5a1f3b65fb4d57 f9e556efb3de3434
-         d345f8f69f578fdc b39975bf0344d012 cb4f9e911c64cfcb
-         686a83d5ddfa0ef7 5842f97e33acf2a2 8196583acf7ffe50
-         991e15d09d190583 0a9ab9d2abbc4cd5 91fb7bed2bb8d618
-         cd98082adae60fe6 1a1940e30fb744e9 49acd74241
+         8d a0 22 03 ee bf 94 f7 9d 9f d4 1b 36 10 92 b7 11 19 83 64 b7
+         6d 5c 5b 46 02 72 53 78 8a 7d a7 fb ef 95 fd c0 fc ba e2 ef c3
+         5a 7d be b3 48 ad 2a 1c 2c 1c 8b d8 f6 e8 f8 51 51 a4 77 94 bc
+         de 51 d5 8b 91 74 54 b2 9a 52 c0 4d 6e 26 2d 1e f5 8a 80 b1 46
+         27 c3 82 ed 41 22 07 7d e5 f6 82 7c 23 3a ac 4b b3 84 b8 60 fd
+         5e 51 61 96 1b ac e9 02 88 db 46 91 ca c5 b5 be 7e b8 ec 57 50
+         1c 06 b5 21 e6 fa a8 75 5c 54 00 14 d9 2a 3e 71 60 22 18 8e 4b
+         93 b8 96 01 a9 ba 31 b9 45 6c 33 e5 4d bb 86 a7 47 f2 eb 9e fd
+         e0 c3 79 93 5b 50 a8 b8 53 52 2d da a6 51 3a ce 42 8a f7 2c 61
+         ac 8a bf b1 f0 ef af d5 da 56 ea 8b f9 d4 a0 fd 64 e0 a0 46 e6
+         53 4c 4b 27 82 e4 cf fc 6b 15 85 1a 62 35 91 8d e0 67 ed 3e b5
+         18 98 ff 3c a6 38 4f 48 73 93 2c 61 2b e5 95 0c 4d c7 b4 8c 12
+         1d be a2 ff 6d c7 03 16 01 7a 4e 42 5f 14 f3 ee 24 a9 75 ba c8
+         f4 8a 66 ad 07 16 83 45 ca 58 47 7c 5f 39 80 08 12 ab cd d1 30
+         7e 0c a4 08 90 38 46 a3 d6 f8 c3 ea cf 59 39 37 c5 4b 04 24 a0
+         d3 a5 09 91 56 00 fd a6 a5 32 1c d0 75 51 b2 7f 73 42 8a 6a d0
+         70 df b6 f4 51 24 b8 ee 0a bd b9 21 f2 fe 5c 04 1d 0a e8 5e c5
+         1f c2 6a f0 ca ee cb 6c a1 1b 11 dc b6 a1 47 6e 07 18 5c 20 20
+         de cd 0f ad e7 98 17 56 cb ae 77 02 a5 8a 40 b7 05 65 c1 e6 f8
+         23 1e cc 50 9b b7 75 40 39 43 ed 7d f6 f2 fb 31 a0 98
 
    {server}  derive secret "tls13 c ap traffic":
 
-      PRK (32 octets):  4ef6de8584e1baf7 ef9e4c58e7db4464
-         180ebbfef477be24 22d75fa98b6073e6
+      PRK (32 octets):  31 1b f9 31 12 89 e6 42 fd 48 5d b9 01 77 d0 5c
+         f6 f9 f6 1b b9 4e cc 4d c1 22 fe d4 f2 e0 dd cf
 
-      hash (32 octets):  c8198978bdd242bd 348ed076e4e8d236
-         b8fb2af443310077 680baea6a29744a6
+      hash (32 octets):  42 f3 34 d7 7e 76 70 44 65 f8 e7 50 fd 15 f4 dd
+         70 77 91 4b 1d 20 b3 63 7b 87 6c d6 7b b9 85 fe
 
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 63 20 61 70 20 74 72
+         61 66 66 69 63 20 42 f3 34 d7 7e 76 70 44 65 f8 e7 50 fd 15 f4
+         dd 70 77 91 4b 1d 20 b3 63 7b 87 6c d6 7b b9 85 fe
 
-
-
-
-Thomson                  Expires April 15, 2018                [Page 31]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      info (54 octets):  002012746c733133 2063206170207472
-         616666696320c819 8978bdd242bd348e d076e4e8d236b8fb
-         2af443310077680b aea6a29744a6
-
-      output (32 octets):  6f1869c827b6f273 e558f3f76d44d3d7
-         e210c10013770345 ca0635a940114b21
+      output (32 octets):  c6 b3 9d c4 bd 86 5f 49 1e 12 9c a4 a2 e8 b7
+         dc 4d 9f 6b de 7c a5 1f 78 a6 6e 7d 7f 8a 0d 97 b1
 
    {server}  derive secret "tls13 s ap traffic":
 
-      PRK (32 octets):  4ef6de8584e1baf7 ef9e4c58e7db4464
-         180ebbfef477be24 22d75fa98b6073e6
+      PRK (32 octets):  31 1b f9 31 12 89 e6 42 fd 48 5d b9 01 77 d0 5c
+         f6 f9 f6 1b b9 4e cc 4d c1 22 fe d4 f2 e0 dd cf
 
-      hash (32 octets):  c8198978bdd242bd 348ed076e4e8d236
-         b8fb2af443310077 680baea6a29744a6
+      hash (32 octets):  42 f3 34 d7 7e 76 70 44 65 f8 e7 50 fd 15 f4 dd
+         70 77 91 4b 1d 20 b3 63 7b 87 6c d6 7b b9 85 fe
 
-      info (54 octets):  002012746c733133 2073206170207472
-         616666696320c819 8978bdd242bd348e d076e4e8d236b8fb
-         2af443310077680b aea6a29744a6
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 73 20 61 70 20 74 72
+         61 66 66 69 63 20 42 f3 34 d7 7e 76 70 44 65 f8 e7 50 fd 15 f4
+         dd 70 77 91 4b 1d 20 b3 63 7b 87 6c d6 7b b9 85 fe
 
-      output (32 octets):  450688f6cb6b7320 64c349ac38c1c78b
-         fe1af3fad5675832 4158d04d99974d4b
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 29]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      output (32 octets):  d3 a0 ae 45 c9 43 25 bc 0e 13 94 9e f0 86 b4
+         86 73 26 43 c6 c5 a9 fb 01 5c 7b c0 15 59 f2 5a 6d
 
    {server}  derive secret "tls13 exp master":
 
-      PRK (32 octets):  4ef6de8584e1baf7 ef9e4c58e7db4464
-         180ebbfef477be24 22d75fa98b6073e6
+      PRK (32 octets):  31 1b f9 31 12 89 e6 42 fd 48 5d b9 01 77 d0 5c
+         f6 f9 f6 1b b9 4e cc 4d c1 22 fe d4 f2 e0 dd cf
 
-      hash (32 octets):  c8198978bdd242bd 348ed076e4e8d236
-         b8fb2af443310077 680baea6a29744a6
+      hash (32 octets):  42 f3 34 d7 7e 76 70 44 65 f8 e7 50 fd 15 f4 dd
+         70 77 91 4b 1d 20 b3 63 7b 87 6c d6 7b b9 85 fe
 
-      info (52 octets):  002010746c733133 20657870206d6173
-         74657220c8198978 bdd242bd348ed076 e4e8d236b8fb2af4
-         43310077680baea6 a29744a6
+      info (52 octets):  00 20 10 74 6c 73 31 33 20 65 78 70 20 6d 61 73
+         74 65 72 20 42 f3 34 d7 7e 76 70 44 65 f8 e7 50 fd 15 f4 dd 70
+         77 91 4b 1d 20 b3 63 7b 87 6c d6 7b b9 85 fe
 
-      output (32 octets):  18e11c0f33295d67 abe3eb08d34a7c05
-         3f5a8634aa94fcfc 7b6b5078df1552c0
-
-   {server}  derive write traffic keys for application data:
-
-      PRK (32 octets):  450688f6cb6b7320 64c349ac38c1c78b
-         fe1af3fad5675832 4158d04d99974d4b
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  80ba90ce046ab43c cf6f3d087cd81c9b
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 32]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      iv output (12 octets):  6ea57f56179112c8 cd841bd9
-
-   {server}  derive read traffic keys for handshake data:
-
-      PRK (32 octets):  88599842eb8fb3ae b2924e1ce5173647
-         4d6407556706c6d4 f1a4c66c061422fe
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  9cd7a9e3e33bea31 03299ea8591f9fab
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  e6fcf6c751438bc0 a84a5395
+      output (32 octets):  ef bf 3e 9d 2d ab 70 65 bf f8 87 a5 8c cb 95
+         54 e4 6f dd f7 8a 53 5e 36 9f 82 5c f6 c5 d8 56 9f
 
    {client}  extract secret "early":
 
       salt:  (absent)
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      secret (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c
+         e2 10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
    {client}  derive secret for handshake "tls13 derived":
 
-      PRK (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      PRK (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c e2
+         10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      output (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+      output (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6
+         97 16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
    {client}  extract secret "handshake":
 
-      salt (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
-
-      ikm (32 octets):  c63105b7ae7f5504 b1788eaff7ab4e62
-         d5d1b9ff2e4fccfe ee84fe595262d43e
+      salt (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6 97
+         16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
 
 
 
-Thomson                  Expires April 15, 2018                [Page 33]
+Thomson                   Expires June 8, 2018                 [Page 30]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-      secret (32 octets):  052076248abb7ab4 312a4edd19b52b2a
-         f9072565b8b66f28 ed050a446bd6e9e3
+      ikm (32 octets):  41 55 10 d4 57 24 93 b8 99 dd fa 6c 76 e9 4a 89
+         21 ea 35 60 1d 73 c6 33 b1 d5 17 88 f5 e4 02 46
+
+      secret (32 octets):  ca f6 2e 46 49 88 68 7b 56 20 01 a0 1b 71 b3
+         84 c3 6b 6b a0 65 94 a4 8c da d2 25 87 98 9a 9f 73
 
    {client}  derive secret "tls13 c hs traffic" (same as server)
 
@@ -1861,19 +1696,6 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  extract secret "master" (same as server)
 
-   {client}  derive read traffic keys for handshake data:
-
-      PRK (32 octets):  8f965fb8e46cda0c e764a3aef2265b40
-         cdf9a86a0156b299 9490cd7c0d092268
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  3b4a19da30bb9193 086fff0e308af9ee
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  6597215aa5741173 f38b6ec6
-
    {client}  calculate finished "tls13 finished" (same as server)
 
    {client}  derive secret "tls13 c ap traffic" (same as server)
@@ -1882,287 +1704,250 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  derive secret "tls13 exp master" (same as server)
 
-   {client}  derive write traffic keys for handshake data (same as
-      server read traffic keys)
-
-   {client}  derive read traffic keys for application data (same as
-      server write traffic keys)
-
    {client}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  88599842eb8fb3ae b2924e1ce5173647
-         4d6407556706c6d4 f1a4c66c061422fe
+      PRK (32 octets):  f2 70 30 c0 67 0c 55 b3 58 02 cc 46 d2 0f 78 b8
+         89 27 86 a0 f5 9d e1 5c 74 df 46 b4 12 9c 53 82
 
       hash (0 octets):  (empty)
 
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 34]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      output (32 octets):  52568fa6a776755d 2d51c239175b8b57
-         2494b82abbe23764 590747018315b10a
+      output (32 octets):  57 3d 0a 00 01 e4 87 8f 40 06 41 da 42 87 a9
+         1f 53 d1 d2 2b 12 de c7 f8 ea 1c f4 e0 f2 c5 d5 74
 
    {client}  send a Finished handshake message
 
    {client}  send handshake record:
 
-      payload (36 octets):  14000020aca9e821 953c31703834d81a
-         a92db5d397e371d3 f8ae18f0c0c13063 576ba50a
+      payload (36 octets):  14 00 00 20 9e 1e cf cc 0f 38 b8 90 57 a3 6e
+         44 f2 a8 23 b4 b7 de ea fa af c5 07 9f e3 74 93 8a 9c 29 06 20
 
-      ciphertext (58 octets):  17030100354dd21a 64b34a681f4d57e7
-         74ec128638025bb1 c35cb7900e482696 82ae18eb5b08cbcc
-         00178a058b2be0e5 9821f4b6a32afe3f 46c6
-
-   {client}  derive write traffic keys for application data:
-
-      PRK (32 octets):  6f1869c827b6f273 e558f3f76d44d3d7
-         e210c10013770345 ca0635a940114b21
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  9a40684cf46b7646 5380937f1814d547
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  05e5a3d49034dd28 fbeddb26
+      ciphertext (58 octets):  17 03 03 00 35 32 b3 bc 40 69 77 59 b8 28
+         e6 cb 47 91 a7 81 8d 6b 6b f7 6a 0d 6d 9b 9b 05 8a 12 5e bc 06
+         c0 cc f3 9b 6d 47 79 22 52 a7 ef 88 11 21 b5 9a e3 57 1c 6a ea
+         0c 33
 
    {client}  derive secret "tls13 res master":
 
-      PRK (32 octets):  4ef6de8584e1baf7 ef9e4c58e7db4464
-         180ebbfef477be24 22d75fa98b6073e6
 
-      hash (32 octets):  94167fb6b4a00c02 0c0e42a3fc971513
-         ad63a914d0896b62 7f1aa97a08a860e9
 
-      info (52 octets):  002010746c733133 20726573206d6173
-         7465722094167fb6 b4a00c020c0e42a3 fc971513ad63a914
-         d0896b627f1aa97a 08a860e9
+Thomson                   Expires June 8, 2018                 [Page 31]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
 
-      output (32 octets):  a74ee62d18d628ff f023fbd0175e1498
-         3983b7ca014443e5 424a4aa42b8cc8eb
+
+      PRK (32 octets):  31 1b f9 31 12 89 e6 42 fd 48 5d b9 01 77 d0 5c
+         f6 f9 f6 1b b9 4e cc 4d c1 22 fe d4 f2 e0 dd cf
+
+      hash (32 octets):  36 7d 3f 81 c5 17 9b b0 f9 70 82 83 6a 17 21 3a
+         a8 40 0d 10 3d 6f a7 bf a4 31 90 ab 78 30 66 5e
+
+      info (52 octets):  00 20 10 74 6c 73 31 33 20 72 65 73 20 6d 61 73
+         74 65 72 20 36 7d 3f 81 c5 17 9b b0 f9 70 82 83 6a 17 21 3a a8
+         40 0d 10 3d 6f a7 bf a4 31 90 ab 78 30 66 5e
+
+      output (32 octets):  4a bc 90 10 bd 34 7e 85 c0 bc f6 f2 71 dd dc
+         39 ae 5f 69 67 26 83 03 02 b7 f8 c4 8d c2 db c6 c0
 
    {server}  calculate finished "tls13 finished" (same as client)
 
-   {server}  derive read traffic keys for application data (same as
-      client write traffic keys)
-
    {server}  derive secret "tls13 res master" (same as client)
-
-
-
-Thomson                  Expires April 15, 2018                [Page 35]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
 
    {client}  send alert record:
 
-      payload (2 octets):  0100
+      payload (2 octets):  01 00
 
-      ciphertext (24 octets):  1703010013a673e4 115efd2de8d13c23
-         556bb8c85c726a89
+      ciphertext (24 octets):  17 03 03 00 13 b2 bc 98 f4 90 96 e0 53 e5
+         8b 94 11 ca c3 65 6e fb 61 cf
 
    {server}  send alert record:
 
-      payload (2 octets):  0100
+      payload (2 octets):  01 00
 
-      ciphertext (24 octets):  1703010013bb42e6 62c1c6cf7ef6529d
-         1fe5987b1361cf25
+      ciphertext (24 octets):  17 03 03 00 13 72 cd 0d 92 39 85 d3 4f a4
+         3a 4b a8 ef a0 d1 ff 05 e3 cc
 
 6.  Client Authentication
 
    In this example, the server requests client authentication.  The
-   client uses an ECDSA certificate with a P-256 key.
+   client uses a certificate with an RSA key, the server uses an ECDSA
+   certificate with a P-256 key.
 
    {client}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  dcec5d6ee2fe6d2d 4a45fdfcc9ddf7c5
-         c44ef7f37559a8af cfa8e3a067a1b362
+      private key (32 octets):  14 b9 ad 56 69 c9 df 67 63 8e dc df 09
+         89 97 af 4a 9e 6b b9 0b c2 00 0d 2c a8 0c e1 b1 44 15 0f
 
-      public key (32 octets):  79e376f44c6e81c8 80cc787e82114644
-         08e785393846c0dd 6b186e85c647832c
+      public key (32 octets):  46 46 8f cb 2e 17 67 58 d2 c7 33 06 49 76
+         a3 68 90 7c f8 f0 ea 85 e3 f5 10 1f 31 bc 95 01 77 0e
 
    {client}  send a ClientHello handshake message
 
    {client}  send handshake record:
 
-      payload (186 octets):  010000b60303f59a 966109952a25b6fc
-         396fe760e3ec0722 efb9863e94999c7f c948d08b88260000
-         0613011303130201 0000870000000b00 0900000673657276
-         6572ff0100010000 0a00140012001d00 1700180019010001
-         0101020103010400 2800260024001d00 2079e376f44c6e81
-         c880cc787e821146 4408e785393846c0 dd6b186e85c64783
-         2c002b0003027f15 000d0020001e0403 0503060302030804
-         0805080604010501 0601020104020502 06020202002d0002 0101
-
-      ciphertext (191 octets):  16030100ba010000 b60303f59a966109
-         952a25b6fc396fe7 60e3ec0722efb986 3e94999c7fc948d0
-         8b88260000061301 1303130201000087 0000000b00090000
-         06736572766572ff 01000100000a0014 0012001d00170018
-         0019010001010102 0103010400280026 0024001d002079e3
-         76f44c6e81c880cc 787e8211464408e7 85393846c0dd6b18
-         6e85c647832c002b 0003027f15000d00 20001e0403050306
 
 
-
-
-Thomson                  Expires April 15, 2018                [Page 36]
+Thomson                   Expires June 8, 2018                 [Page 32]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-         0302030804080508 0604010501060102 0104020502060202
-         02002d00020101
+      payload (186 octets):  01 00 00 b6 03 03 0b 24 05 62 5f bb ee 41
+         a8 41 3c 11 db 5e ab 57 06 b1 1d 03 9e db ab e0 24 4f 90 c9 c4
+         3e 18 ee 00 00 06 13 01 13 03 13 02 01 00 00 87 00 00 00 0b 00
+         09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00 00 0a 00 14 00 12
+         00 1d 00 17 00 18 00 19 01 00 01 01 01 02 01 03 01 04 00 28 00
+         26 00 24 00 1d 00 20 46 46 8f cb 2e 17 67 58 d2 c7 33 06 49 76
+         a3 68 90 7c f8 f0 ea 85 e3 f5 10 1f 31 bc 95 01 77 0e 00 2b 00
+         03 02 7f 16 00 0d 00 20 00 1e 04 03 05 03 06 03 02 03 08 04 08
+         05 08 06 04 01 05 01 06 01 02 01 04 02 05 02 06 02 02 02 00 2d
+         00 02 01 01
+
+      ciphertext (191 octets):  16 03 01 00 ba 01 00 00 b6 03 03 0b 24
+         05 62 5f bb ee 41 a8 41 3c 11 db 5e ab 57 06 b1 1d 03 9e db ab
+         e0 24 4f 90 c9 c4 3e 18 ee 00 00 06 13 01 13 03 13 02 01 00 00
+         87 00 00 00 0b 00 09 00 00 06 73 65 72 76 65 72 ff 01 00 01 00
+         00 0a 00 14 00 12 00 1d 00 17 00 18 00 19 01 00 01 01 01 02 01
+         03 01 04 00 28 00 26 00 24 00 1d 00 20 46 46 8f cb 2e 17 67 58
+         d2 c7 33 06 49 76 a3 68 90 7c f8 f0 ea 85 e3 f5 10 1f 31 bc 95
+         01 77 0e 00 2b 00 03 02 7f 16 00 0d 00 20 00 1e 04 03 05 03 06
+         03 02 03 08 04 08 05 08 06 04 01 05 01 06 01 02 01 04 02 05 02
+         06 02 02 02 00 2d 00 02 01 01
 
    {server}  extract secret "early":
 
       salt:  (absent)
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      secret (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c
+         e2 10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
    {server}  create an ephemeral x25519 key pair:
 
-      private key (32 octets):  120bf3b2a47e195c fb7ebde919991c35
-         1ba99db6dc8c80b1 0c123474954290ae
+      private key (32 octets):  5c 2e a9 c7 ab bc 73 26 c6 4b bb cf 1b
+         d8 8d fe 5f 52 fe f0 f0 47 e6 ab 3b 30 11 a9 78 f9 91 9a
 
-      public key (32 octets):  2b18d4de14983f21 76685ff19425b875
-         54cb65bbacddc4de 4ad7f72cb5938975
+      public key (32 octets):  c3 d0 a0 68 a2 32 f6 65 70 1c 88 42 a2 22
+         0e d3 bd 17 b4 2f bf bd 39 bd 1f 4b 98 5b b7 ed 18 37
 
    {server}  send a ServerHello handshake message
 
    {server}  derive secret for handshake "tls13 derived":
 
-      PRK (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      PRK (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c e2
+         10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
 
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
 
-      output (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+
+
+Thomson                   Expires June 8, 2018                 [Page 33]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
+
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
+
+      output (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6
+         97 16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
    {server}  extract secret "handshake":
 
-      salt (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+      salt (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6 97
+         16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
-      ikm (32 octets):  b6a5e53b56458442 5068d1ba74990a76
-         9976ec06fd062101 e03c321481a02564
+      ikm (32 octets):  ad 0f 65 fb 86 8a 59 c5 01 97 19 89 5c 67 94 76
+         5c da a8 af a2 d7 15 de 75 fb ba cc de cc d6 68
 
-      secret (32 octets):  6c527101f67962cf 9c871dd992624697
-         047440e69cbb4af5 c1938257bdfface8
-
-
-
-Thomson                  Expires April 15, 2018                [Page 37]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
+      secret (32 octets):  a1 52 30 27 d7 2a f4 0c 45 26 35 2e c9 4b 80
+         e7 89 23 41 2b 6f 4f f7 ef 71 18 be 67 f7 a1 10 eb
 
    {server}  derive secret "tls13 c hs traffic":
 
-      PRK (32 octets):  6c527101f67962cf 9c871dd992624697
-         047440e69cbb4af5 c1938257bdfface8
+      PRK (32 octets):  a1 52 30 27 d7 2a f4 0c 45 26 35 2e c9 4b 80 e7
+         89 23 41 2b 6f 4f f7 ef 71 18 be 67 f7 a1 10 eb
 
-      hash (32 octets):  12b3881e6c02d675 dd74540f14c77231
-         c95b3758a9a02113 74dd435b42cf764e
+      hash (32 octets):  7f 4f ea 80 32 d2 b4 b5 ed a7 b0 30 83 62 93 b8
+         c5 12 36 33 10 99 20 6e 89 0b 1b d5 3d 86 ed ba
 
-      info (54 octets):  002012746c733133 2063206873207472
-         61666669632012b3 881e6c02d675dd74 540f14c77231c95b
-         3758a9a0211374dd 435b42cf764e
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 63 20 68 73 20 74 72
+         61 66 66 69 63 20 7f 4f ea 80 32 d2 b4 b5 ed a7 b0 30 83 62 93
+         b8 c5 12 36 33 10 99 20 6e 89 0b 1b d5 3d 86 ed ba
 
-      output (32 octets):  a52e898cda0d40cc a427add71a82aee2
-         70b26a6170fc49ee 53d1f02116950690
+      output (32 octets):  24 e7 7c 2d 92 d8 21 91 d5 31 22 74 84 62 18
+         48 87 a9 00 f4 e6 4c 12 51 0a 91 06 8e 86 1a cb 35
 
    {server}  derive secret "tls13 s hs traffic":
 
-      PRK (32 octets):  6c527101f67962cf 9c871dd992624697
-         047440e69cbb4af5 c1938257bdfface8
+      PRK (32 octets):  a1 52 30 27 d7 2a f4 0c 45 26 35 2e c9 4b 80 e7
+         89 23 41 2b 6f 4f f7 ef 71 18 be 67 f7 a1 10 eb
 
-      hash (32 octets):  12b3881e6c02d675 dd74540f14c77231
-         c95b3758a9a02113 74dd435b42cf764e
+      hash (32 octets):  7f 4f ea 80 32 d2 b4 b5 ed a7 b0 30 83 62 93 b8
+         c5 12 36 33 10 99 20 6e 89 0b 1b d5 3d 86 ed ba
 
-      info (54 octets):  002012746c733133 2073206873207472
-         61666669632012b3 881e6c02d675dd74 540f14c77231c95b
-         3758a9a0211374dd 435b42cf764e
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 73 20 68 73 20 74 72
+         61 66 66 69 63 20 7f 4f ea 80 32 d2 b4 b5 ed a7 b0 30 83 62 93
+         b8 c5 12 36 33 10 99 20 6e 89 0b 1b d5 3d 86 ed ba
 
-      output (32 octets):  8d4918f64c615180 7cc667b40aa54ab1
-         08743551bfa9ecb7 089e0f721c7a9d30
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 34]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      output (32 octets):  b8 e0 d3 40 7e 26 ca e9 ff b3 23 e3 40 be 0e
+         d4 c8 a8 bb 90 c0 a9 19 fb 0c 7e 0b 84 e7 8b c2 35
 
    {server}  derive secret for master "tls13 derived":
 
-      PRK (32 octets):  6c527101f67962cf 9c871dd992624697
-         047440e69cbb4af5 c1938257bdfface8
+      PRK (32 octets):  a1 52 30 27 d7 2a f4 0c 45 26 35 2e c9 4b 80 e7
+         89 23 41 2b 6f 4f f7 ef 71 18 be 67 f7 a1 10 eb
 
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-      output (32 octets):  6415ba9d7ec6aeef 9a6698b6db4f96d9
-         6d7df4f9ee605090 64caf22556aa52e1
+      output (32 octets):  43 dd 8f 10 20 19 20 b7 6c 8f 3c 57 b4 d2 6f
+         b2 f8 93 ce 27 e2 6e cc 97 65 f3 81 88 63 55 6c 74
 
    {server}  extract secret "master":
 
+      salt (32 octets):  43 dd 8f 10 20 19 20 b7 6c 8f 3c 57 b4 d2 6f b2
+         f8 93 ce 27 e2 6e cc 97 65 f3 81 88 63 55 6c 74
 
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-
-
-Thomson                  Expires April 15, 2018                [Page 38]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      salt (32 octets):  6415ba9d7ec6aeef 9a6698b6db4f96d9
-         6d7df4f9ee605090 64caf22556aa52e1
-
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
-
-      secret (32 octets):  164708bcdbfdd8de 8afdad75ceb5f177
-         fb6ea4b0527f20c2 5ad6175ba5c1e349
+      secret (32 octets):  5b 4a 10 19 51 18 de dc a5 83 0a 90 fc a7 73
+         e6 df 35 c8 4a ae 2e c9 d9 af 77 90 0f f0 b8 e4 6f
 
    {server}  send handshake record:
 
-      payload (82 octets):  0200004e7f154f83 66f7e9cc67c78ceb
-         3e6a38adf9cc0bab ba1662d0418fc520 07f7ff87cb8a1301
-         002800280024001d 00202b18d4de1498 3f2176685ff19425
-         b87554cb65bbacdd c4de4ad7f72cb593 8975
+      payload (90 octets):  02 00 00 56 03 03 be 5a 59 0c 93 a7 3a 15 6c
+         17 d0 bf 7c d5 8c 6d 43 da f5 15 2e 88 f7 e9 ce a3 f5 8e b2 00
+         82 4f 00 13 01 00 00 2e 00 28 00 24 00 1d 00 20 c3 d0 a0 68 a2
+         32 f6 65 70 1c 88 42 a2 22 0e d3 bd 17 b4 2f bf bd 39 bd 1f 4b
+         98 5b b7 ed 18 37 00 2b 00 02 7f 16
 
-      ciphertext (87 octets):  1603010052020000 4e7f154f8366f7e9
-         cc67c78ceb3e6a38 adf9cc0babba1662 d0418fc52007f7ff
-         87cb8a1301002800 280024001d00202b 18d4de14983f2176
-         685ff19425b87554 cb65bbacddc4de4a d7f72cb5938975
-
-   {server}  derive write traffic keys for handshake data:
-
-      PRK (32 octets):  8d4918f64c615180 7cc667b40aa54ab1
-         08743551bfa9ecb7 089e0f721c7a9d30
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  a574f7bea60f3d2f 74b9079a43e242bf
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  3a361cb30d028038 bdd71e09
+      ciphertext (95 octets):  16 03 03 00 5a 02 00 00 56 03 03 be 5a 59
+         0c 93 a7 3a 15 6c 17 d0 bf 7c d5 8c 6d 43 da f5 15 2e 88 f7 e9
+         ce a3 f5 8e b2 00 82 4f 00 13 01 00 00 2e 00 28 00 24 00 1d 00
+         20 c3 d0 a0 68 a2 32 f6 65 70 1c 88 42 a2 22 0e d3 bd 17 b4 2f
+         bf bd 39 bd 1f 4b 98 5b b7 ed 18 37 00 2b 00 02 7f 16
 
    {server}  send a EncryptedExtensions handshake message
 
@@ -2170,210 +1955,189 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {server}  send a Certificate handshake message
 
+
+
+Thomson                   Expires June 8, 2018                 [Page 35]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
    {server}  send a CertificateVerify handshake message
 
    {server}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  8d4918f64c615180 7cc667b40aa54ab1
-         08743551bfa9ecb7 089e0f721c7a9d30
+      PRK (32 octets):  b8 e0 d3 40 7e 26 ca e9 ff b3 23 e3 40 be 0e d4
+         c8 a8 bb 90 c0 a9 19 fb 0c 7e 0b 84 e7 8b c2 35
 
       hash (0 octets):  (empty)
 
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-
-Thomson                  Expires April 15, 2018                [Page 39]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
-
-      output (32 octets):  43b5919e83c531c2 d1bb308b7946ce4d
-         12df2cbb6f85f446 558ebdcd5e761790
+      output (32 octets):  dd 3e 1d c2 81 e1 cb b8 ca 70 38 cd d3 ff 66
+         af dd b8 b6 3f ac 77 ef ed a5 d5 c0 59 87 b6 1c 17
 
    {server}  send a Finished handshake message
 
    {server}  send handshake record:
 
-      payload (512 octets):  0800001e001c000a 00140012001d0017
-         0018001901000101 0102010301040000 00000d0000270000
-         24000d0020001e04 0305030603020308 0408050806040105
-         0106010201040205 02060202020b0001 3b00000137000132
-         3082012e3081d5a0 0302010202010730 0a06082a8648ce3d
-         0403023013311130 0f06035504031308 6563647361323536
-         301e170d31363037 3330303132343030 5a170d3236303733
-         303031323430305a 30133111300f0603 5504031308656364
-         7361323536305930 1306072a8648ce3d 020106082a8648ce
-         3d03010703420004 08d530161575f4cf e7f154ee34481800
-         86001e88431a79ee 62ee6e2f83ef38ba 61e9fb37f34e007a
-         7df4d2f5b56d1f04 ece45d621f468406 f5c3a15158948dd0
-         a31a301830090603 551d130402300030 0b0603551d0f0404
-         03020780300a0608 2a8648ce3d040302 0348003045022100
-         df30fd4507f5edd2 2c1a6ff86db479ca 693feeca3b71b3f9
-         ef556b2937c0594d 022062e2a47250d3 20fea83c7e2dcb5b
-         76a50e0200c09adb d13fee946e513e01 1d1100000f00004c
-         0403004830460221 00dddeba128303be 23f7ab299101d620
-         a10621319a5bfc9d 050f0f21f4c52a4f 6e022100ac72d2d4
-         14dc41a203439bd0 921d8888df18c261 94635183eb7fadc4
-         4fec910714000020 b1a217670cd1c53c 825d5ef698f24990
-         2845446a6eb279d9 33cfee091303c61f
+      payload (511 octets):  08 00 00 1e 00 1c 00 0a 00 14 00 12 00 1d
+         00 17 00 18 00 19 01 00 01 01 01 02 01 03 01 04 00 00 00 00 0d
+         00 00 27 00 00 24 00 0d 00 20 00 1e 04 03 05 03 06 03 02 03 08
+         04 08 05 08 06 04 01 05 01 06 01 02 01 04 02 05 02 06 02 02 02
+         0b 00 01 3b 00 00 01 37 00 01 32 30 82 01 2e 30 81 d5 a0 03 02
+         01 02 02 01 07 30 0a 06 08 2a 86 48 ce 3d 04 03 02 30 13 31 11
+         30 0f 06 03 55 04 03 13 08 65 63 64 73 61 32 35 36 30 1e 17 0d
+         31 36 30 37 33 30 30 31 32 34 30 30 5a 17 0d 32 36 30 37 33 30
+         30 31 32 34 30 30 5a 30 13 31 11 30 0f 06 03 55 04 03 13 08 65
+         63 64 73 61 32 35 36 30 59 30 13 06 07 2a 86 48 ce 3d 02 01 06
+         08 2a 86 48 ce 3d 03 01 07 03 42 00 04 08 d5 30 16 15 75 f4 cf
+         e7 f1 54 ee 34 48 18 00 86 00 1e 88 43 1a 79 ee 62 ee 6e 2f 83
+         ef 38 ba 61 e9 fb 37 f3 4e 00 7a 7d f4 d2 f5 b5 6d 1f 04 ec e4
+         5d 62 1f 46 84 06 f5 c3 a1 51 58 94 8d d0 a3 1a 30 18 30 09 06
+         03 55 1d 13 04 02 30 00 30 0b 06 03 55 1d 0f 04 04 03 02 07 80
+         30 0a 06 08 2a 86 48 ce 3d 04 03 02 03 48 00 30 45 02 21 00 df
+         30 fd 45 07 f5 ed d2 2c 1a 6f f8 6d b4 79 ca 69 3f ee ca 3b 71
+         b3 f9 ef 55 6b 29 37 c0 59 4d 02 20 62 e2 a4 72 50 d3 20 fe a8
+         3c 7e 2d cb 5b 76 a5 0e 02 00 c0 9a db d1 3f ee 94 6e 51 3e 01
+         1d 11 00 00 0f 00 00 4b 04 03 00 47 30 45 02 21 00 e1 02 a7 cd
+         81 89 c3 24 15 e6 02 66 c2 3b f5 a6 c1 d6 23 3f af 4f 1c af e0
+         76 61 d4 65 39 7a ad 02 20 0a b7 8f 2a 06 7a ea 6c 8f 32 6b 6a
+         c7 15 69 80 99 c1 04 5e ee 79 62 c9 b6 7b 82 e3 fb 22 43 35 14
+         00 00 20 28 69 af 9b 65 69 c1 88 48 bb d6 8d 7f 2d ff 95 12 0c
+         bc f7 12 0a e4 ef a6 9c fe 7f 41 96 8f 40
 
-      ciphertext (534 octets):  170301021128c1f1 cf77a82f3fb5abc6
-         156ea39e8c187e0e dec0dc5999984f0c f66487df85dafe6e
-         f51000a748c46436 98de1b3ca2a3891c 0d04098acea0bcf0
-         7ac3d25a1e9afce8 adc3205c72c38dbe 0549a4c289ddf0f3
-         2b6132ae70558f6a 11034e0cd4b9733d ee239aaaa4b6494e
-         f3a257894a0371da b70531b2ba2b4071 61f4d98235e94281
-         59cbe69a81257f6c 3ade15c799873986 b6989fea6d31ee54
-         5c568fbcc360303b 8ca907c35ba1d1a5 685762f4635904d0
-         d1c7901bce9272d1 2a58707abf3ce88c 53bf9237c7c7d5ef
-         27aba8880b2fcf43 875c41d95eb5a6c5 e982ac272bfc2217
-         9e980f6122b894a5 a5c24eafde9901f7 71e05ffa38ca3cc2
-         201971f072d691f3 83cfb2434e94bffa eb96ecf745f7a439
-         5fc53136db2d7a8d d641eeb45af3bb23 cfcf21dff490df4d
-         6352301ef59ab3cd d8cc3f17bc5364e1 e491b8b1fb044310
-         7db374b52201ef68 42cf4a06bfe31a15 67146ab6f0ac7b48
-         ef61c4bad9318b21 979c9980593ac782 dfb00e4a795b3da4
+      ciphertext (533 octets):  17 03 03 02 10 2b 86 ca 61 eb fc b4 38
+         06 32 85 42 0d b9 bd 29 ce fe b3 cc 15 70 ac 22 e5 75 84 a6 3f
+         62 d8 f8 52 42 ac ff 23 aa 14 c0 14 d8 bc 1a 7c 46 d9 0c e0 f5
 
 
 
-Thomson                  Expires April 15, 2018                [Page 40]
+Thomson                   Expires June 8, 2018                 [Page 36]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-         ef4efb2a374bf9a7 86f33744b04ed9be 8856961e8b63d304
-         55654a1a62ee085a 0c4f171579066081 5f19a3e4294e3452
-         4422db9f6c8afa51 f589d577274e9ffe dbe10c281ebeadd2
-         971c24c1de1d4ffb 3997c3b5b027db36 442d8dcfa302181e
-         b80f16797efae84c b8adc0c5d8ce1487 e072797c58deb6be
-         9ec24e62cffb246b dba490927561cf5f 4f0a9870ebe2182b
-         fb6b71b4a2fb8321 5ee18a140917
+         34 db 3c 1c 20 45 04 ad 9d ec dd 77 dc b1 ed 6d 82 76 6d d1 b8
+         4c 2e 19 a8 91 95 76 ef 2a cf da 41 d0 5a 4d 8e 67 29 94 12 e0
+         c4 55 12 68 52 e3 89 56 30 02 d4 b1 09 1e f5 32 bf 4a c4 27 b3
+         55 65 c5 2f c8 6a 78 40 71 ff f2 b3 3d b9 ab 5f 41 92 74 02 25
+         c3 a8 b3 59 12 16 3d 49 85 3b 7c a6 be 28 6d ac 3b 3b 87 77 a4
+         66 99 f4 20 37 ff bc 9c d1 fe 15 74 8c cc 2d 1a 1f 15 7f 1e 15
+         80 c8 cf 9a c1 e4 16 e3 8a 37 b2 db 5c 3d a8 a6 a0 05 48 f2 2e
+         b4 ba b3 dd 3d 3c 4d be ac 00 65 45 9a 63 40 49 9a d6 7d 25 97
+         82 ff 1e f9 23 c2 55 4b a6 1c 33 27 1e 69 9b a0 25 3d e6 ab 17
+         57 66 d4 4d 77 d1 97 49 5e 64 06 c0 4a 48 ed 61 b5 49 f0 4a 28
+         47 c7 1d 43 68 30 b8 ea c8 df ed a0 b0 e3 17 60 6d 97 d5 37 db
+         28 06 5a f8 01 3f b6 14 8e c4 22 9a 44 3f 73 b5 a3 0b 6e ac 03
+         6a ff 16 43 f4 56 10 32 f4 16 41 bb 21 03 4e 4c f1 c2 f3 7d 2e
+         5a 6a 1c a1 d8 e2 11 b7 a7 b9 db 3c 7a 2e a6 b0 bf 8a 4d 5b ac
+         b9 32 29 a7 79 8b 67 a3 48 39 32 91 7e 20 28 9f 25 11 59 93 0e
+         86 d2 c5 c5 46 13 29 88 64 00 e9 3a 45 34 00 d6 31 a3 3b 96 cc
+         db b9 91 cd cf 33 df 4f 8a 35 de b9 3f 6b 3c 39 2d f0 9c 99 02
+         6b e3 fd 58 06 6e e1 a1 2b 5a 8f a2 a4 15 da 07 1c b9 ce 64 8e
+         b2 70 97 23 01 2f 1f 13 85 1d ad 59 e3 b1 56 fa c1 4e b1 29 52
+         06 29 0d eb 0c 19 02 50 42 8d bf 49 4a bc e1 fe 57 13 dc 8a 54
+         50 e9 be b6 d0 61 d8 01 3e e2 63 06 0e 93 df a9 df 0d f4 48 08
+         22 67 b1 41 1c 5d 44 83 a6 fe 21 2d 30 7c aa 1b 71 be 78 0c f4
+         19 6c 5f bb 41 c4 ba b5 85 8a 79 f0 a2 b6 1b 32
 
    {server}  derive secret "tls13 c ap traffic":
 
-      PRK (32 octets):  164708bcdbfdd8de 8afdad75ceb5f177
-         fb6ea4b0527f20c2 5ad6175ba5c1e349
+      PRK (32 octets):  5b 4a 10 19 51 18 de dc a5 83 0a 90 fc a7 73 e6
+         df 35 c8 4a ae 2e c9 d9 af 77 90 0f f0 b8 e4 6f
 
-      hash (32 octets):  2c65623e6cfa569c 4591426a5cbdd867
-         866079df7f45dc07 41b814d1e4b6afbf
+      hash (32 octets):  61 b7 87 a1 69 51 91 aa d2 70 7b e4 02 5c cf e6
+         12 9a e4 63 aa e7 34 ab 8e 2e b6 85 d1 4b c4 a5
 
-      info (54 octets):  002012746c733133 2063206170207472
-         6166666963202c65 623e6cfa569c4591 426a5cbdd8678660
-         79df7f45dc0741b8 14d1e4b6afbf
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 63 20 61 70 20 74 72
+         61 66 66 69 63 20 61 b7 87 a1 69 51 91 aa d2 70 7b e4 02 5c cf
+         e6 12 9a e4 63 aa e7 34 ab 8e 2e b6 85 d1 4b c4 a5
 
-      output (32 octets):  d0efdd5a751bee28 a34ca3737b58e66a
-         1ff14e84aa6fc4b2 50267b6f070abf0f
+      output (32 octets):  04 c5 79 5b bc 5e de b3 a0 0d 94 80 38 55 e9
+         9a 71 28 71 23 89 af 55 5a 9b 44 f6 c5 36 f4 6a c1
 
    {server}  derive secret "tls13 s ap traffic":
 
-      PRK (32 octets):  164708bcdbfdd8de 8afdad75ceb5f177
-         fb6ea4b0527f20c2 5ad6175ba5c1e349
+      PRK (32 octets):  5b 4a 10 19 51 18 de dc a5 83 0a 90 fc a7 73 e6
+         df 35 c8 4a ae 2e c9 d9 af 77 90 0f f0 b8 e4 6f
 
-      hash (32 octets):  2c65623e6cfa569c 4591426a5cbdd867
-         866079df7f45dc07 41b814d1e4b6afbf
+      hash (32 octets):  61 b7 87 a1 69 51 91 aa d2 70 7b e4 02 5c cf e6
+         12 9a e4 63 aa e7 34 ab 8e 2e b6 85 d1 4b c4 a5
 
-      info (54 octets):  002012746c733133 2073206170207472
-         6166666963202c65 623e6cfa569c4591 426a5cbdd8678660
-         79df7f45dc0741b8 14d1e4b6afbf
 
-      output (32 octets):  042324157c650e08 c36ddc616ffaf8fd
-         4e4fce54ac3c0353 fff04b77c2ba2771
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 37]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      info (54 octets):  00 20 12 74 6c 73 31 33 20 73 20 61 70 20 74 72
+         61 66 66 69 63 20 61 b7 87 a1 69 51 91 aa d2 70 7b e4 02 5c cf
+         e6 12 9a e4 63 aa e7 34 ab 8e 2e b6 85 d1 4b c4 a5
+
+      output (32 octets):  97 74 0c 5b c3 e6 d9 e5 11 12 4f b3 ce d0 de
+         86 0c 22 38 47 78 7d e0 c7 a3 e6 77 25 c4 5a 85 75
 
    {server}  derive secret "tls13 exp master":
 
-      PRK (32 octets):  164708bcdbfdd8de 8afdad75ceb5f177
-         fb6ea4b0527f20c2 5ad6175ba5c1e349
+      PRK (32 octets):  5b 4a 10 19 51 18 de dc a5 83 0a 90 fc a7 73 e6
+         df 35 c8 4a ae 2e c9 d9 af 77 90 0f f0 b8 e4 6f
 
-      hash (32 octets):  2c65623e6cfa569c 4591426a5cbdd867
-         866079df7f45dc07 41b814d1e4b6afbf
+      hash (32 octets):  61 b7 87 a1 69 51 91 aa d2 70 7b e4 02 5c cf e6
+         12 9a e4 63 aa e7 34 ab 8e 2e b6 85 d1 4b c4 a5
 
+      info (52 octets):  00 20 10 74 6c 73 31 33 20 65 78 70 20 6d 61 73
+         74 65 72 20 61 b7 87 a1 69 51 91 aa d2 70 7b e4 02 5c cf e6 12
+         9a e4 63 aa e7 34 ab 8e 2e b6 85 d1 4b c4 a5
 
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 41]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      info (52 octets):  002010746c733133 20657870206d6173
-         746572202c65623e 6cfa569c4591426a 5cbdd867866079df
-         7f45dc0741b814d1 e4b6afbf
-
-      output (32 octets):  c8bcf8101636591e 13d9625e908c6528
-         912c07250a7cb932 8f964f50f4c4bccb
-
-   {server}  derive write traffic keys for application data:
-
-      PRK (32 octets):  042324157c650e08 c36ddc616ffaf8fd
-         4e4fce54ac3c0353 fff04b77c2ba2771
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  d2c191b2988fce3b 838dc7852fad4202
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  67a71dcfedb21d7e bb80559c
-
-   {server}  derive read traffic keys for handshake data:
-
-      PRK (32 octets):  a52e898cda0d40cc a427add71a82aee2
-         70b26a6170fc49ee 53d1f02116950690
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  4b1a0557f99f6a0c 6c76cf18b7579115
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  eb09710c2634c308 6b0820a3
+      output (32 octets):  4e 50 2a 2f c0 5b cd 75 e3 ac e7 4d ba d9 45
+         73 76 f9 a0 38 dc 07 78 8e ce 6c f0 1f de 31 7f 24
 
    {client}  extract secret "early":
 
       salt:  (absent)
 
-      ikm (32 octets):  0000000000000000 0000000000000000
-         0000000000000000 0000000000000000
+      ikm (32 octets):  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
-      secret (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      secret (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c
+         e2 10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
    {client}  derive secret for handshake "tls13 derived":
 
-      PRK (32 octets):  33ad0a1c607ec03b 09e6cd9893680ce2
-         10adf300aa1f2660 e1b22e10f170f92a
+      PRK (32 octets):  33 ad 0a 1c 60 7e c0 3b 09 e6 cd 98 93 68 0c e2
+         10 ad f3 00 aa 1f 26 60 e1 b2 2e 10 f1 70 f9 2a
 
+      hash (32 octets):  e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24
+         27 ae 41 e4 64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
+      info (49 octets):  00 20 0d 74 6c 73 31 33 20 64 65 72 69 76 65 64
+         20 e3 b0 c4 42 98 fc 1c 14 9a fb f4 c8 99 6f b9 24 27 ae 41 e4
+         64 9b 93 4c a4 95 99 1b 78 52 b8 55
 
-
-Thomson                  Expires April 15, 2018                [Page 42]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
-      hash (32 octets):  e3b0c44298fc1c14 9afbf4c8996fb924
-         27ae41e4649b934c a495991b7852b855
-
-      info (49 octets):  00200d746c733133 2064657269766564
-         20e3b0c44298fc1c 149afbf4c8996fb9 2427ae41e4649b93
-         4ca495991b7852b8 55
-
-      output (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
+      output (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6
+         97 16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
 
    {client}  extract secret "handshake":
 
-      salt (32 octets):  6f2615a108c702c5 678f54fc9dbab697
-         16c076189c48250c ebeac3576c3611ba
 
-      ikm (32 octets):  b6a5e53b56458442 5068d1ba74990a76
-         9976ec06fd062101 e03c321481a02564
 
-      secret (32 octets):  6c527101f67962cf 9c871dd992624697
-         047440e69cbb4af5 c1938257bdfface8
+Thomson                   Expires June 8, 2018                 [Page 38]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
+
+      salt (32 octets):  6f 26 15 a1 08 c7 02 c5 67 8f 54 fc 9d ba b6 97
+         16 c0 76 18 9c 48 25 0c eb ea c3 57 6c 36 11 ba
+
+      ikm (32 octets):  ad 0f 65 fb 86 8a 59 c5 01 97 19 89 5c 67 94 76
+         5c da a8 af a2 d7 15 de 75 fb ba cc de cc d6 68
+
+      secret (32 octets):  a1 52 30 27 d7 2a f4 0c 45 26 35 2e c9 4b 80
+         e7 89 23 41 2b 6f 4f f7 ef 71 18 be 67 f7 a1 10 eb
 
    {client}  derive secret "tls13 c hs traffic" (same as server)
 
@@ -2383,40 +2147,13 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  extract secret "master" (same as server)
 
-   {client}  derive read traffic keys for handshake data:
-
-      PRK (32 octets):  8d4918f64c615180 7cc667b40aa54ab1
-         08743551bfa9ecb7 089e0f721c7a9d30
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  a574f7bea60f3d2f 74b9079a43e242bf
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  3a361cb30d028038 bdd71e09
-
    {client}  calculate finished "tls13 finished" (same as server)
 
    {client}  derive secret "tls13 c ap traffic" (same as server)
 
    {client}  derive secret "tls13 s ap traffic" (same as server)
 
-
-
-
-Thomson                  Expires April 15, 2018                [Page 43]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
-
    {client}  derive secret "tls13 exp master" (same as server)
-
-   {client}  derive write traffic keys for handshake data (same as
-      server read traffic keys)
-
-   {client}  derive read traffic keys for application data (same as
-      server write traffic keys)
 
    {client}  send a Certificate handshake message
 
@@ -2424,139 +2161,142 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
 
    {client}  calculate finished "tls13 finished":
 
-      PRK (32 octets):  a52e898cda0d40cc a427add71a82aee2
-         70b26a6170fc49ee 53d1f02116950690
+      PRK (32 octets):  24 e7 7c 2d 92 d8 21 91 d5 31 22 74 84 62 18 48
+         87 a9 00 f4 e6 4c 12 51 0a 91 06 8e 86 1a cb 35
 
       hash (0 octets):  (empty)
 
-      info (18 octets):  00200e746c733133 2066696e69736865 6400
+      info (18 octets):  00 20 0e 74 6c 73 31 33 20 66 69 6e 69 73 68 65
+         64 00
 
-      output (32 octets):  99a9474240824855 3f160eb8dfd5c90a
-         93a7756b2ae517a0 77e009fa373bcf56
+      output (32 octets):  42 e6 d4 97 18 62 b1 fa cd 61 29 dc f2 7c f3
+         43 07 69 f6 f5 62 ae 0c 0e f0 ec 55 bb db ca a9 91
 
    {client}  send a Finished handshake message
 
    {client}  send handshake record:
 
-      payload (623 octets):  0b0001bf000001bb 0001b6308201b230
-         82011ba003020102 020101300d06092a 864886f70d01010b
-         05003011310f300d 0603550403130663 6c69656e74301e17
-         0d31363037333030 31323335395a170d 3236303733303031
-         323335395a301131 0f300d0603550403 1306636c69656e74
-         30819f300d06092a 864886f70d010101 050003818d003081
-         8902818100c38175 e004a68d093f823b 9c379d201fbc0bb7
-         a1c791905e3fbf76 847e44e751ebbcd3 60bd945c81e5222b
-         cc8846d3a8a0f93e 9bf5bebabd92edf1 de1ff19021703e7a
-         b6c0901513f97e39 b111f09c9348971c 7b211984a754cd45
-         fe095af0ea423682 9bccf7a7fe9b2888 e78ab477690a5b9e
-         1ccbe91c6a4a0f97 a7e0284201020301 0001a31a30183009
-         0603551d13040230 00300b0603551d0f 040403020780300d
-         06092a864886f70d 01010b0500038181 001a7a5a018532b0
-         22af0767d486160c ff2d167a1915d238 35b54594916dc680
-         be5d2e626076c5d5 2722ebcc775d7d99 f980be2fc94d34ac
-         f6cc00ba90cbcfb0 608aa1e7e3971ef0 c07a41d47ad8345d
-         1f81fe418a1cf410 54429fd217bd777d c1cf08f05df90799
-         c659361e0f1a8ee4 ac0f7897420bdbc8 23da80a2f2ba2308
-         1c00000f00008408 040080aec2cb9347 8141b1f26f405152
+      payload (623 octets):  0b 00 01 bf 00 00 01 bb 00 01 b6 30 82 01
+         b2 30 82 01 1b a0 03 02 01 02 02 01 01 30 0d 06 09 2a 86 48 86
 
 
 
-Thomson                  Expires April 15, 2018                [Page 44]
+Thomson                   Expires June 8, 2018                 [Page 39]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
 
-         509a955cac75867b 3e1c51dc24acb6e6 cee379d828289221
-         d1c76481c0082edb 6c3e8c9f17d9cc92 c69b385a60383613
-         9c551b03053ca9c7 c50a48451ddd05ff 9be27902dfb3cc8d
-         7193d43ab1410da8 58710ba50906ee47 42207d3ad76fec8f
-         cab84662b0dada72 1c61ef55edcd88de 68d6801400002038
-         e3827848fc322f41 bfedbad3611b9100 1cceff749d5d5d93
-         6e3b2792bd0687
+         f7 0d 01 01 0b 05 00 30 11 31 0f 30 0d 06 03 55 04 03 13 06 63
+         6c 69 65 6e 74 30 1e 17 0d 31 36 30 37 33 30 30 31 32 33 35 39
+         5a 17 0d 32 36 30 37 33 30 30 31 32 33 35 39 5a 30 11 31 0f 30
+         0d 06 03 55 04 03 13 06 63 6c 69 65 6e 74 30 81 9f 30 0d 06 09
+         2a 86 48 86 f7 0d 01 01 01 05 00 03 81 8d 00 30 81 89 02 81 81
+         00 c3 81 75 e0 04 a6 8d 09 3f 82 3b 9c 37 9d 20 1f bc 0b b7 a1
+         c7 91 90 5e 3f bf 76 84 7e 44 e7 51 eb bc d3 60 bd 94 5c 81 e5
+         22 2b cc 88 46 d3 a8 a0 f9 3e 9b f5 be ba bd 92 ed f1 de 1f f1
+         90 21 70 3e 7a b6 c0 90 15 13 f9 7e 39 b1 11 f0 9c 93 48 97 1c
+         7b 21 19 84 a7 54 cd 45 fe 09 5a f0 ea 42 36 82 9b cc f7 a7 fe
+         9b 28 88 e7 8a b4 77 69 0a 5b 9e 1c cb e9 1c 6a 4a 0f 97 a7 e0
+         28 42 01 02 03 01 00 01 a3 1a 30 18 30 09 06 03 55 1d 13 04 02
+         30 00 30 0b 06 03 55 1d 0f 04 04 03 02 07 80 30 0d 06 09 2a 86
+         48 86 f7 0d 01 01 0b 05 00 03 81 81 00 1a 7a 5a 01 85 32 b0 22
+         af 07 67 d4 86 16 0c ff 2d 16 7a 19 15 d2 38 35 b5 45 94 91 6d
+         c6 80 be 5d 2e 62 60 76 c5 d5 27 22 eb cc 77 5d 7d 99 f9 80 be
+         2f c9 4d 34 ac f6 cc 00 ba 90 cb cf b0 60 8a a1 e7 e3 97 1e f0
+         c0 7a 41 d4 7a d8 34 5d 1f 81 fe 41 8a 1c f4 10 54 42 9f d2 17
+         bd 77 7d c1 cf 08 f0 5d f9 07 99 c6 59 36 1e 0f 1a 8e e4 ac 0f
+         78 97 42 0b db c8 23 da 80 a2 f2 ba 23 08 1c 00 00 0f 00 00 84
+         08 04 00 80 45 6a d6 fb a9 84 1d ee 49 6f 34 fb c4 c4 45 9b 80
+         2c c7 17 3a cc 29 32 0f 7a 00 ad 13 d4 5a b9 3e 91 2e af 7a b2
+         eb b6 9f 1f ec 68 c1 af a7 74 15 30 8c 92 dd 1c 2c c3 f3 ae fa
+         fc 0d ac fb b0 73 24 07 9c 1c b2 05 b5 b4 0e 28 3a 23 ec 6f 86
+         be 77 ee 93 01 69 5a 86 b7 cb df 7a 17 ed 7b 3c b6 bf 1b cd 2c
+         ef 81 2f c3 33 25 50 c2 b6 d9 0e f1 a9 7a d7 8a 0a b0 7e b3 cb
+         2c 4e 25 31 61 7d 14 00 00 20 4b 7b 34 12 da 38 c9 4e 69 af 47
+         eb fc 2d f4 03 f5 6a b9 37 6d ea 70 19 d1 87 67 33 f0 73 36 d9
 
-      ciphertext (645 octets):  1703010280855ad8 94a1e3aef53b1837
-         9ec27af9b15d691a de918fe10f16bab1 b4c24badea20f6f8
-         f22bfdd5c253859f ff95f6b4ed8b181b 8a95efd6205511d3
-         b948b787e274a855 816da13d4f5050c1 429f5ebc3f353f35
-         fbb3de432f57b152 1b3ff0073b4bdf3b c58a8ae5bc67febb
-         0bc4afed8951a2a5 ae521455457eb08a ae775cb989c83a31
-         211903ae6564be6f a9a98cc2b23d838f 3f0ba9fcdf12f24a
-         2e5421078bf45251 5338875593f42b7e ef2876aa8c529c5a
-         2620471d579990f0 edd9dd95516a03ad e6df2b99990a9fc1
-         858ceba9e5d458c2 65ba12e5cc6eae71 f02f3de78409a70d
-         24228d97a49f7a54 409c5a5e21c547fe 7e0bda9baf3982db
-         14a5eef684259006 cceb843d6f8e67f8 f97d71c6ff5495bd
-         26ea5e1207620a5c ffa4e1d0d891646e 09a7081a7d85dce3
-         a5a4e1b46d862d4d d6b03ed4ff11d033 395771c01691c253
-         fef3967f1df806a9 f7f3afce5f5a9788 a8067fb57bce1fe5
-         b536358b847aa38f 5a0d4690c0f854d0 a9e5ac9502f5e18f
-         f3f8fc9a991649ce 843113fb707a7a52 8a979a0dc9a5c803
-         d60730005f7117b0 9cd74c51795b1d91 9fa6a91002feb85c
-         f8ded724339293cd 3da7860fbfbb17c7 7592b950ce940312
-         9ebfcbb8fbea7693 4d839cd9033e6884 ab41f1684e5d7628
-         6855e4b391ef421f f14188a9d5e0c19c 746b196dec7d3a21
-         67f0e8d1dd63cc42 b4ab6731a25d188d 225b4637a77a3e78
-         fcd0021f07163fde 9383763b39cb4d3f 8a8c13d585d71a53
-         4290f77ad3348dd7 eec0d51a6e604446 3fb6be581565868a
-         848392d1e91aead1 372c4b6338904cfd acad7562e865d647
-         3749c0cd8e485453 021a99040edc61ff 63e1790b6912f2cf
-         248383560274d1b9 4bbeeeaa7de0cea9 1a1bf020a9ca3283 784166e223
-
-   {client}  derive write traffic keys for application data:
-
-      PRK (32 octets):  d0efdd5a751bee28 a34ca3737b58e66a
-         1ff14e84aa6fc4b2 50267b6f070abf0f
-
-      key info (13 octets):  001009746c733133 206b657900
-
-      key output (16 octets):  fe333d26e0ab9f8d edcbd37b13999226
-
-      iv info (12 octets):  000c08746c733133 20697600
-
-      iv output (12 octets):  49b1d0243c2266a8 b8cc0c23
+      ciphertext (645 octets):  17 03 03 02 80 97 26 b0 be 61 09 ab 92
+         f6 36 35 2f 3f 9b f3 04 f6 a0 eb 79 a4 c5 10 70 27 d2 44 f6 7b
+         ce 69 0c 5d 0f ad 9d 1e 44 50 9c bb 8e 2b 8e dd e1 2b 7b f4 f5
+         15 40 e1 76 ba 7e 70 f4 b2 26 6d 8f 52 a9 62 3b bb d1 ba 8f bc
+         53 9d c7 59 e1 f7 ce 9c d6 7e a8 83 da 1c e8 14 bf 9a 55 9f 50
+         38 9a 43 38 94 e4 83 99 8c 76 06 e1 17 d9 2b 80 33 d7 b1 8b 3c
+         a9 47 d3 b0 87 77 d0 a3 1d 7c c9 0b ef 50 f5 7a db f8 fd 84 0b
+         71 98 2b a8 02 9d 7d 42 13 13 25 19 a4 eb df 88 0c 33 25 e1 05
+         4a 64 5e e5 de 13 dd d5 fb 45 e7 08 a3 5b 5e c5 b1 94 29 f7 bb
+         34 46 80 93 29 0a 56 19 c3 c5 af dc 08 eb d9 53 c0 c3 ba 53 4b
+         e8 e4 6d 90 75 6c 51 b4 cc 2f 7c 23 b1 aa 32 d8 7c 8b c1 d5 c1
+         6d 54 1e d9 2d b6 8e 35 97 92 4d 58 2a be 86 44 ea da 66 ea 8e
+         c8 7e 96 f7 fa 3b d7 45 3d 21 11 9d 1b 5a 9a 3f 31 4d ca b5 47
+         71 33 6a 1d 13 91 0d b8 1a 87 2a 95 6f 49 38 f9 be c9 a2 01 4a
+         6b 2b 7b 04 c9 53 49 5e b3 b0 f1 35 21 03 6c cb 0a ef 50 33 76
+         14 ef a3 06 29 f2 b5 11 97 88 fe 4f fb f5 6f ac 93 bb b8 fe 81
+         d7 51 69 70 34 85 42 a8 9a ba 45 13 68 d8 b4 dc 93 b7 9c f0 73
+         c9 f3 e7 4f 44 39 6e 14 7d 1d 81 ca 9f 43 bc f6 a1 b5 e7 63 3f
+         d8 be 02 99 8b 8e 14 e8 d0 6d 99 c0 49 60 ad 98 ab 5c 7e b4 1a
 
 
 
-Thomson                  Expires April 15, 2018                [Page 45]
+Thomson                   Expires June 8, 2018                 [Page 40]
 
-Internet-Draft               TLS 1.3 Traces                 October 2017
+Internet-Draft               TLS 1.3 Traces                December 2017
 
+
+         97 a3 f0 f1 11 5f c9 40 29 f1 b9 ed f9 56 e5 43 70 d4 f3 31 7a
+         b4 73 f9 96 7a 13 0e 8f c0 8b a2 51 63 39 d3 0a d7 86 48 8a 0a
+         87 7e d4 d4 50 f5 93 0c bd 3a 3f 46 3f 86 a2 2c 76 82 c2 54 51
+         81 b2 16 97 b4 d5 00 08 ce 3f 24 39 6c 57 95 c4 d0 5d 3a 71 ac
+         02 6b a1 66 c1 1b 61 04 a4 f4 77 83 d2 d0 ea 73 cc cd 0f 72 a1
+         1f 8d c1 30 99 24 6c 89 a3 e2 27 41 a5 65 47 d8 02 3b 45 82 24
+         6b 50 51 b5 4a a6 5b 9e fd 5a b3 62 ba 29 04 11 c0 d6 fd 79 c4
+         1f 79 bf a6 ff ab 68 43 ed fa 5b fb e8 50 31 64 18 69 2f 61 43
+         89 fa b7 7b 9b 42 b0 a3 6f 4c 1c a3 6b 13 b1 3d 5a df 96 2c fe
+         0c 15 a5 f2 a1 1f 09 af f2 2a 96 55 27 e1 d0 7c 97 0e c8 03 d6
+         88 df 28 ce 31 d0 59 c1 de 5c 6f d4 9c 8e 58 0d 17 6b 3b 19 18
+         f7 d3 83 30 71 24 b8 a6 f1 a7 11 e3 45 4d e2 c8 b1 fd 52 6e c8
+         05 67
 
    {client}  derive secret "tls13 res master":
 
-      PRK (32 octets):  164708bcdbfdd8de 8afdad75ceb5f177
-         fb6ea4b0527f20c2 5ad6175ba5c1e349
+      PRK (32 octets):  5b 4a 10 19 51 18 de dc a5 83 0a 90 fc a7 73 e6
+         df 35 c8 4a ae 2e c9 d9 af 77 90 0f f0 b8 e4 6f
 
-      hash (32 octets):  c7ac0b107356dbe2 4cd69c10e99a6b87
-         cac7fe146bbd9d9c 0280bc7c1bafd683
+      hash (32 octets):  de 89 79 35 44 d7 d2 31 8c 81 6c c3 28 f8 2e 89
+         46 90 fb 6e 14 65 b8 43 e3 8c 4b 00 7a 82 eb 80
 
-      info (52 octets):  002010746c733133 20726573206d6173
-         74657220c7ac0b10 7356dbe24cd69c10 e99a6b87cac7fe14
-         6bbd9d9c0280bc7c 1bafd683
+      info (52 octets):  00 20 10 74 6c 73 31 33 20 72 65 73 20 6d 61 73
+         74 65 72 20 de 89 79 35 44 d7 d2 31 8c 81 6c c3 28 f8 2e 89 46
+         90 fb 6e 14 65 b8 43 e3 8c 4b 00 7a 82 eb 80
 
-      output (32 octets):  1e2625ca0856542a a2ed529ede2926e2
-         2ceba9f19e9c4e37 2498b81c9c52bac2
+      output (32 octets):  b0 06 0a 50 95 42 6c 28 de 96 e4 a2 22 d4 c7
+         b3 04 c9 c7 b6 b3 7f cd 35 99 23 b6 cb 03 7d bc be
 
    {server}  calculate finished "tls13 finished" (same as client)
-
-   {server}  derive read traffic keys for application data (same as
-      client write traffic keys)
 
    {server}  derive secret "tls13 res master" (same as client)
 
    {client}  send alert record:
 
-      payload (2 octets):  0100
+      payload (2 octets):  01 00
 
-      ciphertext (24 octets):  1703010013c27cd7 d5792fa8f5300256
-         c80bbb91f21e1416
+      ciphertext (24 octets):  17 03 03 00 13 04 f5 47 ac 76 36 06 4c e7
+         e0 c0 b8 05 bc 03 75 f7 26 97
 
    {server}  send alert record:
 
-      payload (2 octets):  0100
+      payload (2 octets):  01 00
 
-      ciphertext (24 octets):  170301001328b10f e3b4a39df04b7851
-         017979b580ed5034
+      ciphertext (24 octets):  17 03 03 00 13 94 77 7f e6 9f 61 30 76 eb
+         a4 e1 46 bc 4a d8 c6 0c 6c d7
+
+
+
+
+
+Thomson                   Expires June 8, 2018                 [Page 41]
+
+Internet-Draft               TLS 1.3 Traces                December 2017
+
 
 7.  Security Considerations
 
@@ -2565,18 +2305,6 @@ Internet-Draft               TLS 1.3 Traces                 October 2017
    security, it is now very well known.
 
 8.  References
-
-
-
-
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 46]
-
-Internet-Draft               TLS 1.3 Traces                 October 2017
-
 
 8.1.  Normative References
 
@@ -2621,12 +2349,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-Thomson                  Expires April 15, 2018                [Page 47]
+Thomson                   Expires June 8, 2018                 [Page 42]
