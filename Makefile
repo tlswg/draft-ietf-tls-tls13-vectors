@@ -33,9 +33,9 @@ $(GTESTS): $(NSS_DIR) $(NSPR_DIR)
 
 $(NSS_DIR):
 ifneq (,$(NSS_BUNDLE))
-	hg clone -q -b NSS_TLS13_DRAFT19_BRANCH $(NSS_BUNDLE) $@ && hg -q -R $@ pull -u https://hg.mozilla.org/projects/nss
+	hg clone -q $(NSS_BUNDLE) $@ && hg -q -R $@ pull -u https://hg.mozilla.org/projects/nss
 else
-	hg clone -q -b NSS_TLS13_DRAFT19_BRANCH https://hg.mozilla.org/projects/nss $@
+	hg clone -q https://hg.mozilla.org/projects/nss $@
 endif
 
 $(NSPR_DIR):
