@@ -2,7 +2,6 @@
 title: Example Handshake Traces for TLS 1.3
 abbrev: TLS 1.3 Traces
 docname: draft-ietf-tls-tls13-vectors-latest
-date: 2017
 category: std
 
 ipr: trust200902
