@@ -14,7 +14,7 @@ report_handshake = 1
 def log(msg=''):
     """Write log messages to file descriptor 3 for the first handshake and 4 for
     the second."""
-    os.write(2 + handshake_number, msg + '\n')
+    os.write(2 + handshake_number, (msg + '\n').encode('utf8'))
 
 current_line_number = 0
 current_line = ''
