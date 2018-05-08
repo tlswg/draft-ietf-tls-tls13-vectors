@@ -167,6 +167,10 @@ the fact that it is too small to provide any meaningful security, it is now very
 well known.
 
 
+# IANA Considerations
+
+This document makes no requests of IANA.
+
 --- back
 
 # Acknowledgements
