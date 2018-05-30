@@ -1,6 +1,58 @@
 [
 
   {
+    "url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/issues/6",
+    "repository_url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors",
+    "labels_url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/issues/6/labels{/name}",
+    "comments_url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/issues/6/comments",
+    "events_url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/issues/6/events",
+    "html_url": "https://github.com/tlswg/draft-ietf-tls-tls13-vectors/pull/6",
+    "id": 321628863,
+    "number": 6,
+    "title": "changing status to Informational",
+    "user": {
+      "login": "seanturner",
+      "id": 4488966,
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4488966?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/seanturner",
+      "html_url": "https://github.com/seanturner",
+      "followers_url": "https://api.github.com/users/seanturner/followers",
+      "following_url": "https://api.github.com/users/seanturner/following{/other_user}",
+      "gists_url": "https://api.github.com/users/seanturner/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/seanturner/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/seanturner/subscriptions",
+      "organizations_url": "https://api.github.com/users/seanturner/orgs",
+      "repos_url": "https://api.github.com/users/seanturner/repos",
+      "events_url": "https://api.github.com/users/seanturner/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/seanturner/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 1,
+    "created_at": "2018-05-09T15:56:36Z",
+    "updated_at": "2018-05-30T01:28:13Z",
+    "closed_at": "2018-05-30T01:28:12Z",
+    "author_association": "MEMBER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/pulls/6",
+      "html_url": "https://github.com/tlswg/draft-ietf-tls-tls13-vectors/pull/6",
+      "diff_url": "https://github.com/tlswg/draft-ietf-tls-tls13-vectors/pull/6.diff",
+      "patch_url": "https://github.com/tlswg/draft-ietf-tls-tls13-vectors/pull/6.patch"
+    },
+    "body": "Closes #5 (assuming this is where we end up)."
+  },
+  {
     "url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/issues/5",
     "repository_url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors",
     "labels_url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/issues/5/labels{/name}",
@@ -32,7 +84,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -41,9 +93,9 @@
     "milestone": null,
     "comments": 1,
     "created_at": "2018-05-08T16:40:45Z",
-    "updated_at": "2018-05-08T21:49:24Z",
-    "closed_at": null,
-    "author_association": "OWNER",
+    "updated_at": "2018-05-30T01:28:12Z",
+    "closed_at": "2018-05-30T01:28:12Z",
+    "author_association": "MEMBER",
     "body": "I don't really have a strong opinion on this, but I am sure somebody will.  Many of the \"example\" RFCs are Informational but some are BCP (based on the following):\r\nhttps://datatracker.ietf.org/doc/search?name=examples&sort=&rfcs=on&activedrafts=on&by=group&group="
   },
   {
@@ -89,7 +141,7 @@
     "created_at": "2018-05-08T16:36:54Z",
     "updated_at": "2018-05-08T21:48:27Z",
     "closed_at": "2018-05-08T21:48:27Z",
-    "author_association": "OWNER",
+    "author_association": "MEMBER",
     "pull_request": {
       "url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/pulls/4",
       "html_url": "https://github.com/tlswg/draft-ietf-tls-tls13-vectors/pull/4",
