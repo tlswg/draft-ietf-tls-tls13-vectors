@@ -34,7 +34,7 @@ informative:
 
 Examples of TLS 1.3 handshakes are shown.  Private keys and inputs are
 provided so that these handshakes might be reproduced.  Intermediate
-values, including secrets, traffic keys and ivs are shown so that
+values, including secrets, traffic keys and IVs are shown so that
 implementations might be checked incrementally against these values.
 
 
@@ -43,7 +43,7 @@ implementations might be checked incrementally against these values.
 # Introduction
 
 TLS 1.3 {{!TLS13=I-D.ietf-tls-tls13}} defines a new key schedule and a number
-new cryptographic operations.  This document includes sample handshakes that
+of new cryptographic operations.  This document includes sample handshakes that
 show all intermediate values.  This allows an implementation to be verified
 incrementally, examining inputs and outputs of each cryptographic computation
 independently.
@@ -115,7 +115,7 @@ coefficient:
 In this example, the simplest possible handshake is completed.  The server is
 authenticated, but the client remains anonymous.  After connecting, a few
 application data octets are exchanged.  The server sends a session ticket that
-permits the use of 0-RTT in any resumed session.
+permits the use of 0-RTT data in any resumed session.
 
 >>> Version13Only/TlsConnectTls13.ZeroRtt/0 initial resumed
 <<< Version13Only/TlsConnectTls13.ZeroRtt/0 initial
