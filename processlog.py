@@ -252,7 +252,6 @@ class DeduplicateValues:
         return None
 
 class HandleHkdf:
-    # What does 'PRK' stand for?
     hkdf_patterns = [['label', re.compile('HKDF Expand: label=\'([\w ]+)\',requested length=\d+')],
                      ['PRK', binary_pattern('PRK')],
                      ['hash', binary_pattern('Hash')],
@@ -486,12 +485,12 @@ class HandleTrafficKeys:
         log(': %s:' % msg)
         log()
         if self.key_values[0][1].value != self.iv_values[0][1].value:
-            warning('key and IV have different PRK')
+            warning('key and iv have different PRK')
         self.key_values[0][1].report('PRK')
         for (n, v) in self.key_values[1:]:
             v.report('key ' + n)
         for (n, v) in self.iv_values[1:]:
-            v.report('IV ' + n)
+            v.report('iv ' + n)
 
 
 handlers = [HandleConnecting,
