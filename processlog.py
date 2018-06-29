@@ -380,7 +380,7 @@ class HandleResumptionSecretClient():
 class HandleMasterSecret:
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: compute (early|handshake|master) secrets? \((server|client)\)')
     extract_patterns = [['salt', binary_pattern('HKDF Extract: IKM1/Salt')],
-                        ['ikm', binary_pattern('HKDF Extract: IKM2')],
+                        ['IKM', binary_pattern('HKDF Extract: IKM2')],
                         ['secret', binary_pattern('HKDF Extract')]]
     dedupe = DeduplicateValues()
 

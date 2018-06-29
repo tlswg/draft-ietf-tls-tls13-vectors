@@ -52,6 +52,12 @@ A private key is included with the traces so that implementations can be
 checked by importing these values and verifying that the same outputs are
 produced.
 
+Note:
+
+: Invocations of HMAC-based Extract-and-Expand Key Derivation Function (HKDF)
+  {{?RFC5869}} are not labelled, but can be identified through the use the
+  labels used by HKDF.
+
 
 # Private Keys
 
