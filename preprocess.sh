@@ -46,7 +46,7 @@ process() {
 
         LD_LIBRARY_PATH="${DIST_DIR}/lib" \
                        DYLD_LIBRARY_PATH="${DIST_DIR}/lib" \
-                       SSLTRACE=50 \
+                       SSLTRACE=100 \
                        "$SSL_GTEST" -d "$DB_DIR" --gtest_filter="${args[0]}" 2>&1 | \
             tee "$log" | \
             ./processlog.py 3>"$tmp3" 4>"$tmp4"

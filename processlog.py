@@ -73,28 +73,6 @@ class HandleConnecting:
     def report(self):
         pass
 
-class HandleHandshake:
-    """ HandleHandshake tracks handshake messages.  It also assigns roles. """
-    pattern = re.compile('^\d+: SSL3\[(-?\d+)\]: append handshake header: type ([a-z_]+) ')
-    message_role = {'client_hello': 'client', 'server_hello': 'server'}
-
-    def __init__(self, m):
-        self.message = m.group(2)
-        if self.message in self.message_role:
-            self.role = roles.commit(m.group(1), self.message_role[self.message])
-        else:
-            self.role = roles.lookup(m.group(1))
-
-    def handle(self, line):
-        return True
-
-    def snake_to_camel(self, s):
-        return ''.join([x[0].upper() + x[1:].lower() for x in s.split('_')])
-
-    def report(self):
-        roles.report(self.role)
-        log(': send a %s handshake message' % self.snake_to_camel(self.message))
-
 hex_encoder = codecs.getencoder('hex')
 hex_decoder = codecs.getdecoder('hex')
 
@@ -102,6 +80,26 @@ def binary_pattern(text, socket=False):
     if socket:
         return re.compile('^\d+: SSL\[(-?\d+)\]: %s \[Len: (\d+)\]' % text)
     return re.compile('^\d+: SSL: %s \[Len: (\d+)\]' % text)
+
+def log_binary(ws, label, value):
+    def hex(b):
+        h = hex_encoder(b)[0].decode('ascii')
+        r = ''
+        for i in list(range(0, len(h), 2)):
+            if r != '':
+                r += ' '
+            r += h[i:i+2]
+        return r
+
+    log('%s%s (%d octets):' % (ws, label, len(value)))
+    if len(value) == 0:
+        log('%s: (empty)' % ws)
+    colon = ':'
+    for i in list(range(0, len(value), 32)):
+        log('%s%s %s' % (ws, colon, hex(value[i:i+32])))
+        colon = ' '
+    log()
+
 
 class BinaryReader:
     value_pattern = re.compile('^   (?:[\da-f]{2} ){1,16} ')
@@ -127,29 +125,72 @@ class BinaryReader:
         self.value += hex_decoder(m.group(0).replace(' ', ''))[0]
         return False
 
-    def hex(self, b):
-        h = hex_encoder(b)[0].decode('ascii')
-        r = ''
-        for i in list(range(0, len(h), 2)):
-            if r != '':
-                r += ' '
-            r += h[i:i+2]
-        return r
-
     def report(self, label, indent=1):
         ws = ' ' * 2 * indent
         if len(self.value) == 0 and label == 'salt':
             log('%s%s:' % (ws, label))
             log('%s: (absent)' % ws)
+            log()
+            return
+        log_binary(ws, label, self.value)
+
+
+class HandleHandshake:
+    """ HandleHandshake tracks handshake messages.  It also assigns roles. """
+    pattern = re.compile('^\d+: SSL3\[(-?\d+)\]: append handshake header: type ([a-z_]+) ')
+    message_role = {'client_hello': 'client', 'server_hello': 'server'}
+    junk = re.compile('^(?:\d+: )?(?:append variable|number|data):$')
+    append = binary_pattern('Append to Handshake', socket=True)
+    handshake_hash_input = binary_pattern('handshake hash input:', socket=True)
+
+    def __init__(self, m):
+        self.message = m.group(2)
+        if self.message in self.message_role:
+            self.role = roles.commit(m.group(1), self.message_role[self.message])
         else:
-            log('%s%s (%d octets):' % (ws, label, len(self.value)))
-            if len(self.value) == 0:
-                log('%s: (empty)' % ws)
-        colon = ':'
-        for i in list(range(0, len(self.value), 32)):
-            log('%s%s %s' % (ws, colon, self.hex(self.value[i:i+32])))
-            colon = ' '
+            self.role = roles.lookup(m.group(1))
+        self.binary = None
+        self.ignore = None
+        self.data = b''
+
+    def handle(self, line):
+        if self.binary is not None:
+            if not self.binary.handle(line):
+                return False
+            self.data += self.binary.value
+            self.binary = None
+        elif self.ignore is not None:
+            if not self.ignore.handle(line):
+                return False
+            self.ignore = None
+
+        if self.junk.match(line) is not None:
+            return False
+
+        m = self.append.match(line)
+        if m is not None:
+            self.binary = BinaryReader(m)
+            return False
+
+        # NSS sometimes logs inputs to the handshake hash, which duplicate the
+        # logged data and confuses things.  Ignore that.
+        m = self.handshake_hash_input.match(line)
+        if m is not None:
+            self.ignore = BinaryReader(m)
+            return False
+
+        return True
+
+    def snake_to_camel(self, s):
+        return ''.join([x[0].upper() + x[1:].lower() for x in s.split('_')])
+
+    def report(self):
+        roles.report(self.role)
+        msg = self.snake_to_camel(self.message)
+        log(': send a %s handshake message' % msg)
         log()
+        log_binary('  ', msg, self.data)
+
 
 class HandleRecord:
     pattern = re.compile('^\d+: SSL3\[(-?\d+)\] SendRecord type: (\w+)')
