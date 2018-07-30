@@ -55,7 +55,7 @@ produced.
 Note:
 
 : Invocations of HMAC-based Extract-and-Expand Key Derivation Function (HKDF)
-  {{?RFC5869}} are not labelled, but can be identified through the use the
+  {{?RFC5869}} are not labelled, but can be identified through the use of the
   labels used by HKDF.
 
 
@@ -151,7 +151,8 @@ curve.
 
 In this example, the server requests client authentication.  The client uses a
 certificate with an RSA key, the server uses an ECDSA certificate with a P-256
-key.  Note that private keys for this example are not included in the draft.
+key.  Note that private keys for the certificates used this example are not
+shown.
 
 >>> GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
 <<< GenericStream/TlsConnectGeneric.ClientAuthEcdsa/0 client_auth
