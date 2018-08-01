@@ -535,7 +535,8 @@ class HandleTrafficKeys:
     def report(self):
         roles.report(self.role)
         msg = 'derive %s traffic keys for %s' % (self.direction, self.label)
-        dupe = self.dedupe.match('%s %s traffic keys' % (self.role, self.direction), self.values)
+        dupelabel = '%s %s %s traffic keys' % (self.role, self.label, self.direction)
+        dupe = self.dedupe.match(dupelabel, self.values)
         if dupe is not None:
             log(': %s (same as %s)' % (msg, dupe))
             return
