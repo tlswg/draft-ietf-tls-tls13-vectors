@@ -368,11 +368,13 @@ class HandleFinished(HandleHkdf):
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: (client|server) calculate finished')
     name = 'calculate finished'
     label = None
+    final_pattern = binary_pattern('finished value', socket=True)
 
     def __init__(self, m):
         HandleHkdf.__init__(self)
         self.role = roles.lookup(m.group(1))
         self.handshake_hash = None
+        self.final = None
 
     def handle(self, line):
         if self.handshake_hash is None:
@@ -383,7 +385,20 @@ class HandleFinished(HandleHkdf):
             self.handshake_hash = BinaryReader(m)
             self.reader = self.handshake_hash
             return False
-        return HandleHkdf.handle(self, line)
+
+        if self.final is not None:
+            return self.final.handle(line)
+
+        if HandleHkdf.handle(self, line):
+            m = self.final_pattern.match(line)
+            if m is not None:
+                self.final = BinaryReader(m)
+                return False
+            return True
+
+    def report(self):
+        HandleHkdf.report(self)
+        self.final.report('result')
 
 class HandleResumptionSecretServer(HandleHkdf):
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: send new session ticket message (\d+)')
