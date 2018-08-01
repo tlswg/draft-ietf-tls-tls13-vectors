@@ -187,7 +187,7 @@ class HandleHandshake:
     def report(self):
         roles.report(self.role)
         msg = self.snake_to_camel(self.message)
-        log(': send a %s handshake message' % msg)
+        log(': construct a %s handshake message' % msg)
         log()
         log_binary('  ', msg, self.data)
 
