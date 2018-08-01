@@ -143,6 +143,11 @@ share.  The server however prefers P-256 {{FIPS186}} and sends a
 HelloRetryRequest that requires the client to generate a key share on the P-256
 curve.
 
+Note:
+
+: The HelloRetryRequest uses the same handshake message type as a ServerHello
+  and so is labeled as ServerHello here.
+
 >>> KeyExchangeTest/TlsKeyExchangeTest13.EqualPriorityTestRetryECServer13/0 hrr
 <<< KeyExchangeTest/TlsKeyExchangeTest13.EqualPriorityTestRetryECServer13/0 hrr
 
