@@ -398,7 +398,8 @@ class HandleFinished(HandleHkdf):
         return False
 
     def report(self):
-        self.values.append(['finished', self.final])
+        if self.final is not None:
+            self.values.append(['finished', self.final])
         HandleHkdf.report(self)
 
 class HandlePskBinder:
