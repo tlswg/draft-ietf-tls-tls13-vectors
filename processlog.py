@@ -436,8 +436,8 @@ class HandlePskBinder:
         return False
 
     def report(self):
-        self.finished.values.insert(0, ['ClientHello prefix', self.prefix])
-        self.finished.values.insert(0, ['binder hash', self.hash])
+        self.finished.values[0:0] = [['ClientHello prefix', self.prefix],
+                                     ['binder hash', self.hash]]
         self.finished.label = None
         self.finished.report()
 
