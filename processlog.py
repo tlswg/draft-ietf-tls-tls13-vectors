@@ -229,7 +229,7 @@ class HandleEncrypted:
         return self.binary.handle(line)
 
     def report(self):
-        self.binary.report('ciphertext')
+        self.binary.report('complete record')
 
 class HandlePrivateKey:
     pattern = re.compile('^\d+: SSL\[(-?\d+)\]: Create ECDH ephemeral key (\d+)')
@@ -297,7 +297,7 @@ class HandleHkdf:
                      ['PRK', binary_pattern('PRK')],
                      ['hash', binary_pattern('Hash')],
                      ['info', binary_pattern('Info')],
-                     ['output', binary_pattern('Derived key')]]
+                     ['expanded', binary_pattern('Derived key')]]
     message_pattern = binary_pattern('Handshake hash computed over saved messages',
                                      socket=True)
     handshake_hash_pattern = binary_pattern('Handshake hash', socket=True)
@@ -395,16 +395,54 @@ class HandleFinished(HandleHkdf):
                 self.final = BinaryReader(m)
                 return False
             return True
+        return False
 
     def report(self):
+        self.values.append(['finished', self.final])
         HandleHkdf.report(self)
-        self.final.report('result')
+
+class HandlePskBinder:
+    pattern = binary_pattern('Handshake hash computed over ClientHello prefix', socket=False)
+    hash_pattern = binary_pattern('PSK Binder hash', socket=False)
+
+    def __init__(self, m):
+        self.finished = None
+        self.prefix = BinaryReader(m)
+        self.hash = None
+
+    def handle(self, line):
+        if self.finished is not None:
+            return self.finished.handle(line)
+
+        if self.hash is not None:
+            if self.hash.handle(line):
+               m = HandleFinished.pattern.match(line)
+               if m is None:
+                   warning('no finished after PSK binder')
+                   return True
+               self.finished = HandleFinished(m)
+               self.finished.label = None
+               self.finished.name = 'calculate PSK binder'
+            return False
+
+        if self.prefix.handle(line):
+            m = self.hash_pattern.match(line)
+            if m is None:
+                warning('no PSK binder after handshake prefix')
+                return True
+            self.hash = BinaryReader(m)
+
+        return False
+
+    def report(self):
+        self.finished.values.insert(0, ['ClientHello prefix', self.prefix])
+        self.finished.values.insert(0, ['binder hash', self.hash])
+        self.finished.label = None
+        self.finished.report()
 
 class HandleResumptionSecretServer(HandleHkdf):
     pattern = re.compile('\d+: TLS13\[(-?\d+)\]: send new session ticket message (\d+)')
     name = 'generate resumption secret'
-    # Don't insist that this be run for every invocation
-    run = True
 
     def __init__(self, m):
         HandleHkdf.__init__(self)
@@ -413,8 +451,6 @@ class HandleResumptionSecretServer(HandleHkdf):
 
 class HandleResumptionSecretClient():
     pattern = re.compile('\d+: SSL\[(-?\d+)\]: Caching session ticket \[Len: (\d+)\]')
-    # Don't insist that this be run for every invocation
-    run = True
 
     def __init__(self, m):
         self.ticket = BinaryReader(m)
@@ -558,15 +594,23 @@ handlers = [HandleConnecting,
             HandlePrivateKey,
             HandleMasterSecret,
             HandleDeriveSecret,
+            HandlePskBinder,
             HandleFinished,
             HandleResumptionSecretServer,
             HandleResumptionSecretClient,
             HandleTrafficKeys]
+
+# This tracks the handlers that were run.
+# Those included here don't need to be run every time.
+run_handlers = {HandlePskBinder: True,
+                HandleResumptionSecretServer: True,
+                HandleResumptionSecretClient: True}
+
 def pick_handler(line):
     for h in handlers:
         m = h.pattern.match(line)
         if m is not None:
-            h.run = True
+            run_handlers[h] = True
             return h(m)
     return None
 
@@ -587,8 +631,8 @@ def main():
         handler = pick_handler(line)
 
     for h in handlers:
-        if not h.run:
-            warning('handler %s not run' % h)
+        if not h in run_handlers:
+            warning('handler %s was not run' % h)
 
 if __name__ == '__main__':
     main()
