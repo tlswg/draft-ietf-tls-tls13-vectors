@@ -483,7 +483,8 @@ class HandleMasterSecret:
             log()
         roles.report(self.role)
         msg = 'extract secret "%s"' % self.label
-        dupe = self.dedupe.match(self.role, self.values)
+        dupelabel = '%s %s secret' % (self.role, self.label)
+        dupe = self.dedupe.match(dupelabel, self.values)
         if dupe is not None:
             log(': %s (same as %s)' % (msg, dupe))
             return

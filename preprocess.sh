@@ -49,7 +49,7 @@ process() {
                        SSLTRACE=100 \
                        "$SSL_GTEST" -d "$DB_DIR" --gtest_filter="${args[0]}" 2>&1 | \
             tee "$log" | \
-            ./processlog.py 3>"$tmp3" 4>"$tmp4"
+            python3 ./processlog.py 3>"$tmp3" 4>"$tmp4"
         if [[ $? -ne 0 ]]; then
             exit 1
         fi
