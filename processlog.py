@@ -129,7 +129,7 @@ class BinaryReader:
         ws = ' ' * 2 * indent
         if len(self.value) == 0 and label == 'salt':
             log('%s%s:' % (ws, label))
-            log('%s: (absent)' % ws)
+            log('%s: 0 (all zero octets)' % ws)
             log()
             return
         log_binary(ws, label, self.value)
