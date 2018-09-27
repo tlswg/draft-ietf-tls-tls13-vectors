@@ -99,7 +99,7 @@
     "created_at": "2018-05-09T15:56:36Z",
     "updated_at": "2018-05-30T01:28:13Z",
     "closed_at": "2018-05-30T01:28:12Z",
-    "author_association": "MEMBER",
+    "author_association": "CONTRIBUTOR",
     "pull_request": {
       "url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/pulls/6",
       "html_url": "https://github.com/tlswg/draft-ietf-tls-tls13-vectors/pull/6",
@@ -153,7 +153,7 @@
     "created_at": "2018-05-08T16:40:45Z",
     "updated_at": "2018-05-30T01:28:12Z",
     "closed_at": "2018-05-30T01:28:12Z",
-    "author_association": "MEMBER",
+    "author_association": "CONTRIBUTOR",
     "body": "I don't really have a strong opinion on this, but I am sure somebody will.  Many of the \"example\" RFCs are Informational but some are BCP (based on the following):\r\nhttps://datatracker.ietf.org/doc/search?name=examples&sort=&rfcs=on&activedrafts=on&by=group&group="
   },
   {
@@ -201,7 +201,7 @@
     "created_at": "2018-05-08T16:36:54Z",
     "updated_at": "2018-05-08T21:48:27Z",
     "closed_at": "2018-05-08T21:48:27Z",
-    "author_association": "MEMBER",
+    "author_association": "CONTRIBUTOR",
     "pull_request": {
       "url": "https://api.github.com/repos/tlswg/draft-ietf-tls-tls13-vectors/pulls/4",
       "html_url": "https://github.com/tlswg/draft-ietf-tls-tls13-vectors/pull/4",
@@ -255,7 +255,7 @@
     "created_at": "2017-07-17T09:50:04Z",
     "updated_at": "2018-05-02T00:52:59Z",
     "closed_at": "2018-05-02T00:52:58Z",
-    "author_association": "MEMBER",
+    "author_association": "COLLABORATOR",
     "body": "This is going to be tricky given the test setup."
   },
   {
@@ -303,7 +303,7 @@
     "created_at": "2017-07-16T14:21:35Z",
     "updated_at": "2017-07-17T09:48:50Z",
     "closed_at": "2017-07-17T09:48:50Z",
-    "author_association": "MEMBER",
+    "author_association": "COLLABORATOR",
     "body": "When we send NewSessionTicket, we don't log the HKDF that covers the resumption secret."
   },
   {
