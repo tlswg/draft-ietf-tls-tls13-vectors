@@ -42,8 +42,8 @@ implementations might be checked incrementally against these values.
 
 # Introduction
 
-TLS 1.3 {{!TLS13=I-D.ietf-tls-tls13}} defines a new key schedule and a number
-of new cryptographic operations.  This document includes sample handshakes that
+TLS 1.3 {{!TLS13=RFC8446}} defines a new key schedule and a number of new
+cryptographic operations.  This document includes sample handshakes that
 show all intermediate values.  This allows an implementation to be verified
 incrementally, examining inputs and outputs of each cryptographic computation
 independently.
